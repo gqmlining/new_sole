@@ -383,6 +383,27 @@ class LSQUnit {
         bool isAllZeros;
     };
 
+    struct DataForwardEntry {
+        /** The struct for store to load data forwading entry. */
+        /** whether the entry is valid. */
+        bool valid;
+        /** Original meaning is which byte is valid, but here
+         * indicate how much bytes are valid, likes effSize in
+         * dynInst,as design simple reason.
+         */
+        uint8_t bitEnable;
+        /** The ssn of the store which provide the data. */
+        storeSeqNum ssn;
+        /** The addr tag to judge if it gets a match. */
+        unsigned tag;
+        /** The data to forward. */
+        uint8_t *data;
+    };
+
+    void updateForwardEntry(const DynInstPtr& storeInst);
+
+    bool dataForward(DynInstPtr& loadInst);//need to change loadInst;
+
   public:
     /** The LSQUnit thread id. */
     ThreadID lsqID;
@@ -393,6 +414,9 @@ class LSQUnit {
     /** The load queue. */
     std::vector<DynInstPtr> loadQueue;
 
+    /** The store to load data forwarding struct. */
+    std::vector<std::vector<DataForwardEntry>> dataForwardStruct;
+
     /** The number of LQ entries, plus a sentinel entry (circular queue).
      *  @todo: Consider having var that records the true number of LQ entries.
      */
@@ -401,6 +425,12 @@ class LSQUnit {
      *  @todo: Consider having var that records the true number of SQ entries.
      */
     unsigned SQEntries;
+
+    /** Num of forward struct entry sets. */
+    unsigned setsNum;
+
+    /** Num of ways for each forward struct set. */
+    unsigned waysNum;
 
     /** The number of places to shift addresses in the LSQ before checking
      * for dependency violations
@@ -888,8 +918,11 @@ LSQUnit<Impl>::write(const RequestPtr &req,
 
     if (!(req->getFlags() & Request::CACHE_BLOCK_ZERO) && \
         !req->isCacheMaintenance())
+    {
         memcpy(storeQueue[store_idx].data, data, size);
-
+        storeQueue[store_idx].inst->storeData = new uint8_t[size];
+        memcpy(storeQueue[store_idx].inst->storeData, data, size);
+    }
     // This function only writes the data to the store queue, so no fault
     // can happen here.
     return NoFault;

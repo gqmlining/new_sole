@@ -152,6 +152,8 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** The store sequence number of the instruction. */
     StoreSeqNum SSN;
 
+    /** The store sequence number of the forward store instruction. */
+    StoreSeqNum forwardSSN;
 
     /** The StaticInst used by this BaseDynInst. */
     const StaticInstPtr staticInst;
@@ -212,6 +214,12 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** The effective virtual address (lds & stores only). */
     Addr effAddr;
 
+    /** The base address of effctive virtual address. */
+    Addr effBase;
+
+    /** The offset of effctive virtual address. */
+    Addr effOffset;
+
     /** The effective physical address. */
     Addr physEffAddrLow;
 
@@ -231,6 +239,12 @@ class BaseDynInst : public ExecContext, public RefCounted
 
     /** Pointer to the data for the memory access. */
     uint8_t *memData;
+
+    /** Pointer to store data to update forward srtuct. */
+    uint8_t *storeData;
+
+    /** Pointer to the data forwarding from predicate struct */
+    uint8_t *forwardData;
 
     /** Pointer to the data for the Reexecute memory access.**/
 

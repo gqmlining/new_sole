@@ -88,6 +88,8 @@ void
 BaseDynInst<Impl>::initVars()
 {
     memData = NULL;
+    storeData = NULL;
+    forwardData = NULL;
     effAddr = 0;
     physEffAddrLow = 0;
     physEffAddrHigh = 0;
@@ -143,6 +145,14 @@ BaseDynInst<Impl>::~BaseDynInst()
 
     if (traceData) {
         delete traceData;
+    }
+
+    if (storeData) {
+        delete storeData;
+    }
+
+    if (forwardData) {
+        delete forwardData;
     }
 
 // if (reexecute_memData){

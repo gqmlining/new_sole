@@ -175,6 +175,15 @@ LSQUnit<Impl>::init(O3CPU *cpu_ptr, IEW *iew_ptr, DerivO3CPUParams *params,
     loadQueue.resize(LQEntries);
     storeQueue.resize(SQEntries);
 
+    setsNum = param->forwardStructSets;
+    waysNum = param->forwardStructWays;
+    for (int i = 0; i < setsNum; ++i)
+    {
+        std::vector<DataForwardEntry> temp;
+        temp.resize(waysNum);
+        dataForwardStruct.push_back(temp);
+    }
+
     depCheckShift = params->LSQDepCheckShift;
     checkLoads = params->LSQCheckLoads;
     cacheStorePorts = params->cacheStorePorts;
@@ -639,6 +648,24 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 
     // set SSN
     inst->SSN  = cpu->getRetireSSN();
+    // add data forward mechisim
+    // todo@ may need to change
+    if (dataFoward(inst))
+    {
+        assert(inst->effAddrValid());
+        int load_idx = inst->lqIdx;
+        incrLdIdx(load_idx);
+
+        // Need to insert instruction into queue to commit
+        iewStage->instToCommit(inst);
+
+        iewStage->activityThisCycle();
+
+        // see if this load changed the PC
+        iewStage->checkMisprediction(inst);
+
+        return load_fault;
+    }
     load_fault = inst->initiateAcc();
 
     if (inst->isTranslationDelayed() &&
@@ -693,6 +720,10 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
     // Check the recently completed loads to see if any match this store's
     // address.  If so, then we have a memory ordering violation.
     int load_idx = store_inst->lqIdx;
+
+    // update data forward struct
+    // todo@ may need to identify where to place this op
+    updateDataStruct(store_inst);
 
     Fault store_fault = store_inst->initiateAcc();
 
@@ -1008,6 +1039,93 @@ LSQUnit<Impl>::removeMSHR(InstSeqNum seqNum)
     }
 }*/
 
+// todo@ implement the two funtions below.
+template<class Impl>
+void
+LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
+{
+    // todo@ need to indentify the type of base and offset
+    unsigned indexMask = setsNum - 1;
+    unsigned base = store_inst->readIntRegOprand(store_inst->staticInst,0);
+    unsigned offset = store_inst->staticInst->getOffset();
+    unsigned index = (base ^ offset) & indexMask;
+    unsigned oldestSsnWay = 0;
+    bool canUpdate = false;
+    StoreSeqNum ssn = store_inst->SSN;
+    StoreSeqNum oldestSsn = ssn;
+    for (unsigned i = 0; i < waysNum; ++i)
+    {
+        DataForwardEntry& entry = dataForwardStruct[index][i];
+        if (!entry.valid)
+        {
+            canUpdate = true;
+            oldestSsnWay = i;
+        }
+        if (ssn < entry.ssn)
+            continue;
+        canUpdate = true;
+        if (oldestSsn > entry.ssn)
+        {
+            oldestSsn = entry.ssn;
+            oldestSsnWay = i;
+        }
+    }
+    if (canUpdate)
+    {
+        DataForwardStruct& entry = dataForwardStruct[index][oldestWay];
+        entry.valid = true;
+        entry.bitEnable = store_inst->effSize;
+        entry.ssn = ssn;
+        unsigned tag = (base ^ offset) & !indexMask;
+        entry.data = store_inst->storeData;
+    }
+}
+
+template<class Impl>
+bool
+dataForward(DynInstPtr& load_inst)
+{
+    unsigned indexMask = setsNum - 1;
+    unsigned base = load_inst->readIntRegOprand(load_inst->staticInst,0);
+    unsigned offset = load_inst->staticInst->getOffset();
+    unsigned index = (base ^ offset) & indexMask;
+    unsigned youngestSsnWay = 0;
+    unsigned youngestHitSsn = 0;
+    unsigned yougestSsn = 0;
+    unsigned canForward = false;
+    unsigned tag = (base ^ offset) & !indexMask;
+
+    for (unsigned i = 0; i < waysNum; ++i)
+    {
+        DataForwardEntry& entry = dataForwardStruct[index][i];
+        if (!entry.valid)
+            continue;
+        youngestSsn = std::max(youngestSsn, entry.ssn);
+        if (entry.tag != tag)
+            continue;
+        canForward = true;
+        if (youngestHitSsn <= entry.ssn)
+        {
+            youngestHitSsn = entry.ssn;
+            youngestSsnWay = i;
+        }
+    }
+    if (canForward)
+    {
+        DataForwardEntry& entry = dataForwardStruct[index][youngestSsnWay];
+        load_inst->forwardSSN = youngestHitSsn;
+        uint8_t size = entry.bitEnable;
+        load_inst->forwardData = new uint8_t[size];
+        memcpy(load_inst->forwardData, entry->data, size);
+        return true;
+    }
+    else
+    {
+        load_inst->forwardSSN = youngestSsn;
+        return false;
+    }
+}
+
 template <class Impl>
 void
 LSQUnit<Impl>::squash(const InstSeqNum &squashed_num)
@@ -1144,6 +1262,13 @@ LSQUnit<Impl>::writeback(DynInstPtr &inst, PacketPtr pkt)
         if (inst->fault == NoFault) {
             // Complete access to copy data to proper place.
             inst->completeAcc(pkt);
+            // place the forward data to proper place when the data forward
+            // failed.
+            if (!inst->forwardData)
+            {
+                 inst->forwardData = new uint8_t[inst->effSize];
+                 memcpy(inst->forwardData, inst->memData, inst->effSize);
+            }
         } else {
             // If the instruction has an outstanding fault, we cannot complete
             // the access as this discards the current fault.
@@ -1217,60 +1342,6 @@ LSQUnit<Impl>::completeStore(int store_idx)
             curTick() - storeQueue[store_idx].inst->fetchTick;
     }
 #endif
-
-    if (isStalled() &&
-        storeQueue[store_idx].inst->seqNum == stallingStoreIsn) {
-        DPRINTF(LSQUnit, "Unstalling, stalling store [sn:%lli] "
-                "load idx:%i\n",
-                stallingStoreIsn, stallingLoadIdx);
-        stalled = false;
-        stallingStoreIsn = 0;
-        iewStage->replayMemInst(loadQueue[stallingLoadIdx]);
-    }
-
-    storeQueue[store_idx].inst->setCompleted();
-
-    if (needsTSO) {
-        storeInFlight = false;
-    }
-
-    // Tell the checker we've completed this instruction.  Some stores
-    // may get reported twice to the checker, but the checker can
-    // handle that case.
-
-    // Store conditionals cannot be sent to the checker yet, they have
-    // to update the misc registers first which should take place
-    // when they commit
-    if (cpu->checker && !storeQueue[store_idx].inst->isStoreConditional()) {
-        cpu->checker->verify(storeQueue[store_idx].inst);
-    }
-}
-
-template <class Impl>
-bool
-LSQUnit<Impl>::sendStore(PacketPtr data_pkt)
-{
-    if (!dcachePort->sendTimingReq(data_pkt)) {
-        // Need to handle becoming blocked on a store.
-        isStoreBlocked = true;
-        ++lsqCacheBlocked;
-        assert(retryPkt == NULL);
-        retryPkt = data_pkt;
-        return false;
-    }
-    return true;
-}
-
-template <class Impl>
-void
-LSQUnit<Impl>::recvRetry()
-{
-    if (isStoreBlocked) {
-        DPRINTF(LSQUnit, "Receiving retry: store blocked\n");
-        assert(retryPkt != NULL);
-
-        LSQSenderState *state =
-            dynamic_cast<LSQSenderState *>(retryPkt->senderState);
 
         if (dcachePort->sendTimingReq(retryPkt)) {
             // Don't finish the store unless this is the last packet.

@@ -50,6 +50,12 @@ class MemInst : public RiscvStaticInst
     MemInst(const char *mnem, ExtMachInst _machInst, OpClass __opClass)
         : RiscvStaticInst(mnem, _machInst, __opClass), offset(0)
     {}
+
+  public:
+    int64_t getOffset() const override
+    {
+        return offset;
+    }
 };
 
 class Load : public MemInst
