@@ -1342,7 +1342,59 @@ LSQUnit<Impl>::completeStore(int store_idx)
             curTick() - storeQueue[store_idx].inst->fetchTick;
     }
 #endif
+    if (isStalled() &&
+        storeQueue[store_idx].inst->seqNum == stallingStoreIsn) {
+        DPRINTF(LSQUnit, "Unstalling, stalling store [sn:%lli] "
+                "load idx:%i\n",
+                stallingStoreIsn, stallingLoadIdx);
+        stalled = false;
+        stallingStoreIsn = 0;
+        iewStage->replayMemInst(loadQueue[stallingLoadIdx]);
+    }
 
+    storeQueue[store_idx].inst->setCompleted();
+
+    if (needsTSO) {
+        storeInFlight = false;
+    }
+
+    // Tell the checker we've completed this instruction.  Some stores
+    // may get reported twice to the checker, but the checker can
+    // handle that case.
+
+    // Store conditionals cannot be sent to the checker yet, they have
+    // to update the misc registers first which should take place
+    // when they commit
+    if (cpu->checker && !storeQueue[store_idx].inst->isStoreConditional()) {
+        cpu->checker->verify(storeQueue[store_idx].inst);
+    }
+}
+
+template <class Impl>
+bool
+LSQUnit<Impl>::sendStore(PacketPtr data_pkt)
+{
+    if (!dcachePort->sendTimingReq(data_pkt)) {
+        // Need to handle becoming blocked on a store.
+        isStoreBlocked = true;
+        ++lsqCacheBlocked;
+        assert(retryPkt == NULL);
+        retryPkt = data_pkt;
+        return false;
+    }
+    return true;
+}
+
+template <class Impl>
+void
+LSQUnit<Impl>::recvRetry()
+{
+    if (isStoreBlocked) {
+        DPRINTF(LSQUnit, "Receiving retry: store blocked\n");
+        assert(retryPkt != NULL);
+
+        LSQSenderState *state =
+            dynamic_cast<LSQSenderState *>(retryPkt->senderState);
         if (dcachePort->sendTimingReq(retryPkt)) {
             // Don't finish the store unless this is the last packet.
             if (!TheISA::HasUnalignedMemAcc || !state->pktToSend ||
