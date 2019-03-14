@@ -646,12 +646,14 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 
     assert(!inst->isSquashed());
 
-    // set SSN
-    inst->SSN  = cpu->getRetireSSN();
     // add data forward mechisim
     // todo@ may need to change
-    if (dataFoward(inst))
+    if (dataForward(inst))
     {
+        // Need to get physical address
+        inst->onlyTLBTranslate = true;
+        load_fault = inst->initiateAcc();
+
         assert(inst->effAddrValid());
         int load_idx = inst->lqIdx;
         incrLdIdx(load_idx);
@@ -691,6 +693,7 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         iewStage->instToCommit(inst);
         iewStage->activityThisCycle();
     } else {
+        inst->forwardSSN = inst->cpu->SVWFilter.getSSN(inst);
         assert(inst->effAddrValid());
         int load_idx = inst->lqIdx;
         incrLdIdx(load_idx);
@@ -1046,8 +1049,9 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
 {
     // todo@ need to indentify the type of base and offset
     unsigned indexMask = setsNum - 1;
-    unsigned base = store_inst->readIntRegOprand(store_inst->staticInst,0);
-    unsigned offset = store_inst->staticInst->getOffset();
+    unsigned base = store_inst->readIntRegOprand(store_inst->staticInst,0)
+                    >> depCheckShift;
+    unsigned offset = store_inst->staticInst->getOffset() >> depCheckShift;
     unsigned index = (base ^ offset) & indexMask;
     unsigned oldestSsnWay = 0;
     bool canUpdate = false;
@@ -1086,8 +1090,9 @@ bool
 dataForward(DynInstPtr& load_inst)
 {
     unsigned indexMask = setsNum - 1;
-    unsigned base = load_inst->readIntRegOprand(load_inst->staticInst,0);
-    unsigned offset = load_inst->staticInst->getOffset();
+    unsigned base = load_inst->readIntRegOprand(load_inst->staticInst,0)
+                    >> depCheckShift;
+    unsigned offset = load_inst->staticInst->getOffset() >> depCheckShift;
     unsigned index = (base ^ offset) & indexMask;
     unsigned youngestSsnWay = 0;
     unsigned youngestHitSsn = 0;

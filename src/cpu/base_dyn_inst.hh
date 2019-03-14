@@ -240,6 +240,9 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** Pointer to the data for the memory access. */
     uint8_t *memData;
 
+    /** only tlb translation flag. */
+    bool onlyTLBTranslate;
+
     /** Pointer to store data to update forward srtuct. */
     uint8_t *storeData;
 
@@ -985,6 +988,10 @@ BaseDynInst<Impl>::initiateMemRead(Addr addr, unsigned size,
         initiateTranslation(req, sreqLow, sreqHigh, NULL, BaseTLB::Read);
         DPRINTF(Reexecute,"Reexecute-initiateMemRead-3-3\n");
     }
+
+    // When data forward successfully, just calculate the physical address.
+    if (onlyTLBTranslate)
+        return fault;
 
     if (translationCompleted()) {
       DPRINTF(Reexecute,"Reexecute-initiateMemRead-4\n");

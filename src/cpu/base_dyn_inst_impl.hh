@@ -87,6 +87,7 @@ template <class Impl>
 void
 BaseDynInst<Impl>::initVars()
 {
+    onlyTLBTranslate = false;
     memData = NULL;
     storeData = NULL;
     forwardData = NULL;

@@ -414,6 +414,8 @@ class LSQUnit {
     /** The load queue. */
     std::vector<DynInstPtr> loadQueue;
 
+    unsigned depCheckShift = 2;
+
     /** The store to load data forwarding struct. */
     std::vector<std::vector<DataForwardEntry>> dataForwardStruct;
 
