@@ -508,7 +508,7 @@ ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
     if (inst->isReexecuting()){
       return ;
     }
-    delete inst->memData;
+    delete [] inst->memData;
     inst->memData = nullptr;
     Fault load_fault = NoFault;
 

@@ -393,16 +393,23 @@ class LSQUnit {
          */
         uint8_t bitEnable;
         /** The ssn of the store which provide the data. */
-        storeSeqNum ssn;
+        //typedef uint64_t storeSeqNum;
+        StoreSeqNum ssn;
         /** The addr tag to judge if it gets a match. */
         unsigned tag;
         /** The data to forward. */
         uint8_t *data;
+
+        DataForwardEntry():valid(false),bitEnable(0),ssn(0),tag(0),data(NULL){}
+
+        ~DataForwardEntry(){
+          delete [] data;
+        }
     };
 
-    void updateForwardEntry(const DynInstPtr& storeInst);
+    void updateForwardEntry(const DynInstPtr& store_inst);
 
-    bool dataForward(DynInstPtr& loadInst);//need to change loadInst;
+    bool dataForward(DynInstPtr& load_inst);//need to change loadInst;
 
   public:
     /** The LSQUnit thread id. */
@@ -413,8 +420,6 @@ class LSQUnit {
 
     /** The load queue. */
     std::vector<DynInstPtr> loadQueue;
-
-    unsigned depCheckShift = 2;
 
     /** The store to load data forwarding struct. */
     std::vector<std::vector<DataForwardEntry>> dataForwardStruct;

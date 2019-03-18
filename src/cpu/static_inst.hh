@@ -348,7 +348,7 @@ class StaticInst : public RefCounted, public StaticInstFlags
     virtual size_t asBytes(void *buf, size_t max_size) { return 0; }
 
     /** Get immediate from instruction as offset of load or store addr. */
-    virtual int64_t getOffset() { return 0; }
+    virtual int64_t getOffset() const { return 0; }
 };
 
 #endif // __CPU_STATIC_INST_HH__

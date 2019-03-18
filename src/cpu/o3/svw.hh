@@ -52,11 +52,11 @@ public:
     }
 
     void insert(DynInstPtr &inst){
-      if (inst->phtEffAddrLow == 0)
+      if (inst->physEffAddrLow == 0)
         return;
-      auto inst_eff_addr1 = inst->phyEffAddrLow >> depCheckShift;
+      auto inst_eff_addr1 = inst->physEffAddrLow >> depCheckShift;
       auto inst_eff_addr2 =
-        (inst->phyEffAddrLow + inst->effSize - 1) >> depCheckShift;
+        (inst->physEffAddrLow + inst->effSize - 1) >> depCheckShift;
       /** from the front to end, the store is youngest to oldest. */
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
@@ -67,26 +67,25 @@ public:
 
     SVWStoreSeqNum_t search(SVWKey_t key,SVWTag_t tag){
         for (auto i:svwItems[key]){
-            if (i.VAILD && i.TAG == tag){
-                return i.ssn;
+            if (i.VAILD && i.TAG == tag)
+                return i.SSN;
         }
-        return svwItems[[key].front().ssn;
+        return svwItems[key].front().SSN;
     }
 
-    SVWStoreSeqNum_t getSSN(DynInstPtr& inst)
-    {
-        auto addr1 = inst->phyEffAddrLow >> depCheckShift;
+    SVWStoreSeqNum_t getSSN(DynInstPtr& inst) {
+        auto addr = inst->physEffAddrLow >> depCheckShift;
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
         return search(key, tag);
     }
 
-    bool violation(DynInstPtr &inst/*, uint8_t** memData*/){
-      if (inst->phyEffAddrLow == 0)
+    bool violation(DynInstPtr &inst/*, uint8_t** memData*/) {
+      if (inst->physEffAddrLow == 0)
         return false;
-      auto inst_eff_addr1 = inst->phyEffAddrLow >> depCheckShift;
+      auto inst_eff_addr1 = inst->physEffAddrLow >> depCheckShift;
       auto inst_eff_addr2 =
-        (inst->ptyEffAddrLow + inst->effSize - 1) >> depCheckShift;
+        (inst->physEffAddrLow + inst->effSize - 1) >> depCheckShift;
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;

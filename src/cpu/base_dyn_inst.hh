@@ -989,18 +989,24 @@ BaseDynInst<Impl>::initiateMemRead(Addr addr, unsigned size,
         DPRINTF(Reexecute,"Reexecute-initiateMemRead-3-3\n");
     }
 
+    /*
     // When data forward successfully, just calculate the physical address.
     if (onlyTLBTranslate)
         return fault;
+    */
 
     if (translationCompleted()) {
       DPRINTF(Reexecute,"Reexecute-initiateMemRead-4\n");
         if (fault == NoFault) {
-          DPRINTF(Reexecute,"Reexecute-initiateMemRead-4-1\n");
+            DPRINTF(Reexecute,"Reexecute-initiateMemRead-4-1\n");
             effAddr = req->getVaddr();
             DPRINTF(Reexecute,"Reexecute-initiateMemRead-4-2\n");
             effSize = size;
             instFlags[EffAddrValid] = true;
+            // When data forward successfully, just calculate the physical
+            // address.
+            if (onlyTLBTranslate)
+              return fault;
             DPRINTF(Reexecute,"Reexecute-initiateMemRead-4-3\n");
             if (cpu->checker) {
                 reqToVerify = std::make_shared<Request>(*req);
@@ -1015,7 +1021,7 @@ BaseDynInst<Impl>::initiateMemRead(Addr addr, unsigned size,
 
     if (traceData)
         traceData->setMem(addr, size, flags);
-  DPRINTF(Reexecute,"Reexecute-initiateMemRead-5\n");
+    DPRINTF(Reexecute,"Reexecute-initiateMemRead-5\n");
     return fault;
 }
 

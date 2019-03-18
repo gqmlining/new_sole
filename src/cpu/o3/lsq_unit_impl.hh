@@ -175,8 +175,8 @@ LSQUnit<Impl>::init(O3CPU *cpu_ptr, IEW *iew_ptr, DerivO3CPUParams *params,
     loadQueue.resize(LQEntries);
     storeQueue.resize(SQEntries);
 
-    setsNum = param->forwardStructSets;
-    waysNum = param->forwardStructWays;
+    setsNum = params->forwardStructSets;
+    waysNum = params->forwardStructWays;
     for (int i = 0; i < setsNum; ++i)
     {
         std::vector<DataForwardEntry> temp;
@@ -650,7 +650,24 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
     // todo@ may need to change
     if (dataForward(inst))
     {
-        // Need to get physical address
+        // todo@ write value to proper reg
+        uint64_t val = 0;
+        for (int i=0; i<inst->effSize; ++i)
+        {
+             uint64_t temp = atoi(inst->forwardData[i]);
+             temp << (8 * (inst->efffSize - i - 1));
+             val = val ^ temp;
+        }
+        if (inst->isFloating())
+        {
+            inst->setFloatRegOperandBits(
+                  inst->staticInst.get(),0,val);
+        }
+        else
+        {
+            inst->setIntRegOperand(inst->staticInst.get(),0,val);
+        }
+        // Need to get physical address for svw filter
         inst->onlyTLBTranslate = true;
         load_fault = inst->initiateAcc();
 
@@ -674,6 +691,7 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         load_fault == NoFault)
         return load_fault;
 
+    inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
     // If the instruction faulted or predicated false, then we need to send it
     // along to commit without the instruction completing.
     if (load_fault != NoFault || !inst->readPredicate()) {
@@ -693,7 +711,7 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         iewStage->instToCommit(inst);
         iewStage->activityThisCycle();
     } else {
-        inst->forwardSSN = inst->cpu->SVWFilter.getSSN(inst);
+        //inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
         assert(inst->effAddrValid());
         int load_idx = inst->lqIdx;
         incrLdIdx(load_idx);
@@ -726,7 +744,7 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
 
     // update data forward struct
     // todo@ may need to identify where to place this op
-    updateDataStruct(store_inst);
+    updateForwardEntry(store_inst);
 
     Fault store_fault = store_inst->initiateAcc();
 
@@ -1048,13 +1066,16 @@ void
 LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
 {
     // todo@ need to indentify the type of base and offset
-    unsigned indexMask = setsNum - 1;
-    unsigned base = store_inst->readIntRegOprand(store_inst->staticInst,0)
-                    >> depCheckShift;
-    unsigned offset = store_inst->staticInst->getOffset() >> depCheckShift;
-    unsigned index = (base ^ offset) & indexMask;
-    unsigned oldestSsnWay = 0;
-    bool canUpdate = false;
+    // depCheckShift is the offset in block
+    uint64_t indexMask = setsNum - 1;
+    uint64_t base = store_inst->readIntRegOperand(
+                    store_inst->staticInst.get(),0);
+    uint64_t offset = store_inst->staticInst->getOffset();
+    uint64_t hash = (base ^ offset) >> depCheckShift;
+    // used for bitEnable, this is start place where bit enable
+    uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
+    uint64_t index = hash & indexMask;
+    uint64_t oldestSsnWay = 0;
     StoreSeqNum ssn = store_inst->SSN;
     StoreSeqNum oldestSsn = ssn;
     for (unsigned i = 0; i < waysNum; ++i)
@@ -1062,50 +1083,61 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
         DataForwardEntry& entry = dataForwardStruct[index][i];
         if (!entry.valid)
         {
-            canUpdate = true;
             oldestSsnWay = i;
+            break;
         }
         if (ssn < entry.ssn)
             continue;
-        canUpdate = true;
         if (oldestSsn > entry.ssn)
         {
             oldestSsn = entry.ssn;
             oldestSsnWay = i;
         }
     }
-    if (canUpdate)
+    DataForwardEntry& entry = dataForwardStruct[index][oldestSsnWay];
+    entry.valid = true;
+    // bitEnable need to determind by offset in block, bitEnable from low to
+    // to high represent byte enable from low index to high index in dynamic
+    // vector (data);
+    uint8_t mask = 1 << blockOffset;
+    entry.bitEnable = 0;
+    for (int i = 0;i < store_inst->effSize; i++);
     {
-        DataForwardStruct& entry = dataForwardStruct[index][oldestWay];
-        entry.valid = true;
-        entry.bitEnable = store_inst->effSize;
-        entry.ssn = ssn;
-        unsigned tag = (base ^ offset) & !indexMask;
-        entry.data = store_inst->storeData;
+         entry.bitEnable = entry.bitEnable | mask;
+         mask << 1;
     }
+    entry.ssn = ssn;
+    entry.tag = hash & !indexMask;
+    // only set the proper byte in data;
+    if (entry.data == NULL)
+        entry.data = new uint8_t[8];
+    memcpy(entry.data[blockOffset], store_inst->storeData,
+           store_inst->effSize);
 }
 
 template<class Impl>
 bool
-dataForward(DynInstPtr& load_inst)
+LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
 {
-    unsigned indexMask = setsNum - 1;
-    unsigned base = load_inst->readIntRegOprand(load_inst->staticInst,0)
-                    >> depCheckShift;
-    unsigned offset = load_inst->staticInst->getOffset() >> depCheckShift;
-    unsigned index = (base ^ offset) & indexMask;
-    unsigned youngestSsnWay = 0;
-    unsigned youngestHitSsn = 0;
-    unsigned yougestSsn = 0;
-    unsigned canForward = false;
-    unsigned tag = (base ^ offset) & !indexMask;
+    if (load_inst->numDestRegs() != 1)
+        return false;
+    uint64_t indexMask = setsNum - 1;
+    uint64_t base = load_inst->readIntRegOperand(
+                    load_inst->staticInst.get(),0);
+    uint64_t offset = load_inst->staticInst->getOffset();
+    uint64_t hash = (base ^ offset) >> depCheckShift;
+    uint64_t index = hash & indexMask;
+    uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
+    uint64_t youngestSsnWay = 0;
+    uint64_t youngestHitSsn = 0;
+    uint64_t canForward = false;
+    uint64_t tag = hash & !indexMask;
 
     for (unsigned i = 0; i < waysNum; ++i)
     {
         DataForwardEntry& entry = dataForwardStruct[index][i];
         if (!entry.valid)
             continue;
-        youngestSsn = std::max(youngestSsn, entry.ssn);
         if (entry.tag != tag)
             continue;
         canForward = true;
@@ -1119,16 +1151,21 @@ dataForward(DynInstPtr& load_inst)
     {
         DataForwardEntry& entry = dataForwardStruct[index][youngestSsnWay];
         load_inst->forwardSSN = youngestHitSsn;
-        uint8_t size = entry.bitEnable;
+        uint64_t mask = 1 << blockOffset;
+        for (int i=0;i<load_inst->effSize;i++)
+        {
+           if (mask & entry.bitEnable == 0)
+                return false;
+           mask = mask << 1;
+        }
+        if (size > entry.bitEnable)
+             return false;
+        uint64_t size = load_inst->effSize;
         load_inst->forwardData = new uint8_t[size];
-        memcpy(load_inst->forwardData, entry->data, size);
+        memcpy(load_inst->forwardData, entry.data[blockOffset], size);
         return true;
     }
-    else
-    {
-        load_inst->forwardSSN = youngestSsn;
-        return false;
-    }
+    return false;
 }
 
 template <class Impl>
