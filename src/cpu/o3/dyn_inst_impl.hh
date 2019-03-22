@@ -123,6 +123,73 @@ BaseO3DynInst<Impl>::initVars()
     commitTick = -1;
     storeTick = -1;
 #endif
+
+if (this->isLoad() || this->isStore()){
+  string name = this->staticInst->getName();
+
+  if (name.find("ld") != std::string::npos){
+    this->effSize = sizeof(uint64_t);
+    return ;
+  }
+  if (name.find("sb") != std::string::npos){
+    this->effSize = sizeof(int8_t);
+    return ;
+  }
+
+  if (name.find("ub") != std::string::npos){
+    this->effSize = sizeof(uint8_t);
+    return ;
+  }
+  if (name.find("sh") != std::string::npos){
+    this->effSize = sizeof(int16_t);
+    return ;
+  }
+  if (name.find("uh") != std::string::npos){
+    this->effSize = sizeof(uint16_t);
+    return ;
+  }
+  if (name.find("sw") != std::string::npos){
+    this->effSize = sizeof(int32_t);
+    return ;
+  }
+  if (name.find("uw") != std::string::npos){
+    this->effSize = sizeof(uint32_t);
+    return ;
+  }
+  if (name.find("sd") != std::string::npos){
+    this->effSize = sizeof(int64_t);
+    return ;
+  }
+
+  if (name.find("ud") != std::string::npos){
+    this->effSize = sizeof(int64_t);
+    return ;
+  }
+  if (name.find("sf") != std::string::npos){
+    this->effSize = sizeof(float);
+    return ;
+  }
+  if (name.find("df") != std::string::npos){
+    this->effSize = sizeof(double);
+    return ;
+  }
+
+  if (name.find("w") != std::string::npos){
+    this->effSize = sizeof(uint32_t);
+    return ;
+  }
+
+  if (name.find("b") != std::string::npos){
+    this->effSize = sizeof(uint8_t);
+    return ;
+  }
+
+    if (name.find("d") != std::string::npos){
+    this->effSize = sizeof(uint64_t);
+    return ;
+  }
+}
+
 }
 
 template <class Impl>
@@ -151,7 +218,6 @@ BaseO3DynInst<Impl>::reexecute()
     // when using the TC during an instruction's execution
     // (specifically for instructions that have side-effects that use
     // the TC).  Fix this.
-    this->setNeedReexecute(true);
     return this->execute();
 }
 

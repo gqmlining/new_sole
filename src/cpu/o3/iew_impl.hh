@@ -513,6 +513,7 @@ DefaultIEW<Impl>::squashDueToMemOrder(DynInstPtr &inst, ThreadID tid)
     // case the memory violator should take precedence over the branch
     // misprediction because it requires the violator itself to be included in
     // the squash.
+    std::cout<<"squashDueToMemOrder:";inst->dump();
     if (!toCommit->squash[tid] ||
             inst->seqNum <= toCommit->squashedSeqNum[tid]) {
         toCommit->squash[tid] = true;

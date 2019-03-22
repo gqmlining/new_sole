@@ -496,18 +496,22 @@ ROB<Impl>::updateTail()
     }
 }
 
+int reexecuteNum;
 
 template <class Impl>
 void
 ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
   // TODO REEXCUTE LOAD INST
+    //std::cout << "debug: Enter reexecute inst Function!!\n";
     if (inst->reexecute_memData == nullptr){
       inst->setReexecuted();
       return ;
     }
+   // std::cout << "debug: reexecute data is not NULL" << std::endl;
     if (inst->isReexecuting()){
       return ;
     }
+   // std::cout << "debug: inst is reexecuting" << std::endl;
     delete [] inst->memData;
     inst->memData = nullptr;
     Fault load_fault = NoFault;
@@ -519,6 +523,8 @@ ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
     //inst->setReexecuted();
     load_fault = cpu->iew.ldstQueue.thread[tid].ReexecuteLoad(inst);
   //  std::cout<<"load_fault == NoFault:"<<(load_fault == NoFault)<<std::endl;
+    reexecuteNum++;
+    std::cout << "reexecuteNum: " << reexecuteNum << std::endl;
     return;
 }
 
@@ -534,8 +540,9 @@ ROB<Impl>::doReexcute(ThreadID tid)
     while (head_it != instList[tid].end()) {
        DynInstPtr inst = *head_it;
        head_it++;
-
+       //std::cout<<"doReex:isReexcuted:"<<inst->isExecuted();inst->dump();
        if (!inst->readyToCommit() || inst->isSquashDueToReexecute()){
+        //std::cout<<"noReady"<<std::endl;
          return;
        }
 
@@ -562,9 +569,12 @@ ROB<Impl>::doReexcute(ThreadID tid)
          return;
        }
        if (inst->isLoad() && !inst->isReexecuted()){
-         if (!cpu->SVWFilter.violation(inst)){
-          //std::cout << inst->seqNum << " not find in SVW: ea"<<inst->effAddr;
+         if (!cpu->SVWFilter.violation(inst)&&false){
+          //std::cout << "debug: " << inst->seqNum << " not find in SVW: ea: "
+          //            << inst->effAddr;
           //inst->dump();
+           inst->setExecuted();
+           inst->setCanCommit();
            inst->setReexecuted();
            continue;
          }

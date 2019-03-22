@@ -630,6 +630,8 @@ LSQUnit<Impl>::ReexecuteLoad(DynInstPtr &inst)
     if (inst->isTranslationDelayed() &&
         load_fault == NoFault)
         return load_fault;
+   // if (load_fault!=NoFault)
+   // std::cout << "debug: reexecute fault: " << load_fault->name() << std::endl;
     return load_fault;
 }
 
@@ -648,16 +650,26 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 
     // add data forward mechisim
     // todo@ may need to change
-    if (dataForward(inst))
+
+    if (!inst->isForward && dataForward(inst))
     {
         // todo@ write value to proper reg
+        //std::cout << "debug: forward success!!";inst->dump();
+
+        // Need to get physical address and effSize for svw filter
+        inst->onlyTLBTranslate = true;
+        load_fault = inst->initiateAcc();
+        inst->onlyTLBTranslate = false;
         uint64_t val = 0;
         for (int i=0; i<inst->effSize; ++i)
         {
-             uint64_t temp = atoi(inst->forwardData[i]);
-             temp << (8 * (inst->efffSize - i - 1));
-             val = val ^ temp;
+             uint64_t temp = inst->forwardData[i];
+             std::cout << "forward data: " << temp << " ";
+             temp = temp << (8 * i);
+             val = val | temp;
         }
+        inst->dump();
+        std::cout << "debug: forward val is: " << val << std::endl;
         if (inst->isFloating())
         {
             inst->setFloatRegOperandBits(
@@ -667,31 +679,20 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         {
             inst->setIntRegOperand(inst->staticInst.get(),0,val);
         }
-        // Need to get physical address for svw filter
-        inst->onlyTLBTranslate = true;
+    }
+    else {
+        inst->isForward = true;
+        //std::cout << "debug: forward failed!!\n";
         load_fault = inst->initiateAcc();
 
-        assert(inst->effAddrValid());
-        int load_idx = inst->lqIdx;
-        incrLdIdx(load_idx);
-
-        // Need to insert instruction into queue to commit
-        iewStage->instToCommit(inst);
-
-        iewStage->activityThisCycle();
-
-        // see if this load changed the PC
-        iewStage->checkMisprediction(inst);
-
-        return load_fault;
+        inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
+        //std::cout << "debug: forward ssn is: " << inst->forwardSSN << std::endl;
     }
-    load_fault = inst->initiateAcc();
 
     if (inst->isTranslationDelayed() &&
         load_fault == NoFault)
         return load_fault;
 
-    inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
     // If the instruction faulted or predicated false, then we need to send it
     // along to commit without the instruction completing.
     if (load_fault != NoFault || !inst->readPredicate()) {
@@ -716,9 +717,25 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         int load_idx = inst->lqIdx;
         incrLdIdx(load_idx);
 
-        if (checkLoads)
-            return checkViolations(load_idx, inst);
+        if (inst->forwardData != NULL)
+        {
+
+            inst->setExecuted();
+            // Need to insert instruction into queue to commit
+            iewStage->instToCommit(inst);
+
+            iewStage->activityThisCycle();
+
+            // see if this load changed the PC
+            iewStage->checkMisprediction(inst);
+
+        }
+
+       // if (checkLoads)
+        //    return checkViolations(load_idx, inst);
     }
+
+    //std::cout << "debug: exe load fault: " << inst->getFault()->name() << std::endl;
 
     return load_fault;
 }
@@ -742,10 +759,6 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
     // address.  If so, then we have a memory ordering violation.
     int load_idx = store_inst->lqIdx;
 
-    // update data forward struct
-    // todo@ may need to identify where to place this op
-    updateForwardEntry(store_inst);
-
     Fault store_fault = store_inst->initiateAcc();
 
     if (store_inst->isTranslationDelayed() &&
@@ -765,6 +778,11 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
 
         return store_fault;
     }
+
+    // update data forward struct
+    // todo@ may need to identify where to place this op
+    updateForwardEntry(store_inst);
+    //std::cout << "debug: update Forward entry success!!\n";
 
     assert(store_fault == NoFault);
 
@@ -1065,16 +1083,18 @@ template<class Impl>
 void
 LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
 {
+    //std::cout << "debug: Enter Update Forward Entry Function:";store_inst->dump();
     // todo@ need to indentify the type of base and offset
     // depCheckShift is the offset in block
-    uint64_t indexMask = setsNum - 1;
+    //uint64_t indexMask = setsNum - 1;
     uint64_t base = store_inst->readIntRegOperand(
                     store_inst->staticInst.get(),0);
     uint64_t offset = store_inst->staticInst->getOffset();
     uint64_t hash = (base ^ offset) >> depCheckShift;
     // used for bitEnable, this is start place where bit enable
     uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
-    uint64_t index = hash & indexMask;
+    //std::cout << "debug: base: " << base << " offset: " << offset << std::endl;
+    uint64_t index = hash % setsNum;
     uint64_t oldestSsnWay = 0;
     StoreSeqNum ssn = store_inst->SSN;
     StoreSeqNum oldestSsn = ssn;
@@ -1104,34 +1124,56 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
     for (int i = 0;i < store_inst->effSize; i++);
     {
          entry.bitEnable = entry.bitEnable | mask;
-         mask << 1;
+         mask = mask << 1;
     }
+    //if (store_inst->storeData == NULL)
+    //    std::cout << "debug: store data is empty!!" << std::endl;
+    //std::cout << "store data is: " << store_inst->storeData[0] << std::endl;
     entry.ssn = ssn;
-    entry.tag = hash & !indexMask;
+    entry.tag = hash / setsNum;
+    /*std::cout << "debug: hash: " << hash << " block offset: "
+              << blockOffset <<" index: "<< index << " tag: "
+              << entry.tag << std::endl;*/
     // only set the proper byte in data;
     if (entry.data == NULL)
         entry.data = new uint8_t[8];
-    memcpy(entry.data[blockOffset], store_inst->storeData,
+    //std::cout << "debug: store inst effSize is: " << store_inst->effSize << std::endl;
+    memcpy(&entry.data[blockOffset], store_inst->storeData,
            store_inst->effSize);
+   std::cout << "store data: ";
+   for (int i=0;i<store_inst->effSize;i++)
+     std::cout << (uint64_t)entry.data[blockOffset+i] << " ";
+   std::cout << "store ssn: " << entry.ssn <<" ";
+   std::cout << "block offset: " << blockOffset;store_inst->dump();
+    //std::cout << "debug: update entry complete!!\n";
 }
 
 template<class Impl>
 bool
 LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
 {
+    /*std::cout<<"debug: SN:"<<load_inst->seqNum
+    <<" SSN:"<<load_inst->SSN<<" ";load_inst->dump();*/
+    //std::cout << "debug: Enter data Forward functio/n!!\n";
     if (load_inst->numDestRegs() != 1)
         return false;
-    uint64_t indexMask = setsNum - 1;
+   /* std::cout << "debug: setsNum is: " << setsNum
+              << "depCheckShift is: " << depCheckShift << std::endl;*/
+    //uint64_t indexMask = setsNum - 1;
     uint64_t base = load_inst->readIntRegOperand(
                     load_inst->staticInst.get(),0);
     uint64_t offset = load_inst->staticInst->getOffset();
+    //std::cout << "debug: base: " << base << " offset: " << offset << std::endl;
     uint64_t hash = (base ^ offset) >> depCheckShift;
-    uint64_t index = hash & indexMask;
+    uint64_t index = hash % setsNum;
     uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
     uint64_t youngestSsnWay = 0;
     uint64_t youngestHitSsn = 0;
     uint64_t canForward = false;
-    uint64_t tag = hash & !indexMask;
+    uint64_t tag = hash / setsNum;
+    /*std::cout << "debug: hash: " << hash << " block offset: "
+              << blockOffset <<" index: "<< index << " tag: "
+              << tag << std::endl;*/
 
     for (unsigned i = 0; i < waysNum; ++i)
     {
@@ -1151,18 +1193,26 @@ LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
     {
         DataForwardEntry& entry = dataForwardStruct[index][youngestSsnWay];
         load_inst->forwardSSN = youngestHitSsn;
-        uint64_t mask = 1 << blockOffset;
+        uint8_t mask = 1 << blockOffset;
         for (int i=0;i<load_inst->effSize;i++)
         {
-           if (mask & entry.bitEnable == 0)
+           if ((mask & entry.bitEnable) == 0)
                 return false;
            mask = mask << 1;
         }
+        uint64_t size = load_inst->effSize;
         if (size > entry.bitEnable)
              return false;
-        uint64_t size = load_inst->effSize;
         load_inst->forwardData = new uint8_t[size];
-        memcpy(load_inst->forwardData, entry.data[blockOffset], size);
+        memcpy(load_inst->forwardData, &entry.data[blockOffset], size);
+        std::cout << "size: " <<size;
+        std::cout << " entry data: ";
+        for (int i=0;i<size;i++)
+        {
+            std::cout << (uint64_t)entry.data[blockOffset+i] << " ";
+        }
+        std::cout << "ssn : " << entry.ssn;
+        load_inst->dump();
         return true;
     }
     return false;
@@ -1324,7 +1374,8 @@ LSQUnit<Impl>::writeback(DynInstPtr &inst, PacketPtr pkt)
         }
     }
 
-    if(inst->isReexecuting()) {
+
+    if (inst->isReexecuting()) {
         //printf("reex finshed-----------\n");
         //inst->dump();
         inst->completeAcc(pkt);
@@ -1349,6 +1400,7 @@ LSQUnit<Impl>::writeback(DynInstPtr &inst, PacketPtr pkt)
 
 template <class Impl>
 void
+
 LSQUnit<Impl>::completeStore(int store_idx)
 {
     assert(storeQueue[store_idx].inst);

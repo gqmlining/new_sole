@@ -114,14 +114,15 @@ class DerivO3CPU(BaseCPU):
     backComSize = Param.Unsigned(5, "Time buffer size for backwards communication")
     forwardComSize = Param.Unsigned(5, "Time buffer size for forward communication")
 
-    forwardStructSets = Param.Unsigned(32,
+    forwardStructSets = Param.Unsigned(1024,
                                        "Number of forward struct entry sets")
-    forwardStructWays = Param.Unsigned(32,
+    forwardStructWays = Param.Unsigned(4,
                                        "Number of ways for each forward set")
 
     LQEntries = Param.Unsigned(32, "Number of load queue entries")
     SQEntries = Param.Unsigned(32, "Number of store queue entries")
-    LSQDepCheckShift = Param.Unsigned(4, "Number of places to shift addr before check")
+    LSQDepCheckShift = Param.Unsigned(3,
+            "Number of places to shift addr before check")
     LSQCheckLoads = Param.Bool(True,
         "Should dependency violations be checked for loads & stores or just stores")
     store_set_clear_period = Param.Unsigned(250000,

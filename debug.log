@@ -1,0 +1,3902 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Mar 21 2019 22:08:03
+gem5 started Mar 21 2019 22:09:01
+gem5 executing on mprc-R730, pid 35776
+command line: ./build/RISCV/gem5.opt ./configs/example/se.py --cpu-type=DerivO3CPU --caches -c ./tests/test-progs/hello/bin/riscv/linux/hello
+
+Global frequency set at 1000000000000 ticks per second
+**** REAL SIMULATION ****
+Commit inst: 1T0 : 00066212 `jal ra, 44'
+reg 33 val: 66216
+Commit inst: 6T0 : 00066256 `auipc gp, 442368'
+reg 34 val: 508624
+Commit inst: 7T0 : 00066260 `addi gp, gp, -480'
+reg 35 val: 508144
+Commit inst: 8T0 : 00066264 `c_jr zero, ra, 0'
+Commit inst: 19T0 : 00066216 `c_mv a5, a0'
+reg 43 val: 0
+Commit inst: 20T0 : 00066218 `auipc a0, 0'
+reg 44 val: 66218
+Commit inst: 21T0 : 00066222 `addi a0, a0, 232'
+reg 45 val: 66450
+Commit inst: 22T0 : 00066226 `c_ldsp a1, 0(sp)'
+reg 46 val: 1
+Commit inst: 23T0 : 00066228 `c_addi4spn a2, sp, 8'
+reg 47 val: 9223372036854775592
+Commit inst: 24T0 : 00066230 `andi sp, sp, 18446744073709551600'
+reg 48 val: 9223372036854775584
+Commit inst: 25T0 : 00066234 `auipc a3, 0'
+reg 49 val: 66234
+Commit inst: 26T0 : 00066238 `addi a3, a3, 1504'
+reg 50 val: 67738
+Commit inst: 27T0 : 00066242 `auipc a4, 0'
+reg 51 val: 66242
+Commit inst: 28T0 : 00066246 `addi a4, a4, 1640'
+reg 52 val: 67882
+Commit inst: 29T0 : 00066250 `c_mv a6, sp'
+reg 53 val: 9223372036854775584
+Commit inst: 30T0 : 00066252 `jal zero, 230'
+reg 0 val: 66256
+Commit inst: 42T0 : 00066482 `c_addi16sp sp, sp, -320'
+reg 54 val: 9223372036854775264
+Commit inst: 43T0 : 00066484 `lui a7, 0'
+reg 55 val: 0
+Commit inst: 44T0 : 00066488 `c_sdsp s0, 304(sp)'
+Commit inst: 45T0 : 00066490 `c_sdsp s1, 296(sp)'
+Commit inst: 46T0 : 00066492 `c_sdsp s2, 288(sp)'
+Commit inst: 47T0 : 00066494 `c_sdsp ra, 312(sp)'
+Commit inst: 48T0 : 00066496 `addi t1, a7, 0'
+reg 56 val: 0
+Commit inst: 49T0 : 00066500 `c_sdsp a0, 24(sp)'
+Commit inst: 50T0 : 00066502 `c_sdsp a1, 8(sp)'
+Commit inst: 51T0 : 00066504 `c_sdsp a2, 16(sp)'
+Commit inst: 52T0 : 00066506 `c_mv s2, a5'
+reg 57 val: 0
+Commit inst: 53T0 : 00066508 `c_mv s0, a3'
+reg 58 val: 67738
+Commit inst: 54T0 : 00066510 `c_mv s1, a4'
+reg 59 val: 67882
+Commit inst: 55T0 : 00066512 `c_li a5, zero, 0'
+reg 60 val: 0
+Commit inst: 56T0 : 00066514 `beq t1, zero, 12'
+Commit inst: 70T0 : 00066526 `c_ldsp a4, 8(sp)'
+reg 70 val: 1
+Commit inst: 71T0 : 00066528 `addi a0, a4, 1'
+reg 71 val: 2
+Commit inst: 72T0 : 00066532 `c_ldsp a4, 16(sp)'
+reg 72 val: 9223372036854775592
+Commit inst: 73T0 : 00066534 `c_slli a0, a0, 3'
+reg 73 val: 16
+Commit inst: 74T0 : 00066536 `c_add a0, a0, a4'
+reg 74 val: 9223372036854775608
+Commit inst: 75T0 : 00066538 `sw a5, -1576(gp)'
+Commit inst: 76T0 : 00066542 `sd a0, -1192(gp)'
+Commit inst: 77T0 : 00066546 `lui a5, 499712'
+reg 75 val: 499712
+Commit inst: 78T0 : 00066550 `sd a6, -80(a5)'
+Commit inst: 79T0 : 00066554 `c_addi a0, a0, 8'
+reg 76 val: 9223372036854775616
+Commit inst: 80T0 : 00066556 `ld a5, -8(a0)'
+reg 77 val: 0
+Commit inst: 81T0 : 00066560 `c_bnez a5, zero, -6'
+Commit inst: 82T0 : 00066562 `jal ra, 71926'
+reg 78 val: 66566
+Commit inst: 97T0 : 00138488 `c_ld a5, 0(a0)'
+reg 79 val: 9
+Commit inst: 98T0 : 00138490 `lui a4, 512000'
+reg 80 val: 512000
+Commit inst: 99T0 : 00138494 `sd a0, 168(a4)'
+Commit inst: 100T0 : 00138498 `beq a5, zero, 594'
+Commit inst: 101T0 : 00138502 `lui t5, 512000'
+reg 81 val: 512000
+Commit inst: 102T0 : 00138506 `ld a4, 240(t5)'
+reg 82 val: 0
+Commit inst: 103T0 : 00138510 `c_addi16sp sp, sp, -224'
+reg 83 val: 9223372036854775040
+Commit inst: 104T0 : 00138512 `c_sdsp a4, 56(sp)'
+Commit inst: 105T0 : 00138514 `ld a4, -1160(gp)'
+reg 84 val: 0
+Commit inst: 106T0 : 00138518 `lui a1, 499712'
+reg 85 val: 499712
+Commit inst: 107T0 : 00138522 `addi a1, a1, -96'
+reg 86 val: 499616
+Commit inst: 108T0 : 00138526 `c_sdsp a4, 24(sp)'
+Commit inst: 109T0 : 00138528 `c_ld a4, 0(a1)'
+reg 87 val: 0
+Commit inst: 110T0 : 00138530 `lui t3, 499712'
+reg 88 val: 499712
+Commit inst: 111T0 : 00138534 `lui t1, 512000'
+reg 89 val: 512000
+Commit inst: 112T0 : 00138538 `c_sdsp a4, 104(sp)'
+Commit inst: 113T0 : 00138540 `lw a4, -72(t3)'
+reg 90 val: 1
+Commit inst: 114T0 : 00138544 `c_sdsp a4, 72(sp)'
+Commit inst: 115T0 : 00138546 `lw a4, 312(t1)'
+reg 91 val: 0
+Commit inst: 116T0 : 00138550 `c_sdsp s0, 216(sp)'
+Commit inst: 117T0 : 00138552 `lui s0, 512000'
+reg 92 val: 512000
+Commit inst: 118T0 : 00138556 `c_sdsp a4, 88(sp)'
+Commit inst: 119T0 : 00138558 `lw a4, -1168(gp)'
+reg 93 val: 0
+Commit inst: 120T0 : 00138562 `c_sdsp s4, 184(sp)'
+Commit inst: 121T0 : 00138564 `c_sdsp a4, 40(sp)'
+Commit inst: 122T0 : 00138566 `ld a4, -1152(gp)'
+reg 94 val: 0
+Commit inst: 123T0 : 00138570 `c_sdsp s1, 208(sp)'
+Commit inst: 124T0 : 00138572 `c_sdsp s2, 200(sp)'
+Commit inst: 125T0 : 00138574 `c_sdsp a4, 8(sp)'
+Commit inst: 126T0 : 00138576 `ld a4, 176(s0)'
+reg 95 val: 0
+Commit inst: 127T0 : 00138580 `c_sdsp s3, 192(sp)'
+Commit inst: 128T0 : 00138582 `lui s1, 512000'
+reg 96 val: 512000
+Commit inst: 129T0 : 00138586 `c_sdsp a4, 0(sp)'
+Commit inst: 130T0 : 00138588 `ld a4, -1632(gp)'
+reg 97 val: 4096
+Commit inst: 131T0 : 00138592 `lui s3, 512000'
+reg 98 val: 512000
+Commit inst: 132T0 : 00138596 `lui s2, 512000'
+reg 99 val: 512000
+Commit inst: 133T0 : 00138600 `c_sdsp a4, 120(sp)'
+Commit inst: 134T0 : 00138602 `lui a4, 376832'
+reg 100 val: 376832
+Commit inst: 135T0 : 00138606 `c_sdsp s5, 176(sp)'
+Commit inst: 136T0 : 00138608 `c_sdsp s6, 168(sp)'
+Commit inst: 137T0 : 00138610 `c_sdsp s7, 160(sp)'
+Commit inst: 138T0 : 00138612 `c_sdsp s9, 144(sp)'
+Commit inst: 139T0 : 00138614 `c_sdsp s10, 136(sp)'
+Commit inst: 140T0 : 00138616 `c_sdsp s11, 128(sp)'
+Commit inst: 141T0 : 00138618 `c_sdsp s8, 152(sp)'
+Commit inst: 142T0 : 00138620 `lw s10, 232(s3)'
+reg 101 val: 0
+Commit inst: 143T0 : 00138624 `ld s6, 264(s1)'
+reg 102 val: 0
+Commit inst: 144T0 : 00138628 `c_li s5, zero, 0'
+reg 103 val: 0
+Commit inst: 145T0 : 00138630 `ld s8, 208(s2)'
+reg 104 val: 0
+Commit inst: 146T0 : 00138634 `c_li s7, zero, 0'
+reg 105 val: 0
+Commit inst: 147T0 : 00138636 `c_sdsp zero, 112(sp)'
+Commit inst: 148T0 : 00138638 `c_sdsp zero, 96(sp)'
+Commit inst: 149T0 : 00138640 `c_sdsp zero, 80(sp)'
+Commit inst: 150T0 : 00138642 `c_sdsp zero, 64(sp)'
+Commit inst: 151T0 : 00138644 `c_sdsp zero, 48(sp)'
+Commit inst: 152T0 : 00138646 `c_sdsp zero, 32(sp)'
+Commit inst: 153T0 : 00138648 `c_sdsp zero, 16(sp)'
+Commit inst: 154T0 : 00138650 `c_li s9, zero, 0'
+reg 106 val: 0
+Commit inst: 155T0 : 00138652 `c_li s11, zero, 0'
+reg 107 val: 0
+Commit inst: 156T0 : 00138654 `c_li t4, zero, 0'
+reg 108 val: 0
+Commit inst: 157T0 : 00138656 `c_li a7, zero, 0'
+reg 109 val: 0
+Commit inst: 158T0 : 00138658 `c_li a6, zero, 0'
+reg 110 val: 0
+Commit inst: 159T0 : 00138660 `c_li a2, zero, 0'
+reg 111 val: 0
+Commit inst: 160T0 : 00138662 `c_li a3, zero, 30'
+reg 112 val: 30
+Commit inst: 161T0 : 00138664 `addi a4, a4, 912'
+reg 113 val: 377744
+Commit inst: 162T0 : 00138668 `c_addi a5, a5, -3'
+reg 114 val: 6
+Commit inst: 163T0 : 00138670 `bltu a3, a5, 20'
+Commit inst: 164T0 : 00138674 `c_slli a5, a5, 2'
+reg 115 val: 24
+Commit inst: 165T0 : 00138676 `c_add a5, a5, a4'
+reg 116 val: 377768
+Commit inst: 166T0 : 00138678 `c_lw a5, 0(a5)'
+reg 117 val: 138690
+Commit inst: 167T0 : 00138680 `c_jr zero, a5, 0'
+Commit inst: 249T0 : 00138690 `c_addi a0, a0, 16'
+reg 147 val: 9223372036854775632
+Commit inst: 250T0 : 00138692 `c_ld a5, 0(a0)'
+reg 148 val: 5
+Commit inst: 251T0 : 00138694 `c_bnez a5, zero, -26'
+Commit inst: 269T0 : 00138668 `c_addi a5, a5, -3'
+reg 154 val: 2
+Commit inst: 270T0 : 00138670 `bltu a3, a5, 20'
+Commit inst: 271T0 : 00138674 `c_slli a5, a5, 2'
+reg 155 val: 8
+Commit inst: 272T0 : 00138676 `c_add a5, a5, a4'
+reg 156 val: 377752
+Commit inst: 273T0 : 00138678 `c_lw a5, 0(a5)'
+reg 157 val: 139060
+Commit inst: 274T0 : 00138680 `c_jr zero, a5, 0'
+Commit inst: 291T0 : 00139060 `ld s6, 8(a0)'
+reg 162 val: 5
+Commit inst: 292T0 : 00139064 `c_addi a0, a0, 16'
+reg 163 val: 9223372036854775648
+Commit inst: 293T0 : 00139066 `c_li s7, zero, 1'
+reg 164 val: 1
+Commit inst: 294T0 : 00139068 `c_ld a5, 0(a0)'
+reg 165 val: 4
+Commit inst: 295T0 : 00139070 `bne a5, zero, -402'
+Commit inst: 305T0 : 00138668 `c_addi a5, a5, -3'
+reg 170 val: 1
+Commit inst: 306T0 : 00138670 `bltu a3, a5, 20'
+Commit inst: 307T0 : 00138674 `c_slli a5, a5, 2'
+reg 171 val: 4
+Commit inst: 308T0 : 00138676 `c_add a5, a5, a4'
+reg 172 val: 377748
+Commit inst: 309T0 : 00138678 `c_lw a5, 0(a5)'
+reg 173 val: 138690
+Commit inst: 310T0 : 00138680 `c_jr zero, a5, 0'
+Commit inst: 318T0 : 00138690 `c_addi a0, a0, 16'
+reg 177 val: 9223372036854775664
+Commit inst: 319T0 : 00138692 `c_ld a5, 0(a0)'
+reg 178 val: 3
+Commit inst: 320T0 : 00138694 `c_bnez a5, zero, -26'
+Commit inst: 337T0 : 00138668 `c_addi a5, a5, -3'
+reg 182 val: 0
+Commit inst: 338T0 : 00138670 `bltu a3, a5, 20'
+Commit inst: 339T0 : 00138674 `c_slli a5, a5, 2'
+reg 183 val: 0
+Commit inst: 340T0 : 00138676 `c_add a5, a5, a4'
+reg 184 val: 377744
+Commit inst: 341T0 : 00138678 `c_lw a5, 0(a5)'
+reg 185 val: 139076
+Commit inst: 342T0 : 00138680 `c_jr zero, a5, 0'
+Commit inst: 358T0 : 00139076 `ld s8, 8(a0)'
+reg 190 val: 65600
+Commit inst: 359T0 : 00139080 `c_addi a0, a0, 16'
+reg 191 val: 9223372036854775680
+Commit inst: 360T0 : 00139082 `c_li s9, zero, 1'
+reg 192 val: 1
+Commit inst: 361T0 : 00139084 `c_ld a5, 0(a0)'
+reg 193 val: 6
+Commit inst: 362T0 : 00139086 `bne a5, zero, -418'
+Commit inst: 491T0 : 00138668 `c_addi a5, a5, -3'
+reg 241 val: 3
+Commit inst: 492T0 : 00138670 `bltu a3, a5, 20'
+Commit inst: 493T0 : 00138674 `c_slli a5, a5, 2'
+reg 242 val: 12
+Commit inst: 494T0 : 00138676 `c_add a5, a5, a4'
+reg 243 val: 377756
+Commit inst: 495T0 : 00138678 `c_lw a5, 0(a5)'
+reg 244 val: 138682
+Commit inst: 496T0 : 00138680 `c_jr zero, a5, 0'
+Commit inst: 497T0 : 00138682 `c_ld a5, 8(a0)'
+reg 245 val: 4096
+Commit inst: 498T0 : 00138684 `c_beqz a5, zero, 6'
+Commit inst: 499T0 : 00138686 `c_sdsp a5, 120(sp)'
+Commit inst: 500T0 : 00138688 `c_li t4, zero, 1'
+reg 246 val: 1
+Commit inst: 501T0 : 00138690 `c_addi a0, a0, 16'
+reg 247 val: 9223372036854775696
+Commit inst: 502T0 : 00138692 `c_ld a5, 0(a0)'
+reg 248 val: 23
+Commit inst: 503T0 : 00138694 `c_bnez a5, zero, -26'
+Commit inst: 520T0 : 00138668 `c_addi a5, a5, -3'
+reg 252 val: 20
+Commit inst: 521T0 : 00138670 `bltu a3, a5, 20'
+Commit inst: 522T0 : 00138674 `c_slli a5, a5, 2'
+reg 253 val: 80
+Commit inst: 523T0 : 00138676 `c_add a5, a5, a4'
+reg 254 val: 377824
+Commit inst: 524T0 : 00138678 `c_lw a5, 0(a5)'
+reg 255 val: 138884
+Commit inst: 525T0 : 00138680 `c_jr zero, a5, 0'
+Commit inst: 675T0 : 00138884 `c_lw a5, 8(a0)'
+reg 77 val: 0
+Commit inst: 676T0 : 00138886 `c_addi a0, a0, 16'
+reg 72 val: 9223372036854775712
+Commit inst: 677T0 : 00138888 `c_li a2, zero, -1'
+reg 30 val: 18446744073709551615
+Commit inst: 678T0 : 00138890 `c_sdsp a5, 72(sp)'
+Commit inst: 679T0 : 00138892 `c_li a5, zero, 1'
+reg 80 val: 1
+Commit inst: 680T0 : 00138894 `c_sdsp a5, 96(sp)'
+Commit inst: 681T0 : 00138896 `c_sdsp a5, 88(sp)'
+Commit inst: 682T0 : 00138898 `c_sdsp a5, 80(sp)'
+Commit inst: 683T0 : 00138900 `c_ld a5, 0(a0)'
+reg 54 val: 25
+Commit inst: 684T0 : 00138902 `c_bnez a5, zero, -234'
+Commit inst: 692T0 : 00138668 `c_addi a5, a5, -3'
+reg 84 val: 22
+Commit inst: 693T0 : 00138670 `bltu a3, a5, 20'
+Commit inst: 694T0 : 00138674 `c_slli a5, a5, 2'
+reg 28 val: 88
+Commit inst: 695T0 : 00138676 `c_add a5, a5, a4'
+reg 56 val: 377832
+Commit inst: 696T0 : 00138678 `c_lw a5, 0(a5)'
+reg 87 val: 138868
+Commit inst: 697T0 : 00138680 `c_jr zero, a5, 0'
+Commit inst: 705T0 : 00138868 `c_ld a5, 8(a0)'
+reg 93 val: 9223372036854775744
+Commit inst: 706T0 : 00138870 `c_addi a0, a0, 16'
+reg 94 val: 9223372036854775728
+Commit inst: 707T0 : 00138872 `c_sdsp a5, 104(sp)'
+Commit inst: 708T0 : 00138874 `c_li a5, zero, 1'
+reg 59 val: 1
+Commit inst: 709T0 : 00138876 `c_sdsp a5, 112(sp)'
+Commit inst: 710T0 : 00138878 `c_ld a5, 0(a0)'
+reg 95 val: 0
+Commit inst: 711T0 : 00138880 `c_bnez a5, zero, -212'
+Commit inst: 712T0 : 00138882 `c_j zero, 45056'
+Commit inst: 719T0 : 00138696 `bne t4, zero, 420'
+Commit inst: 735T0 : 00139116 `c_ldsp a5, 120(sp)'
+reg 24 val: 4096
+Commit inst: 736T0 : 00139118 `sd a5, -1632(gp)'
+Commit inst: 737T0 : 00139122 `c_j zero, 45056'
+Commit inst: 744T0 : 00138700 `beq s11, zero, 8'
+Commit inst: 760T0 : 00138708 `beq s9, zero, 8'
+Commit inst: 761T0 : 00138712 `sd s8, 208(s2)'
+Commit inst: 762T0 : 00138716 `beq s7, zero, 8'
+Commit inst: 763T0 : 00138720 `sd s6, 264(s1)'
+Commit inst: 764T0 : 00138724 `beq s5, zero, 10'
+Commit inst: 772T0 : 00138734 `c_ldsp a5, 16(sp)'
+reg 50 val: 0
+Commit inst: 773T0 : 00138736 `c_beqz a5, zero, 8'
+Commit inst: 782T0 : 00138744 `c_ldsp a5, 32(sp)'
+reg 115 val: 0
+Commit inst: 783T0 : 00138746 `c_beqz a5, zero, 8'
+Commit inst: 784T0 : 00138754 `c_ldsp a5, 48(sp)'
+reg 124 val: 0
+Commit inst: 785T0 : 00138756 `c_beqz a5, zero, 8'
+Commit inst: 786T0 : 00138764 `c_ldsp a5, 64(sp)'
+reg 123 val: 0
+Commit inst: 787T0 : 00138766 `c_beqz a5, zero, 8'
+Commit inst: 788T0 : 00138774 `c_ldsp a5, 80(sp)'
+reg 122 val: 1
+Commit inst: 789T0 : 00138776 `c_beqz a5, zero, 8'
+Commit inst: 799T0 : 00138778 `c_lwsp a5, 72(sp)'
+reg 145 val: 0
+Commit inst: 800T0 : 00138780 `sw a5, -72(t3)'
+Commit inst: 801T0 : 00138784 `c_ldsp a5, 96(sp)'
+reg 144 val: 1
+Commit inst: 802T0 : 00138786 `c_beqz a5, zero, 8'
+Commit inst: 811T0 : 00138788 `c_lwsp a5, 88(sp)'
+reg 138 val: 1
+Commit inst: 812T0 : 00138790 `sw a5, 312(t1)'
+Commit inst: 813T0 : 00138794 `c_ldsp a5, 112(sp)'
+reg 137 val: 1
+Commit inst: 814T0 : 00138796 `c_beqz a5, zero, 6'
+Commit inst: 823T0 : 00138798 `c_ldsp a5, 104(sp)'
+reg 128 val: 9223372036854775744
+Commit inst: 824T0 : 00138800 `c_sd a5, 0(a1)'
+Commit inst: 825T0 : 00138802 `c_li a5, zero, 15'
+reg 127 val: 15
+Commit inst: 826T0 : 00138804 `beq a2, a5, 290'
+Commit inst: 827T0 : 00138808 `c_ldsp s0, 216(sp)'
+reg 126 val: 67738
+Commit inst: 828T0 : 00138810 `c_ldsp s1, 208(sp)'
+reg 125 val: 67882
+Commit inst: 829T0 : 00138812 `c_ldsp s2, 200(sp)'
+reg 121 val: 0
+Commit inst: 830T0 : 00138814 `c_ldsp s3, 192(sp)'
+reg 120 val: 0
+Commit inst: 831T0 : 00138816 `c_ldsp s4, 184(sp)'
+reg 119 val: 0
+Commit inst: 832T0 : 00138818 `c_ldsp s5, 176(sp)'
+reg 118 val: 0
+Commit inst: 833T0 : 00138820 `c_ldsp s6, 168(sp)'
+reg 116 val: 0
+Commit inst: 834T0 : 00138822 `c_ldsp s7, 160(sp)'
+reg 76 val: 0
+Commit inst: 835T0 : 00138824 `c_ldsp s8, 152(sp)'
+reg 153 val: 0
+Commit inst: 836T0 : 00138826 `c_ldsp s9, 144(sp)'
+reg 152 val: 0
+Commit inst: 837T0 : 00138828 `c_ldsp s10, 136(sp)'
+reg 151 val: 0
+Commit inst: 838T0 : 00138830 `c_ldsp s11, 128(sp)'
+reg 150 val: 0
+Commit inst: 839T0 : 00138832 `c_addi16sp sp, sp, 224'
+reg 149 val: 9223372036854775264
+Commit inst: 840T0 : 00138834 `c_jr zero, ra, 0'
+Commit inst: 847T0 : 00066566 `lui a5, 512000'
+reg 155 val: 512000
+Commit inst: 848T0 : 00066570 `ld a4, 208(a5)'
+reg 161 val: 65600
+Commit inst: 849T0 : 00066574 `beq a4, zero, 352'
+Commit inst: 850T0 : 00066578 `lw a5, -1576(gp)'
+reg 160 val: 0
+Commit inst: 851T0 : 00066582 `beq a5, zero, 294'
+Commit inst: 861T0 : 00066876 `jal ra, 74258'
+reg 158 val: 66880
+Commit inst: 862T0 : 00141134 `c_addi16sp sp, sp, -496'
+reg 156 val: 9223372036854774768
+Commit inst: 863T0 : 00141136 `c_addi4spn a0, sp, 72'
+reg 102 val: 9223372036854774840
+Commit inst: 864T0 : 00141138 `c_sdsp ra, 488(sp)'
+Commit inst: 865T0 : 00141140 `c_sdsp s0, 480(sp)'
+Commit inst: 866T0 : 00141142 `c_sdsp s1, 472(sp)'
+Commit inst: 867T0 : 00141144 `jal ra, 107256'
+reg 147 val: 141148
+Commit inst: 871T0 : 00248400 `addi a7, zero, 160'
+reg 105 val: 160
+Commit inst: 886T0 : 00248408 `blt a0, zero, -12'
+Commit inst: 887T0 : 00248412 `c_jr zero, ra, 0'
+Commit inst: 899T0 : 00141148 `addi a3, sp, 202'
+reg 168 val: 9223372036854774970
+Commit inst: 900T0 : 00141152 `c_bnez a0, zero, 140'
+Commit inst: 901T0 : 00141154 `c_li t1, zero, 0'
+reg 167 val: 0
+Commit inst: 902T0 : 00141156 `c_li a0, zero, 0'
+reg 166 val: 0
+Commit inst: 903T0 : 00141158 `c_li a7, zero, 9'
+reg 165 val: 9
+Commit inst: 904T0 : 00141160 `addi t3, zero, 46'
+reg 170 val: 46
+Commit inst: 905T0 : 00141164 `c_li t4, zero, 3'
+reg 171 val: 3
+Commit inst: 906T0 : 00141166 `lbu a5, 0(a3)'
+reg 176 val: 51
+Commit inst: 907T0 : 00141170 `addiw a5, a5, -48'
+reg 175 val: 3
+Commit inst: 908T0 : 00141174 `andi a4, a5, 255'
+reg 174 val: 3
+Commit inst: 909T0 : 00141178 `bltu a7, a4, 98'
+Commit inst: 910T0 : 00141182 `lbu a1, 1(a3)'
+reg 172 val: 46
+Commit inst: 911T0 : 00141186 `addiw a4, a5, 0'
+reg 163 val: 3
+Commit inst: 912T0 : 00141190 `c_addi a3, a3, 1'
+reg 181 val: 9223372036854774971
+Commit inst: 913T0 : 00141192 `addiw a2, a1, -48'
+reg 180 val: 18446744073709551614
+Commit inst: 914T0 : 00141196 `andi a5, a2, 255'
+reg 179 val: 254
+Commit inst: 915T0 : 00141200 `bltu a7, a5, 36'
+Commit inst: 929T0 : 00141236 `slliw a5, a0, 8'
+reg 104 val: 0
+Commit inst: 930T0 : 00141240 `c_or a5, a5, a4'
+reg 177 val: 3
+Commit inst: 931T0 : 00141242 `c_addiw t1, t1, 1'
+reg 106 val: 1
+Commit inst: 932T0 : 00141244 `addiw a0, a5, 0'
+reg 199 val: 3
+Commit inst: 933T0 : 00141248 `c_addi a3, a3, 1'
+reg 198 val: 9223372036854774972
+Commit inst: 934T0 : 00141250 `bne a1, t3, 20'
+Commit inst: 935T0 : 00141254 `bne t1, t4, -88'
+Commit inst: 943T0 : 00141166 `lbu a5, 0(a3)'
+reg 203 val: 48
+Commit inst: 944T0 : 00141170 `addiw a5, a5, -48'
+reg 209 val: 0
+Commit inst: 945T0 : 00141174 `andi a4, a5, 255'
+reg 208 val: 0
+Commit inst: 946T0 : 00141178 `bltu a7, a4, 98'
+Commit inst: 947T0 : 00141182 `lbu a1, 1(a3)'
+reg 207 val: 46
+Commit inst: 948T0 : 00141186 `addiw a4, a5, 0'
+reg 214 val: 0
+Commit inst: 949T0 : 00141190 `c_addi a3, a3, 1'
+reg 213 val: 9223372036854774973
+Commit inst: 950T0 : 00141192 `addiw a2, a1, -48'
+reg 212 val: 18446744073709551614
+Commit inst: 951T0 : 00141196 `andi a5, a2, 255'
+reg 211 val: 254
+Commit inst: 952T0 : 00141200 `bltu a7, a5, 36'
+Commit inst: 973T0 : 00141236 `slliw a5, a0, 8'
+reg 232 val: 768
+Commit inst: 974T0 : 00141240 `c_or a5, a5, a4'
+reg 231 val: 768
+Commit inst: 975T0 : 00141242 `c_addiw t1, t1, 1'
+reg 240 val: 2
+Commit inst: 976T0 : 00141244 `addiw a0, a5, 0'
+reg 239 val: 768
+Commit inst: 977T0 : 00141248 `c_addi a3, a3, 1'
+reg 238 val: 9223372036854774974
+Commit inst: 978T0 : 00141250 `bne a1, t3, 20'
+Commit inst: 979T0 : 00141254 `bne t1, t4, -88'
+Commit inst: 980T0 : 00141166 `lbu a5, 0(a3)'
+reg 237 val: 48
+Commit inst: 981T0 : 00141170 `addiw a5, a5, -48'
+reg 236 val: 0
+Commit inst: 982T0 : 00141174 `andi a4, a5, 255'
+reg 230 val: 0
+Commit inst: 983T0 : 00141178 `bltu a7, a4, 98'
+Commit inst: 984T0 : 00141182 `lbu a1, 1(a3)'
+reg 225 val: 0
+Commit inst: 985T0 : 00141186 `addiw a4, a5, 0'
+reg 220 val: 0
+Commit inst: 986T0 : 00141190 `c_addi a3, a3, 1'
+reg 215 val: 9223372036854774975
+Commit inst: 987T0 : 00141192 `addiw a2, a1, -48'
+reg 210 val: 18446744073709551568
+Commit inst: 988T0 : 00141196 `andi a5, a2, 255'
+reg 206 val: 208
+Commit inst: 989T0 : 00141200 `bltu a7, a5, 36'
+Commit inst: 1010T0 : 00141236 `slliw a5, a0, 8'
+reg 253 val: 196608
+Commit inst: 1011T0 : 00141240 `c_or a5, a5, a4'
+reg 40 val: 196608
+Commit inst: 1012T0 : 00141242 `c_addiw t1, t1, 1'
+reg 41 val: 3
+Commit inst: 1013T0 : 00141244 `addiw a0, a5, 0'
+reg 42 val: 196608
+Commit inst: 1014T0 : 00141248 `c_addi a3, a3, 1'
+reg 3 val: 9223372036854774976
+Commit inst: 1015T0 : 00141250 `bne a1, t3, 20'
+Commit inst: 1031T0 : 00141270 `c_li a5, zero, 3'
+reg 8 val: 3
+Commit inst: 1032T0 : 00141272 `beq t1, a5, -14'
+Commit inst: 1044T0 : 00141258 `c_addiw a0, a0, 0'
+reg 61 val: 196608
+Commit inst: 1045T0 : 00141260 `c_ldsp ra, 488(sp)'
+reg 62 val: 66880
+Commit inst: 1046T0 : 00141262 `c_ldsp s0, 480(sp)'
+reg 63 val: 67738
+Commit inst: 1047T0 : 00141264 `c_ldsp s1, 472(sp)'
+reg 71 val: 67882
+Commit inst: 1048T0 : 00141266 `c_addi16sp sp, sp, 496'
+reg 70 val: 9223372036854775264
+Commit inst: 1049T0 : 00141268 `c_jr zero, ra, 0'
+Commit inst: 1056T0 : 00066880 `blt a0, zero, 172'
+Commit inst: 1057T0 : 00066884 `lui a5, 512000'
+reg 75 val: 512000
+Commit inst: 1058T0 : 00066888 `lw a4, 296(a5)'
+reg 74 val: 0
+Commit inst: 1059T0 : 00066892 `addiw a5, a0, 0'
+reg 60 val: 196608
+Commit inst: 1060T0 : 00066896 `c_bnez a4, zero, 108'
+Commit inst: 1061T0 : 00066898 `lui a4, 512000'
+reg 73 val: 512000
+Commit inst: 1062T0 : 00066902 `sw a5, 296(a4)'
+Commit inst: 1063T0 : 00066906 `lui a5, 196608'
+reg 43 val: 196608
+Commit inst: 1064T0 : 00066910 `bge a0, a5, -324'
+Commit inst: 1072T0 : 00066586 `jal ra, 1124'
+reg 13 val: 66590
+Commit inst: 1073T0 : 00067710 `c_li a1, zero, 16'
+reg 2 val: 16
+Commit inst: 1074T0 : 00067712 `c_li a0, zero, 0'
+reg 12 val: 0
+Commit inst: 1075T0 : 00067714 `jal zero, -452'
+reg 0 val: 67718
+Commit inst: 1079T0 : 00067262 `lui a5, 512000'
+reg 11 val: 512000
+Commit inst: 1080T0 : 00067266 `ld a5, 208(a5)'
+reg 44 val: 65600
+Commit inst: 1081T0 : 00067270 `c_addi16sp sp, sp, -96'
+reg 10 val: 9223372036854775168
+Commit inst: 1082T0 : 00067272 `c_sdsp s6, 32(sp)'
+Commit inst: 1083T0 : 00067274 `c_sdsp ra, 88(sp)'
+Commit inst: 1084T0 : 00067276 `c_sdsp s0, 80(sp)'
+Commit inst: 1085T0 : 00067278 `c_sdsp s1, 72(sp)'
+Commit inst: 1086T0 : 00067280 `c_sdsp s2, 64(sp)'
+Commit inst: 1087T0 : 00067282 `c_sdsp s3, 56(sp)'
+Commit inst: 1088T0 : 00067284 `c_sdsp s4, 48(sp)'
+Commit inst: 1089T0 : 00067286 `c_sdsp s5, 40(sp)'
+Commit inst: 1090T0 : 00067288 `c_sdsp s7, 24(sp)'
+Commit inst: 1091T0 : 00067290 `c_sdsp s8, 16(sp)'
+Commit inst: 1092T0 : 00067292 `c_sdsp s9, 8(sp)'
+Commit inst: 1093T0 : 00067294 `c_sdsp s10, 0(sp)'
+Commit inst: 1094T0 : 00067296 `c_mv s6, a1'
+reg 15 val: 16
+Commit inst: 1095T0 : 00067298 `c_beqz a5, zero, 50'
+Commit inst: 1096T0 : 00067300 `lui a4, 512000'
+reg 34 val: 512000
+Commit inst: 1097T0 : 00067304 `ld a3, 264(a4)'
+reg 38 val: 6369313646723465216
+Commit inst: 1098T0 : 00067308 `slli a4, a3, 3'
+reg 39 val: 14061021026368618496
+Commit inst: 1099T0 : 00067312 `c_sub a4, a4, a3'
+reg 1 val: 7691707379645153280
+Commit inst: 1100T0 : 00067314 `c_slli a4, a4, 3'
+reg 254 val: 6193426816032571392
+Commit inst: 1101T0 : 00067316 `c_add a4, a4, a5'
+reg 255 val: 6193426816032636992
+Commit inst: 1102T0 : 00067318 `bgeu a5, a4, 30'
+Commit inst: 1103T0 : 00067322 `c_lw a2, 0(a5)'
+reg 247 val: 1
+Commit inst: 1104T0 : 00067324 `c_li a3, zero, 7'
+reg 111 val: 7
+Commit inst: 1105T0 : 00067326 `beq a2, a3, 274'
+Commit inst: 1106T0 : 00067330 `c_li a2, zero, 7'
+reg 77 val: 7
+Commit inst: 1107T0 : 00067332 `c_j zero, 40960'
+Commit inst: 1117T0 : 00067340 `addi a5, a5, 56'
+reg 84 val: 65656
+Commit inst: 1118T0 : 00067344 `bltu a5, a4, -10'
+Commit inst: 1130T0 : 00067334 `c_lw a3, 0(a5)'
+reg 72 val: 1
+Commit inst: 1131T0 : 00067336 `beq a3, a2, 264'
+Commit inst: 1132T0 : 00067340 `addi a5, a5, 56'
+reg 93 val: 65712
+Commit inst: 1133T0 : 00067344 `bltu a5, a4, -10'
+Commit inst: 1134T0 : 00067334 `c_lw a3, 0(a5)'
+reg 97 val: 4
+Commit inst: 1135T0 : 00067336 `beq a3, a2, 264'
+Commit inst: 1136T0 : 00067340 `addi a5, a5, 56'
+reg 57 val: 65768
+Commit inst: 1137T0 : 00067344 `bltu a5, a4, -10'
+Commit inst: 1138T0 : 00067334 `c_lw a3, 0(a5)'
+reg 19 val: 7
+Commit inst: 1139T0 : 00067336 `beq a3, a2, 264'
+Commit inst: 1358T0 : 00067600 `ld s7, 48(a5)'
+reg 221 val: 8
+Commit inst: 1359T0 : 00067604 `ld s9, 40(a5)'
+reg 222 val: 80
+Commit inst: 1360T0 : 00067608 `ld s2, 32(a5)'
+reg 223 val: 32
+Commit inst: 1361T0 : 00067612 `ld s3, 16(a5)'
+reg 224 val: 499536
+Commit inst: 1362T0 : 00067616 `bltu s6, s7, 20'
+Commit inst: 1363T0 : 00067620 `beq s7, zero, -266'
+Commit inst: 1364T0 : 00067624 `addi s5, s7, -1'
+reg 216 val: 7
+Commit inst: 1365T0 : 00067628 `c_add a0, a0, s5'
+reg 217 val: 7
+Commit inst: 1366T0 : 00067630 `c_mv s4, s7'
+reg 218 val: 8
+Commit inst: 1367T0 : 00067632 `c_add s5, s5, s9'
+reg 219 val: 87
+Commit inst: 1368T0 : 00067634 `c_j zero, 45056'
+Commit inst: 1376T0 : 00067360 `divu s0, a0, s7'
+reg 106 val: 0
+Commit inst: 1377T0 : 00067364 `ld a0, -1824(gp)'
+reg 199 val: 2048
+Commit inst: 1378T0 : 00067368 `addi a0, a0, 1792'
+reg 213 val: 3840
+Commit inst: 1379T0 : 00067372 `c_add a0, a0, s9'
+reg 231 val: 3920
+Commit inst: 1380T0 : 00067374 `c_add a0, a0, s6'
+reg 237 val: 3936
+Commit inst: 1381T0 : 00067376 `mul s0, s0, s7'
+reg 214 val: 0
+Commit inst: 1382T0 : 00067380 `c_add a0, a0, s0'
+reg 207 val: 3936
+Commit inst: 1383T0 : 00067382 `jal ra, 66714'
+reg 230 val: 67386
+Commit inst: 1385T0 : 00134096 `c_addi sp, sp, -32'
+reg 238 val: 9223372036854775136
+Commit inst: 1386T0 : 00134098 `c_sdsp s2, 0(sp)'
+Commit inst: 1387T0 : 00134100 `c_sdsp s0, 16(sp)'
+Commit inst: 1388T0 : 00134102 `ld s0, -832(gp)'
+reg 212 val: 0
+Commit inst: 1389T0 : 00134106 `c_sdsp s1, 8(sp)'
+Commit inst: 1390T0 : 00134108 `c_sdsp ra, 24(sp)'
+Commit inst: 1391T0 : 00134110 `c_mv s1, a0'
+reg 252 val: 3936
+Commit inst: 1392T0 : 00134112 `c_beqz s0, zero, 8'
+Commit inst: 1405T0 : 00134120 `c_li a0, zero, 0'
+reg 244 val: 0
+Commit inst: 1406T0 : 00134122 `jal ra, 114790'
+reg 243 val: 134126
+Commit inst: 1407T0 : 00248912 `c_mv a5, a0'
+reg 249 val: 0
+Commit inst: 1408T0 : 00248914 `addi a7, zero, 214'
+reg 250 val: 214
+Commit inst: 1422T0 : 00248922 `sd a0, -832(gp)'
+Commit inst: 1423T0 : 00248926 `bltu a0, a5, 8'
+Commit inst: 1424T0 : 00248930 `c_li a0, zero, 0'
+reg 251 val: 0
+Commit inst: 1425T0 : 00248932 `c_jr zero, ra, 0'
+Commit inst: 1434T0 : 00134126 `blt a0, zero, 30'
+Commit inst: 1435T0 : 00134130 `ld s0, -832(gp)'
+reg 193 val: 516096
+Commit inst: 1436T0 : 00134134 `c_beqz s1, zero, 24'
+Commit inst: 1437T0 : 00134136 `bge zero, s1, 62'
+Commit inst: 1438T0 : 00134140 `add a5, s1, s0'
+reg 185 val: 520032
+Commit inst: 1439T0 : 00134144 `sltu a5, a5, s0'
+reg 202 val: 0
+Commit inst: 1440T0 : 00134148 `c_beqz a5, zero, 24'
+Commit inst: 1450T0 : 00134172 `add a0, s0, s1'
+reg 49 val: 520032
+Commit inst: 1451T0 : 00134176 `jal ra, 114736'
+reg 14 val: 134180
+Commit inst: 1455T0 : 00248912 `c_mv a5, a0'
+reg 51 val: 520032
+Commit inst: 1456T0 : 00248914 `addi a7, zero, 214'
+reg 37 val: 214
+Commit inst: 1467T0 : 00248922 `sd a0, -832(gp)'
+Commit inst: 1468T0 : 00248926 `bltu a0, a5, 8'
+Commit inst: 1469T0 : 00248930 `c_li a0, zero, 0'
+reg 36 val: 0
+Commit inst: 1470T0 : 00248932 `c_jr zero, ra, 0'
+Commit inst: 1476T0 : 00134180 `blt a0, zero, -24'
+Commit inst: 1477T0 : 00134184 `c_mv a0, s0'
+reg 66 val: 516096
+Commit inst: 1478T0 : 00134186 `c_ldsp ra, 24(sp)'
+reg 65 val: 67386
+Commit inst: 1479T0 : 00134188 `c_ldsp s0, 16(sp)'
+reg 9 val: 0
+Commit inst: 1480T0 : 00134190 `c_ldsp s1, 8(sp)'
+reg 69 val: 67882
+Commit inst: 1481T0 : 00134192 `c_ldsp s2, 0(sp)'
+reg 17 val: 32
+Commit inst: 1482T0 : 00134194 `c_addi16sp sp, sp, 32'
+reg 6 val: 9223372036854775168
+Commit inst: 1483T0 : 00134196 `c_jr zero, ra, 0'
+Commit inst: 1487T0 : 00067386 `divu s5, s5, s7'
+reg 42 val: 10
+Commit inst: 1488T0 : 00067390 `add s1, a0, s6'
+reg 147 val: 516112
+Commit inst: 1489T0 : 00067394 `lui a5, 503808'
+reg 33 val: 503808
+Commit inst: 1490T0 : 00067398 `ld s10, 1000(a5)'
+reg 52 val: 503592
+Commit inst: 1491T0 : 00067402 `sub a0, zero, s6'
+reg 45 val: 18446744073709551600
+Commit inst: 1492T0 : 00067406 `addi s1, s1, 1791'
+reg 126 val: 517903
+Commit inst: 1493T0 : 00067410 `c_and s1, s1, a0'
+reg 125 val: 517888
+Commit inst: 1494T0 : 00067412 `lui a3, 512000'
+reg 156 val: 512000
+Commit inst: 1495T0 : 00067416 `add a4, s1, s0'
+reg 8 val: 517888
+Commit inst: 1496T0 : 00067420 `addi a5, a3, -1000'
+reg 16 val: 511000
+Commit inst: 1497T0 : 00067424 `c_sd a4, 32(a5)'
+Commit inst: 1498T0 : 00067426 `sd s0, 1072(s10)'
+Commit inst: 1499T0 : 00067430 `c_mv a2, s2'
+reg 68 val: 32
+Commit inst: 1500T0 : 00067432 `c_mv a0, a4'
+reg 64 val: 517888
+Commit inst: 1501T0 : 00067434 `addi a6, zero, 62'
+reg 220 val: 62
+Commit inst: 1502T0 : 00067438 `sd zero, 40(a5)'
+Commit inst: 1503T0 : 00067442 `c_mv a1, s3'
+reg 75 val: 499536
+Commit inst: 1504T0 : 00067444 `sd a6, -1000(a3)'
+Commit inst: 1505T0 : 00067448 `jal ra, 61970'
+reg 74 val: 67452
+Commit inst: 1507T0 : 00129418 `xor a5, a1, a0'
+reg 60 val: 30800
+Commit inst: 1508T0 : 00129422 `c_andi a5, a5, 7'
+reg 62 val: 0
+Commit inst: 1509T0 : 00129424 `add a7, a0, a2'
+reg 225 val: 517920
+Commit inst: 1510T0 : 00129428 `c_bnez a5, zero, 72'
+Commit inst: 1511T0 : 00129430 `c_li a5, zero, 7'
+reg 61 val: 7
+Commit inst: 1512T0 : 00129432 `bgeu a5, a2, 68'
+Commit inst: 1513T0 : 00129436 `andi a4, a0, 7'
+reg 43 val: 0
+Commit inst: 1514T0 : 00129440 `c_mv a5, a0'
+reg 11 val: 517888
+Commit inst: 1515T0 : 00129442 `c_bnez a4, zero, 82'
+Commit inst: 1516T0 : 00129444 `andi a6, a7, 18446744073709551608'
+reg 70 val: 517920
+Commit inst: 1517T0 : 00129448 `addi a4, a6, -64'
+reg 116 val: 517856
+Commit inst: 1518T0 : 00129452 `bltu a5, a4, 110'
+Commit inst: 1519T0 : 00129456 `c_mv a3, a1'
+reg 73 val: 499536
+Commit inst: 1520T0 : 00129458 `c_mv a4, a5'
+reg 3 val: 517888
+Commit inst: 1521T0 : 00129460 `bgeu a5, a6, 34'
+Commit inst: 1522T0 : 00129464 `c_ld a2, 0(a3)'
+reg 34 val: 505648
+Commit inst: 1523T0 : 00129466 `c_addi a4, a4, 8'
+reg 39 val: 517896
+Commit inst: 1524T0 : 00129468 `c_addi a3, a3, 8'
+reg 1 val: 499544
+Commit inst: 1525T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 1526T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 1539T0 : 00129464 `c_ld a2, 0(a3)'
+reg 210 val: 505648
+Commit inst: 1540T0 : 00129466 `c_addi a4, a4, 8'
+reg 38 val: 517904
+Commit inst: 1541T0 : 00129468 `c_addi a3, a3, 8'
+reg 247 val: 499552
+Commit inst: 1542T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 1543T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 1544T0 : 00129464 `c_ld a2, 0(a3)'
+reg 87 val: 505680
+Commit inst: 1545T0 : 00129466 `c_addi a4, a4, 8'
+reg 56 val: 517912
+Commit inst: 1546T0 : 00129468 `c_addi a3, a3, 8'
+reg 90 val: 499560
+Commit inst: 1547T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 1548T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 1549T0 : 00129464 `c_ld a2, 0(a3)'
+reg 58 val: 505656
+Commit inst: 1550T0 : 00129466 `c_addi a4, a4, 8'
+reg 91 val: 517920
+Commit inst: 1551T0 : 00129468 `c_addi a3, a3, 8'
+reg 28 val: 499568
+Commit inst: 1552T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 1553T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 1554T0 : 00129478 `xori a4, a5, 18446744073709551615'
+reg 44 val: 18446744073709033727
+Commit inst: 1555T0 : 00129482 `c_add a6, a6, a4'
+reg 111 val: 31
+Commit inst: 1556T0 : 00129484 `andi a6, a6, 18446744073709551608'
+reg 84 val: 24
+Commit inst: 1557T0 : 00129488 `c_addi a6, a6, 8'
+reg 55 val: 32
+Commit inst: 1558T0 : 00129490 `c_add a5, a5, a6'
+reg 95 val: 517920
+Commit inst: 1559T0 : 00129492 `c_add a1, a1, a6'
+reg 23 val: 499568
+Commit inst: 1560T0 : 00129494 `bltu a5, a7, 12'
+Commit inst: 1561T0 : 00129498 `c_jr zero, ra, 0'
+Commit inst: 1573T0 : 00067452 `ld a5, -1824(gp)'
+reg 79 val: 2048
+Commit inst: 1574T0 : 00067456 `lui a4, 512000'
+reg 114 val: 512000
+Commit inst: 1575T0 : 00067460 `addi a4, a4, -984'
+reg 53 val: 511016
+Commit inst: 1576T0 : 00067464 `sd a4, -16(s1)'
+Commit inst: 1577T0 : 00067468 `c_addi a5, a5, 15'
+reg 47 val: 2063
+Commit inst: 1578T0 : 00067470 `addi a4, gp, -584'
+reg 25 val: 507560
+Commit inst: 1579T0 : 00067474 `addi a2, zero, 64'
+reg 135 val: 64
+Commit inst: 1580T0 : 00067478 `c_li a3, zero, 1'
+reg 134 val: 1
+Commit inst: 1581T0 : 00067480 `c_sd a2, 0(a4)'
+Commit inst: 1582T0 : 00067482 `lui a2, 512000'
+reg 133 val: 512000
+Commit inst: 1583T0 : 00067486 `sd a3, 1080(s10)'
+Commit inst: 1584T0 : 00067490 `sd a3, -1008(a2)'
+Commit inst: 1585T0 : 00067494 `lui a3, 512000'
+reg 146 val: 512000
+Commit inst: 1586T0 : 00067498 `sd a4, 24(a3)'
+Commit inst: 1587T0 : 00067502 `sd s10, 40(a4)'
+Commit inst: 1588T0 : 00067506 `sd s4, 1056(s10)'
+Commit inst: 1589T0 : 00067510 `sd s9, 1048(s10)'
+Commit inst: 1590T0 : 00067514 `sd s3, 1032(s10)'
+Commit inst: 1591T0 : 00067518 `sd s2, 1040(s10)'
+Commit inst: 1592T0 : 00067522 `c_li a4, zero, 16'
+reg 124 val: 16
+Commit inst: 1593T0 : 00067524 `c_mv tp, s1'
+reg 115 val: 517888
+Commit inst: 1594T0 : 00067526 `mul s7, s5, s7'
+reg 145 val: 80
+Commit inst: 1595T0 : 00067530 `c_add s0, s0, s7'
+reg 143 val: 80
+Commit inst: 1596T0 : 00067532 `c_add a5, a5, s0'
+reg 142 val: 2143
+Commit inst: 1597T0 : 00067534 `c_andi a5, a5, 18446744073709551600'
+reg 141 val: 2128
+Commit inst: 1598T0 : 00067536 `sd a5, -1824(gp)'
+Commit inst: 1599T0 : 00067540 `lui a5, 512000'
+reg 140 val: 512000
+Commit inst: 1600T0 : 00067544 `sd s0, -1024(a5)'
+Commit inst: 1601T0 : 00067548 `bgeu s6, a4, 6'
+Commit inst: 1613T0 : 00067554 `lui a5, 512000'
+reg 162 val: 512000
+Commit inst: 1614T0 : 00067558 `c_ldsp ra, 88(sp)'
+reg 103 val: 66590
+Commit inst: 1615T0 : 00067560 `c_ldsp s0, 80(sp)'
+reg 20 val: 67738
+Commit inst: 1616T0 : 00067562 `sd s6, -1016(a5)'
+Commit inst: 1617T0 : 00067566 `c_li a4, zero, 1'
+reg 98 val: 1
+Commit inst: 1618T0 : 00067568 `lui a5, 512000'
+reg 99 val: 512000
+Commit inst: 1619T0 : 00067572 `sd a4, 48(a5)'
+Commit inst: 1620T0 : 00067576 `c_ldsp s1, 72(sp)'
+reg 96 val: 67882
+Commit inst: 1621T0 : 00067578 `c_ldsp s2, 64(sp)'
+reg 107 val: 0
+Commit inst: 1622T0 : 00067580 `c_ldsp s3, 56(sp)'
+reg 101 val: 0
+Commit inst: 1623T0 : 00067582 `c_ldsp s4, 48(sp)'
+reg 117 val: 0
+Commit inst: 1624T0 : 00067584 `c_ldsp s5, 40(sp)'
+reg 148 val: 0
+Commit inst: 1625T0 : 00067586 `c_ldsp s6, 32(sp)'
+reg 154 val: 0
+Commit inst: 1626T0 : 00067588 `c_ldsp s7, 24(sp)'
+reg 192 val: 0
+Commit inst: 1627T0 : 00067590 `c_ldsp s8, 16(sp)'
+reg 94 val: 0
+Commit inst: 1628T0 : 00067592 `c_ldsp s9, 8(sp)'
+reg 149 val: 0
+Commit inst: 1629T0 : 00067594 `c_ldsp s10, 0(sp)'
+reg 78 val: 0
+Commit inst: 1630T0 : 00067596 `c_addi16sp sp, sp, 96'
+reg 155 val: 9223372036854775264
+Commit inst: 1631T0 : 00067598 `c_jr zero, ra, 0'
+Commit inst: 1645T0 : 00066590 `lui a5, 499712'
+reg 168 val: 499712
+Commit inst: 1646T0 : 00066594 `ld a5, -96(a5)'
+reg 174 val: 9223372036854775744
+Commit inst: 1647T0 : 00066598 `lui t3, 499712'
+reg 86 val: 499712
+Commit inst: 1648T0 : 00066602 `addi t3, t3, -112'
+reg 161 val: 499600
+Commit inst: 1649T0 : 00066606 `lbu a4, 1(a5)'
+reg 176 val: 47
+Commit inst: 1650T0 : 00066610 `lbu a0, 0(a5)'
+reg 160 val: 46
+Commit inst: 1651T0 : 00066614 `lbu t6, 2(a5)'
+reg 188 val: 116
+Commit inst: 1652T0 : 00066618 `lbu a2, 9(a5)'
+reg 187 val: 101
+Commit inst: 1653T0 : 00066622 `lbu t5, 3(a5)'
+reg 186 val: 101
+Commit inst: 1654T0 : 00066626 `lbu a1, 8(a5)'
+reg 184 val: 116
+Commit inst: 1655T0 : 00066630 `lbu a3, 10(a5)'
+reg 196 val: 115
+Commit inst: 1656T0 : 00066634 `lbu t4, 4(a5)'
+reg 195 val: 115
+Commit inst: 1657T0 : 00066638 `lbu t1, 11(a5)'
+reg 104 val: 116
+Commit inst: 1658T0 : 00066642 `c_slli a4, a4, 8'
+reg 179 val: 12032
+Commit inst: 1659T0 : 00066644 `lbu a7, 5(a5)'
+reg 175 val: 116
+Commit inst: 1660T0 : 00066648 `c_or a4, a4, a0'
+reg 173 val: 12078
+Commit inst: 1661T0 : 00066650 `lbu a6, 12(a5)'
+reg 178 val: 45
+Commit inst: 1662T0 : 00066654 `c_slli t6, t6, 16'
+reg 182 val: 7602176
+Commit inst: 1663T0 : 00066656 `c_slli a2, a2, 8'
+reg 181 val: 25856
+Commit inst: 1664T0 : 00066658 `lbu a0, 6(a5)'
+reg 197 val: 115
+Commit inst: 1665T0 : 00066662 `c_or a2, a2, a1'
+reg 201 val: 25972
+Commit inst: 1666T0 : 00066664 `or t6, t6, a4'
+reg 200 val: 7614254
+Commit inst: 1667T0 : 00066668 `lbu a1, 13(a5)'
+reg 205 val: 112
+Commit inst: 1668T0 : 00066672 `c_slli t5, t5, 24'
+reg 204 val: 1694498816
+Commit inst: 1669T0 : 00066674 `c_slli a3, a3, 16'
+reg 72 val: 7536640
+Commit inst: 1670T0 : 00066676 `lbu a4, 7(a5)'
+reg 93 val: 47
+Commit inst: 1671T0 : 00066680 `c_or a3, a3, a2'
+reg 233 val: 7562612
+Commit inst: 1672T0 : 00066682 `or t5, t5, t6'
+reg 180 val: 1702113070
+Commit inst: 1673T0 : 00066686 `lbu a2, 14(a5)'
+reg 198 val: 114
+Commit inst: 1674T0 : 00066690 `c_slli t4, t4, 32'
+reg 208 val: 493921239040
+Commit inst: 1675T0 : 00066692 `c_slli t1, t1, 24'
+reg 172 val: 1946157056
+Commit inst: 1676T0 : 00066694 `or t1, t1, a3'
+reg 163 val: 1953719668
+Commit inst: 1677T0 : 00066698 `or t4, t4, t5'
+reg 229 val: 495623352110
+Commit inst: 1678T0 : 00066702 `lbu a3, 15(a5)'
+reg 228 val: 111
+Commit inst: 1679T0 : 00066706 `c_slli a7, a7, 40'
+reg 227 val: 127543348822016
+Commit inst: 1680T0 : 00066708 `c_slli a6, a6, 32'
+reg 226 val: 193273528320
+Commit inst: 1681T0 : 00066710 `slli a5, a0, 48'
+reg 235 val: 32369622321725440
+Commit inst: 1682T0 : 00066714 `or a7, a7, t4'
+reg 234 val: 128038972174126
+Commit inst: 1683T0 : 00066718 `or a6, a6, t1'
+reg 203 val: 195227247988
+Commit inst: 1684T0 : 00066722 `c_slli a1, a1, 40'
+reg 177 val: 123145302310912
+Commit inst: 1685T0 : 00066724 `or a0, a5, a7'
+reg 166 val: 32497661293899566
+Commit inst: 1686T0 : 00066728 `or a1, a1, a6'
+reg 167 val: 123340529558900
+Commit inst: 1687T0 : 00066732 `slli a5, a4, 56'
+reg 183 val: 3386706919782612992
+Commit inst: 1688T0 : 00066736 `slli a4, a2, 48'
+reg 189 val: 32088147345014784
+Commit inst: 1689T0 : 00066740 `or a2, a4, a1'
+reg 194 val: 32211487874573684
+Commit inst: 1690T0 : 00066744 `c_or a5, a5, a0'
+reg 30 val: 3419204581076512558
+Commit inst: 1691T0 : 00066746 `slli a4, a3, 56'
+reg 246 val: 7998392938210000896
+Commit inst: 1692T0 : 00066750 `andi a5, a5, 18446744073709551360'
+reg 88 val: 3419204581076512512
+Commit inst: 1693T0 : 00066754 `c_or a4, a4, a2'
+reg 109 val: 8030604426084574580
+Commit inst: 1694T0 : 00066756 `sd a5, 0(t3)'
+Commit inst: 1695T0 : 00066760 `sd a4, 8(t3)'
+Commit inst: 1696T0 : 00066764 `beq s2, zero, 14'
+Commit inst: 1704T0 : 00066778 `ld a2, -1192(gp)'
+reg 164 val: 9223372036854775608
+Commit inst: 1705T0 : 00066782 `c_ldsp a1, 16(sp)'
+reg 92 val: 9223372036854775592
+Commit inst: 1706T0 : 00066784 `c_ldsp a0, 8(sp)'
+reg 128 val: 1
+Commit inst: 1707T0 : 00066786 `jal ra, 74588'
+reg 129 val: 66790
+Commit inst: 1710T0 : 00141374 `c_addi sp, sp, -32'
+reg 144 val: 9223372036854775232
+Commit inst: 1711T0 : 00141376 `lui a5, 0'
+reg 122 val: 0
+Commit inst: 1712T0 : 00141380 `c_sdsp s0, 16(sp)'
+Commit inst: 1713T0 : 00141382 `c_sdsp s1, 8(sp)'
+Commit inst: 1714T0 : 00141384 `c_sdsp s2, 0(sp)'
+Commit inst: 1715T0 : 00141386 `c_sdsp ra, 24(sp)'
+Commit inst: 1716T0 : 00141388 `addi a4, a5, 0'
+reg 123 val: 0
+Commit inst: 1717T0 : 00141392 `c_mv s0, a0'
+reg 50 val: 1
+Commit inst: 1718T0 : 00141394 `c_mv s1, a1'
+reg 24 val: 9223372036854775592
+Commit inst: 1719T0 : 00141396 `c_mv s2, a2'
+reg 27 val: 9223372036854775608
+Commit inst: 1720T0 : 00141398 `c_beqz a4, zero, 66'
+Commit inst: 1732T0 : 00141464 `lw a0, -1056(gp)'
+reg 209 val: 0
+Commit inst: 1733T0 : 00141468 `lw a5, -1168(gp)'
+reg 76 val: 0
+Commit inst: 1734T0 : 00141472 `sw zero, -1576(gp)'
+Commit inst: 1735T0 : 00141476 `beq a5, a0, -64'
+Commit inst: 1754T0 : 00141412 `lui a5, 512000'
+reg 119 val: 512000
+Commit inst: 1755T0 : 00141416 `sw s0, 320(a5)'
+Commit inst: 1756T0 : 00141420 `lui a5, 512000'
+reg 216 val: 512000
+Commit inst: 1757T0 : 00141424 `sd s1, 328(a5)'
+Commit inst: 1758T0 : 00141428 `sd s2, -1192(gp)'
+Commit inst: 1759T0 : 00141432 `jal ra, -378'
+reg 63 val: 141436
+Commit inst: 1760T0 : 00141054 `lui a5, 512000'
+reg 217 val: 512000
+Commit inst: 1761T0 : 00141058 `lw a5, 312(a5)'
+reg 199 val: 1
+Commit inst: 1762T0 : 00141062 `c_beqz a5, zero, 4'
+Commit inst: 1763T0 : 00141064 `c_jr zero, ra, 0'
+Commit inst: 1772T0 : 00141436 `jal ra, -2312'
+reg 106 val: 141440
+Commit inst: 1773T0 : 00139124 `c_addi16sp sp, sp, -96'
+reg 237 val: 9223372036854775136
+Commit inst: 1774T0 : 00139126 `c_sdsp s1, 72(sp)'
+Commit inst: 1775T0 : 00139128 `c_sdsp s2, 64(sp)'
+Commit inst: 1776T0 : 00139130 `c_sdsp ra, 88(sp)'
+Commit inst: 1777T0 : 00139132 `c_sdsp s0, 80(sp)'
+Commit inst: 1778T0 : 00139134 `c_sdsp s3, 56(sp)'
+Commit inst: 1779T0 : 00139136 `c_sdsp s4, 48(sp)'
+Commit inst: 1780T0 : 00139138 `c_sdsp s5, 40(sp)'
+Commit inst: 1781T0 : 00139140 `c_sdsp s6, 32(sp)'
+Commit inst: 1782T0 : 00139142 `c_sdsp s7, 24(sp)'
+Commit inst: 1783T0 : 00139144 `c_sdsp s8, 16(sp)'
+Commit inst: 1784T0 : 00139146 `jal ra, 132300'
+reg 13 val: 139150
+Commit inst: 1797T0 : 00271446 `c_lui t1, zero, -4096'
+reg 10 val: 18446744073709547520
+Commit inst: 1798T0 : 00271448 `addi sp, sp, -2032'
+reg 191 val: 9223372036854773104
+Commit inst: 1799T0 : 00271452 `addi t1, t1, 2000'
+reg 245 val: 18446744073709549520
+Commit inst: 1800T0 : 00271456 `sd ra, 2024(sp)'
+Commit inst: 1801T0 : 00271460 `sd s0, 2016(sp)'
+Commit inst: 1802T0 : 00271464 `sd s1, 2008(sp)'
+Commit inst: 1803T0 : 00271468 `sd s2, 2000(sp)'
+Commit inst: 1804T0 : 00271472 `c_lui a4, zero, 4096'
+reg 108 val: 4096
+Commit inst: 1805T0 : 00271474 `c_add sp, sp, t1'
+reg 248 val: 9223372036854771008
+Commit inst: 1806T0 : 00271476 `c_lui a5, zero, -4096'
+reg 214 val: 18446744073709547520
+Commit inst: 1807T0 : 00271478 `c_add a4, a4, sp'
+reg 71 val: 9223372036854775104
+Commit inst: 1808T0 : 00271480 `lui a1, 442368'
+reg 207 val: 442368
+Commit inst: 1809T0 : 00271484 `addi a7, zero, 78'
+reg 230 val: 78
+Commit inst: 1810T0 : 00271488 `addi a0, zero, -100'
+reg 57 val: 18446744073709551516
+Commit inst: 1811T0 : 00271492 `addi a1, a1, 1584'
+reg 165 val: 443952
+Commit inst: 1812T0 : 00271496 `add a2, a4, a5'
+reg 241 val: 9223372036854771008
+Commit inst: 1813T0 : 00271500 `c_lui a3, zero, 4096'
+reg 242 val: 4096
+Commit inst: 1827T0 : 00271506 `c_addiw a0, a0, 0'
+reg 244 val: 75
+Commit inst: 1828T0 : 00271508 `bltu a5, a0, 82'
+Commit inst: 1829T0 : 00271512 `bge zero, a0, 78'
+Commit inst: 1830T0 : 00271516 `lbu a5, 0(a2)'
+reg 212 val: 47
+Commit inst: 1831T0 : 00271520 `addi a4, zero, 91'
+reg 249 val: 91
+Commit inst: 1832T0 : 00271524 `beq a5, a4, 66'
+Commit inst: 1833T0 : 00271528 `addi a4, zero, 47'
+reg 48 val: 47
+Commit inst: 1834T0 : 00271532 `bne a5, a4, 236'
+Commit inst: 1835T0 : 00271536 `c_li a4, zero, 1'
+reg 239 val: 1
+Commit inst: 1836T0 : 00271538 `beq a0, a4, 172'
+Commit inst: 1837T0 : 00271542 `addiw s0, a0, -1'
+reg 240 val: 74
+Commit inst: 1838T0 : 00271546 `add a4, a2, s0'
+reg 253 val: 9223372036854771082
+Commit inst: 1839T0 : 00271550 `lbu a4, 0(a4)'
+reg 206 val: 111
+Commit inst: 1840T0 : 00271554 `beq a4, a5, 176'
+Commit inst: 1841T0 : 00271558 `c_addiw a0, a0, -2'
+reg 236 val: 73
+Commit inst: 1842T0 : 00271560 `c_add a2, a2, a0'
+reg 185 val: 9223372036854771081
+Commit inst: 1843T0 : 00271562 `c_li a3, zero, 1'
+reg 251 val: 1
+Commit inst: 1844T0 : 00271564 `addi a1, zero, 47'
+reg 243 val: 47
+Commit inst: 1845T0 : 00271568 `beq s0, a3, 142'
+Commit inst: 1846T0 : 00271572 `c_addi a2, a2, -1'
+reg 202 val: 9223372036854771080
+Commit inst: 1847T0 : 00271574 `lbu a5, 1(a2)'
+reg 250 val: 108
+Commit inst: 1848T0 : 00271578 `addiw a4, s0, -1'
+reg 67 val: 73
+Commit inst: 1849T0 : 00271582 `beq a5, a1, 150'
+Commit inst: 1850T0 : 00271586 `c_mv s0, a4'
+reg 215 val: 73
+Commit inst: 1851T0 : 00271588 `c_j zero, 45056'
+Commit inst: 1859T0 : 00271568 `beq s0, a3, 142'
+Commit inst: 1860T0 : 00271572 `c_addi a2, a2, -1'
+reg 40 val: 9223372036854771079
+Commit inst: 1861T0 : 00271574 `lbu a5, 1(a2)'
+reg 18 val: 108
+Commit inst: 1862T0 : 00271578 `addiw a4, s0, -1'
+reg 252 val: 72
+Commit inst: 1863T0 : 00271582 `beq a5, a1, 150'
+Commit inst: 1864T0 : 00271586 `c_mv s0, a4'
+reg 223 val: 72
+Commit inst: 1865T0 : 00271588 `c_j zero, 45056'
+Commit inst: 1871T0 : 00271568 `beq s0, a3, 142'
+Commit inst: 1872T0 : 00271572 `c_addi a2, a2, -1'
+reg 151 val: 9223372036854771078
+Commit inst: 1873T0 : 00271574 `lbu a5, 1(a2)'
+reg 66 val: 101
+Commit inst: 1874T0 : 00271578 `addiw a4, s0, -1'
+reg 147 val: 71
+Commit inst: 1875T0 : 00271582 `beq a5, a1, 150'
+Commit inst: 1876T0 : 00271586 `c_mv s0, a4'
+reg 126 val: 71
+Commit inst: 1877T0 : 00271588 `c_j zero, 45056'
+Commit inst: 1883T0 : 00271568 `beq s0, a3, 142'
+Commit inst: 1884T0 : 00271572 `c_addi a2, a2, -1'
+reg 45 val: 9223372036854771077
+Commit inst: 1885T0 : 00271574 `lbu a5, 1(a2)'
+reg 110 val: 104
+Commit inst: 1886T0 : 00271578 `addiw a4, s0, -1'
+reg 2 val: 70
+Commit inst: 1887T0 : 00271582 `beq a5, a1, 150'
+Commit inst: 1888T0 : 00271586 `c_mv s0, a4'
+reg 65 val: 70
+Commit inst: 1889T0 : 00271588 `c_j zero, 45056'
+Commit inst: 1895T0 : 00271568 `beq s0, a3, 142'
+Commit inst: 1896T0 : 00271572 `c_addi a2, a2, -1'
+reg 8 val: 9223372036854771076
+Commit inst: 1897T0 : 00271574 `lbu a5, 1(a2)'
+reg 61 val: 47
+Commit inst: 1898T0 : 00271578 `addiw a4, s0, -1'
+reg 220 val: 69
+Commit inst: 1899T0 : 00271582 `beq a5, a1, 150'
+Commit inst: 1964T0 : 00271732 `addiw a0, s0, 1'
+reg 114 val: 71
+Commit inst: 1965T0 : 00271736 `jal ra, -151518'
+reg 79 val: 271740
+Commit inst: 1968T0 : 00120218 `ld t1, -1696(gp)'
+reg 53 val: 123352
+Commit inst: 1969T0 : 00120222 `bne t1, zero, 218'
+Commit inst: 1982T0 : 00120440 `c_mv a1, ra'
+reg 130 val: 271740
+Commit inst: 1983T0 : 00120442 `c_jr zero, t1, 0'
+Commit inst: 1985T0 : 00123352 `lw a5, -1732(gp)'
+reg 132 val: 18446744073709551615
+Commit inst: 1986T0 : 00123356 `sd zero, -1696(gp)'
+Commit inst: 1987T0 : 00123360 `blt a5, zero, 8'
+Commit inst: 2010T0 : 00123368 `c_addi sp, sp, -32'
+reg 142 val: 9223372036854770976
+Commit inst: 2011T0 : 00123370 `c_sdsp ra, 24(sp)'
+Commit inst: 2012T0 : 00123372 `c_sdsp a0, 8(sp)'
+Commit inst: 2013T0 : 00123374 `jal ra, -730'
+reg 141 val: 123378
+Commit inst: 2016T0 : 00122644 `c_addi16sp sp, sp, -112'
+reg 140 val: 9223372036854770864
+Commit inst: 2017T0 : 00122646 `c_sdsp s1, 88(sp)'
+Commit inst: 2018T0 : 00122648 `lui a4, 499712'
+reg 74 val: 499712
+Commit inst: 2019T0 : 00122652 `ld s1, -1192(gp)'
+reg 143 val: 9223372036854775608
+Commit inst: 2020T0 : 00122656 `c_sdsp s2, 80(sp)'
+Commit inst: 2021T0 : 00122658 `c_sdsp ra, 104(sp)'
+Commit inst: 2022T0 : 00122660 `c_sdsp s0, 96(sp)'
+Commit inst: 2023T0 : 00122662 `c_sdsp s3, 72(sp)'
+Commit inst: 2024T0 : 00122664 `c_sdsp s4, 64(sp)'
+Commit inst: 2025T0 : 00122666 `c_sdsp s5, 56(sp)'
+Commit inst: 2026T0 : 00122668 `c_sdsp s6, 48(sp)'
+Commit inst: 2027T0 : 00122670 `c_sdsp s7, 40(sp)'
+Commit inst: 2028T0 : 00122672 `c_sdsp s8, 32(sp)'
+Commit inst: 2029T0 : 00122674 `c_sdsp s9, 24(sp)'
+Commit inst: 2030T0 : 00122676 `c_sdsp s10, 16(sp)'
+Commit inst: 2031T0 : 00122678 `c_sdsp s11, 8(sp)'
+Commit inst: 2032T0 : 00122680 `addi a4, a4, 1688'
+reg 124 val: 501400
+Commit inst: 2033T0 : 00122684 `sw zero, -1732(gp)'
+Commit inst: 2034T0 : 00122688 `sd a4, 40(tp)'
+Commit inst: 2035T0 : 00122692 `c_beqz s1, zero, 192'
+Commit inst: 2036T0 : 00122694 `lui a5, 372736'
+reg 162 val: 372736
+Commit inst: 2037T0 : 00122698 `c_li s4, zero, 0'
+reg 125 val: 0
+Commit inst: 2038T0 : 00122700 `lui s5, 372736'
+reg 17 val: 372736
+Commit inst: 2039T0 : 00122704 `addi s3, a5, -944'
+reg 224 val: 371792
+Commit inst: 2040T0 : 00122708 `lui s6, 499712'
+reg 218 val: 499712
+Commit inst: 2041T0 : 00122712 `lui s10, 376832'
+reg 42 val: 376832
+Commit inst: 2042T0 : 00122716 `lui s9, 376832'
+reg 15 val: 376832
+Commit inst: 2043T0 : 00122720 `lui s8, 376832'
+reg 145 val: 376832
+Commit inst: 2044T0 : 00122724 `lui s7, 376832'
+reg 153 val: 376832
+Commit inst: 2045T0 : 00122728 `c_ld s0, 0(s1)'
+reg 169 val: 0
+Commit inst: 2046T0 : 00122730 `c_beqz s0, zero, 144'
+Commit inst: 2052T0 : 00122874 `beq s4, zero, 10'
+Commit inst: 2053T0 : 00122884 `c_ldsp ra, 104(sp)'
+reg 159 val: 123378
+Commit inst: 2054T0 : 00122886 `c_ldsp s0, 96(sp)'
+reg 113 val: 70
+Commit inst: 2055T0 : 00122888 `c_li a5, zero, 1'
+reg 222 val: 1
+Commit inst: 2056T0 : 00122890 `sw a5, -1732(gp)'
+Commit inst: 2057T0 : 00122894 `c_ldsp s1, 88(sp)'
+reg 52 val: 9223372036854775592
+Commit inst: 2058T0 : 00122896 `c_ldsp s2, 80(sp)'
+reg 6 val: 9223372036854775608
+Commit inst: 2059T0 : 00122898 `c_ldsp s3, 72(sp)'
+reg 99 val: 0
+Commit inst: 2060T0 : 00122900 `c_ldsp s4, 64(sp)'
+reg 168 val: 0
+Commit inst: 2061T0 : 00122902 `c_ldsp s5, 56(sp)'
+reg 170 val: 0
+Commit inst: 2062T0 : 00122904 `c_ldsp s6, 48(sp)'
+reg 86 val: 0
+Commit inst: 2063T0 : 00122906 `c_ldsp s7, 40(sp)'
+reg 98 val: 0
+Commit inst: 2064T0 : 00122908 `c_ldsp s8, 32(sp)'
+reg 64 val: 0
+Commit inst: 2065T0 : 00122910 `c_ldsp s9, 24(sp)'
+reg 31 val: 0
+Commit inst: 2066T0 : 00122912 `c_ldsp s10, 16(sp)'
+reg 133 val: 0
+Commit inst: 2067T0 : 00122914 `c_ldsp s11, 8(sp)'
+reg 81 val: 0
+Commit inst: 2068T0 : 00122916 `c_addi16sp sp, sp, 112'
+reg 23 val: 9223372036854770976
+Commit inst: 2069T0 : 00122918 `c_jr zero, ra, 0'
+Commit inst: 2077T0 : 00123378 `c_ldsp a0, 8(sp)'
+reg 176 val: 71
+Commit inst: 2078T0 : 00123380 `c_ldsp ra, 24(sp)'
+reg 225 val: 271740
+Commit inst: 2079T0 : 00123382 `c_addi16sp sp, sp, 32'
+reg 179 val: 9223372036854771008
+Commit inst: 2080T0 : 00123384 `jal zero, -3166'
+reg 0 val: 123388
+Commit inst: 2082T0 : 00120218 `ld t1, -1696(gp)'
+reg 55 val: 0
+Commit inst: 2083T0 : 00120222 `bne t1, zero, 218'
+Commit inst: 2091T0 : 00120226 `c_addi sp, sp, -32'
+reg 181 val: 9223372036854770976
+Commit inst: 2092T0 : 00120228 `c_sdsp s0, 16(sp)'
+Commit inst: 2093T0 : 00120230 `ld s0, 40(tp)'
+reg 182 val: 501400
+Commit inst: 2094T0 : 00120234 `c_sdsp s1, 8(sp)'
+Commit inst: 2095T0 : 00120236 `c_sdsp ra, 24(sp)'
+Commit inst: 2096T0 : 00120238 `c_mv s1, a0'
+reg 184 val: 71
+Commit inst: 2097T0 : 00120240 `c_beqz s0, zero, 96'
+Commit inst: 2103T0 : 00120242 `c_lw a5, 4(s0)'
+reg 173 val: 0
+Commit inst: 2104T0 : 00120244 `c_andi a5, a5, 4'
+reg 72 val: 0
+Commit inst: 2105T0 : 00120246 `c_bnez a5, zero, 90'
+Commit inst: 2106T0 : 00120248 `c_li a4, zero, 1'
+reg 204 val: 1
+Commit inst: 2107T0 : 00120250 `lr_w a5, (s0)'
+reg 201 val: 0
+Commit inst: 2108T0 : 00120254 `bne a5, zero, 10'
+Commit inst: 2109T0 : 00120258 `sc_w a3, a4, (s0)'
+reg 195 val: 0
+Commit inst: 2110T0 : 00120262 `c_bnez a3, zero, -12'
+Commit inst: 2111T0 : 00120264 `c_addiw a5, a5, 0'
+reg 104 val: 0
+Commit inst: 2112T0 : 00120266 `c_bnez a5, zero, 178'
+Commit inst: 2113T0 : 00120268 `c_mv a1, s1'
+reg 172 val: 71
+Commit inst: 2114T0 : 00120270 `c_mv a0, s0'
+reg 208 val: 501400
+Commit inst: 2115T0 : 00120272 `jal ra, -5004'
+reg 233 val: 120276
+Commit inst: 2147T0 : 00115268 `c_addi16sp sp, sp, -224'
+reg 175 val: 9223372036854770752
+Commit inst: 2148T0 : 00115270 `c_sdsp ra, 216(sp)'
+Commit inst: 2149T0 : 00115272 `c_sdsp s0, 208(sp)'
+Commit inst: 2150T0 : 00115274 `c_sdsp s1, 200(sp)'
+Commit inst: 2151T0 : 00115276 `c_sdsp s2, 192(sp)'
+Commit inst: 2152T0 : 00115278 `c_sdsp s3, 184(sp)'
+Commit inst: 2153T0 : 00115280 `c_sdsp s4, 176(sp)'
+Commit inst: 2154T0 : 00115282 `c_sdsp s5, 168(sp)'
+Commit inst: 2155T0 : 00115284 `c_sdsp s6, 160(sp)'
+Commit inst: 2156T0 : 00115286 `c_sdsp s7, 152(sp)'
+Commit inst: 2157T0 : 00115288 `c_sdsp s8, 144(sp)'
+Commit inst: 2158T0 : 00115290 `c_sdsp s9, 136(sp)'
+Commit inst: 2159T0 : 00115292 `c_sdsp s10, 128(sp)'
+Commit inst: 2160T0 : 00115294 `c_sdsp s11, 120(sp)'
+Commit inst: 2161T0 : 00115296 `addi a5, zero, -65'
+reg 178 val: 18446744073709551551
+Commit inst: 2162T0 : 00115300 `bltu a5, a1, 1454'
+Commit inst: 2163T0 : 00115304 `c_sdsp a1, 24(sp)'
+Commit inst: 2164T0 : 00115306 `addi a7, a1, 23'
+reg 174 val: 94
+Commit inst: 2165T0 : 00115310 `c_li a5, zero, 31'
+reg 227 val: 31
+Commit inst: 2166T0 : 00115312 `c_mv s11, a0'
+reg 226 val: 501400
+Commit inst: 2167T0 : 00115314 `bgeu a5, a7, 476'
+Commit inst: 2168T0 : 00115318 `andi s10, a7, 18446744073709551600'
+reg 205 val: 80
+Commit inst: 2169T0 : 00115322 `beq a0, zero, 1400'
+Commit inst: 2170T0 : 00115326 `ld a4, -1200(gp)'
+reg 197 val: 0
+Commit inst: 2171T0 : 00115330 `srliw a5, s10, 4'
+reg 177 val: 5
+Commit inst: 2172T0 : 00115334 `addiw a3, a5, 0'
+reg 235 val: 5
+Commit inst: 2173T0 : 00115338 `c_sdsp a3, 32(sp)'
+Commit inst: 2174T0 : 00115340 `bltu a4, s10, 90'
+Commit inst: 2191T0 : 00115430 `addi a5, zero, 1023'
+reg 194 val: 1023
+Commit inst: 2192T0 : 00115434 `bgeu a5, s10, 1354'
+Commit inst: 2198T0 : 00116788 `c_ldsp a4, 32(sp)'
+reg 155 val: 5
+Commit inst: 2199T0 : 00116790 `slliw a5, a4, 1'
+reg 88 val: 10
+Commit inst: 2200T0 : 00116794 `c_addiw a5, a5, -2'
+reg 109 val: 8
+Commit inst: 2201T0 : 00116796 `c_slli a5, a5, 32'
+reg 20 val: 34359738368
+Commit inst: 2202T0 : 00116798 `c_srli a5, a5, 32'
+reg 96 val: 8
+Commit inst: 2203T0 : 00116800 `c_addi a5, a5, 13'
+reg 211 val: 21
+Commit inst: 2204T0 : 00116802 `c_slli a5, a5, 3'
+reg 232 val: 168
+Commit inst: 2205T0 : 00116804 `c_sdsp a4, 0(sp)'
+Commit inst: 2206T0 : 00116806 `c_j zero, 45056'
+Commit inst: 2217T0 : 00115902 `c_add a5, a5, s11'
+reg 12 val: 501568
+Commit inst: 2218T0 : 00115904 `c_ld a3, 8(a5)'
+reg 118 val: 0
+Commit inst: 2219T0 : 00115906 `addi a4, a5, -16'
+reg 121 val: 501552
+Commit inst: 2220T0 : 00115910 `beq a4, a3, 756'
+Commit inst: 2221T0 : 00115914 `beq a3, zero, 1158'
+Commit inst: 2237T0 : 00117072 `srli a5, s10, 9'
+reg 217 val: 0
+Commit inst: 2238T0 : 00117076 `srli s0, s10, 6'
+reg 63 val: 1
+Commit inst: 2239T0 : 00117080 `c_mv a0, s11'
+reg 144 val: 501400
+Commit inst: 2240T0 : 00117082 `c_mv s1, a5'
+reg 106 val: 0
+Commit inst: 2241T0 : 00117084 `c_sdsp a5, 56(sp)'
+Commit inst: 2242T0 : 00117086 `c_sdsp s0, 40(sp)'
+Commit inst: 2243T0 : 00117088 `jal ra, -8500'
+reg 163 val: 117092
+Commit inst: 2247T0 : 00108588 `ld a5, -1200(gp)'
+reg 237 val: 0
+Commit inst: 2248T0 : 00108592 `beq a5, zero, 384'
+Commit inst: 2255T0 : 00108976 `jal zero, -2320'
+reg 0 val: 108980
+Commit inst: 2259T0 : 00106656 `c_lui a4, zero, 4096'
+reg 123 val: 4096
+Commit inst: 2260T0 : 00106658 `addi a3, a0, 88'
+reg 191 val: 501488
+Commit inst: 2261T0 : 00106662 `addi a4, a4, -1976'
+reg 199 val: 2120
+Commit inst: 2262T0 : 00106666 `c_mv a5, a3'
+reg 108 val: 501488
+Commit inst: 2263T0 : 00106668 `c_add a4, a4, a0'
+reg 92 val: 503520
+Commit inst: 2264T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2265T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2266T0 : 00106674 `c_addi a5, a5, 16'
+reg 234 val: 501504
+Commit inst: 2267T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2270T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2271T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2272T0 : 00106674 `c_addi a5, a5, 16'
+reg 164 val: 501520
+Commit inst: 2273T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2274T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2275T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2276T0 : 00106674 `c_addi a5, a5, 16'
+reg 228 val: 501536
+Commit inst: 2277T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2278T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2279T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2280T0 : 00106674 `c_addi a5, a5, 16'
+reg 57 val: 501552
+Commit inst: 2281T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2284T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2285T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2286T0 : 00106674 `c_addi a5, a5, 16'
+reg 36 val: 501568
+Commit inst: 2287T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2290T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2291T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2292T0 : 00106674 `c_addi a5, a5, 16'
+reg 69 val: 501584
+Commit inst: 2293T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2296T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2297T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2298T0 : 00106674 `c_addi a5, a5, 16'
+reg 77 val: 501600
+Commit inst: 2299T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2302T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2303T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2304T0 : 00106674 `c_addi a5, a5, 16'
+reg 19 val: 501616
+Commit inst: 2305T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2308T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2309T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2310T0 : 00106674 `c_addi a5, a5, 16'
+reg 60 val: 501632
+Commit inst: 2311T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2314T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2315T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2316T0 : 00106674 `c_addi a5, a5, 16'
+reg 71 val: 501648
+Commit inst: 2317T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2320T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2321T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2322T0 : 00106674 `c_addi a5, a5, 16'
+reg 50 val: 501664
+Commit inst: 2323T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2326T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2327T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2328T0 : 00106674 `c_addi a5, a5, 16'
+reg 95 val: 501680
+Commit inst: 2329T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2343T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2344T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2345T0 : 00106674 `c_addi a5, a5, 16'
+reg 21 val: 501696
+Commit inst: 2346T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2360T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2361T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2362T0 : 00106674 `c_addi a5, a5, 16'
+reg 165 val: 501712
+Commit inst: 2363T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2364T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2365T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2366T0 : 00106674 `c_addi a5, a5, 16'
+reg 185 val: 501728
+Commit inst: 2367T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2368T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2369T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2370T0 : 00106674 `c_addi a5, a5, 16'
+reg 212 val: 501744
+Commit inst: 2371T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2372T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2373T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2374T0 : 00106674 `c_addi a5, a5, 16'
+reg 206 val: 501760
+Commit inst: 2375T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2376T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2377T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2378T0 : 00106674 `c_addi a5, a5, 16'
+reg 111 val: 501776
+Commit inst: 2379T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2380T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2381T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2382T0 : 00106674 `c_addi a5, a5, 16'
+reg 70 val: 501792
+Commit inst: 2383T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2384T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2385T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2386T0 : 00106674 `c_addi a5, a5, 16'
+reg 91 val: 501808
+Commit inst: 2387T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2388T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2389T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2390T0 : 00106674 `c_addi a5, a5, 16'
+reg 90 val: 501824
+Commit inst: 2391T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2392T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2393T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2394T0 : 00106674 `c_addi a5, a5, 16'
+reg 56 val: 501840
+Commit inst: 2395T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2396T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2397T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2398T0 : 00106674 `c_addi a5, a5, 16'
+reg 87 val: 501856
+Commit inst: 2399T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2400T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2401T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2402T0 : 00106674 `c_addi a5, a5, 16'
+reg 247 val: 501872
+Commit inst: 2403T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2404T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2405T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2406T0 : 00106674 `c_addi a5, a5, 16'
+reg 38 val: 501888
+Commit inst: 2407T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2408T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2409T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2410T0 : 00106674 `c_addi a5, a5, 16'
+reg 210 val: 501904
+Commit inst: 2411T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2412T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2413T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2414T0 : 00106674 `c_addi a5, a5, 16'
+reg 1 val: 501920
+Commit inst: 2415T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2416T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2417T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2418T0 : 00106674 `c_addi a5, a5, 16'
+reg 39 val: 501936
+Commit inst: 2419T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2420T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2421T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2422T0 : 00106674 `c_addi a5, a5, 16'
+reg 34 val: 501952
+Commit inst: 2423T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2424T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2425T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2426T0 : 00106674 `c_addi a5, a5, 16'
+reg 73 val: 501968
+Commit inst: 2427T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2428T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2429T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2430T0 : 00106674 `c_addi a5, a5, 16'
+reg 3 val: 501984
+Commit inst: 2431T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2432T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2433T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2434T0 : 00106674 `c_addi a5, a5, 16'
+reg 68 val: 502000
+Commit inst: 2435T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2436T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2437T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2438T0 : 00106674 `c_addi a5, a5, 16'
+reg 254 val: 502016
+Commit inst: 2439T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2440T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2441T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2442T0 : 00106674 `c_addi a5, a5, 16'
+reg 54 val: 502032
+Commit inst: 2443T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2444T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2445T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2446T0 : 00106674 `c_addi a5, a5, 16'
+reg 80 val: 502048
+Commit inst: 2447T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2448T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2449T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2450T0 : 00106674 `c_addi a5, a5, 16'
+reg 82 val: 502064
+Commit inst: 2451T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2452T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2453T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2454T0 : 00106674 `c_addi a5, a5, 16'
+reg 46 val: 502080
+Commit inst: 2455T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2456T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2457T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2458T0 : 00106674 `c_addi a5, a5, 16'
+reg 85 val: 502096
+Commit inst: 2459T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2460T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2461T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2462T0 : 00106674 `c_addi a5, a5, 16'
+reg 116 val: 502112
+Commit inst: 2463T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2464T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2465T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2466T0 : 00106674 `c_addi a5, a5, 16'
+reg 156 val: 502128
+Commit inst: 2467T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2468T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2469T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2470T0 : 00106674 `c_addi a5, a5, 16'
+reg 43 val: 502144
+Commit inst: 2471T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2472T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2473T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2474T0 : 00106674 `c_addi a5, a5, 16'
+reg 240 val: 502160
+Commit inst: 2475T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2476T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2477T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2478T0 : 00106674 `c_addi a5, a5, 16'
+reg 202 val: 502176
+Commit inst: 2479T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2480T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2481T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2482T0 : 00106674 `c_addi a5, a5, 16'
+reg 250 val: 502192
+Commit inst: 2483T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2484T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2485T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2486T0 : 00106674 `c_addi a5, a5, 16'
+reg 67 val: 502208
+Commit inst: 2487T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2488T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2489T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2490T0 : 00106674 `c_addi a5, a5, 16'
+reg 215 val: 502224
+Commit inst: 2491T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2492T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2493T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2494T0 : 00106674 `c_addi a5, a5, 16'
+reg 40 val: 502240
+Commit inst: 2495T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2496T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2497T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2498T0 : 00106674 `c_addi a5, a5, 16'
+reg 18 val: 502256
+Commit inst: 2499T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2500T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2501T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2502T0 : 00106674 `c_addi a5, a5, 16'
+reg 252 val: 502272
+Commit inst: 2503T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2504T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2505T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2506T0 : 00106674 `c_addi a5, a5, 16'
+reg 223 val: 502288
+Commit inst: 2507T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2508T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2509T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2510T0 : 00106674 `c_addi a5, a5, 16'
+reg 151 val: 502304
+Commit inst: 2511T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2512T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2513T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2514T0 : 00106674 `c_addi a5, a5, 16'
+reg 66 val: 502320
+Commit inst: 2515T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2516T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2517T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2518T0 : 00106674 `c_addi a5, a5, 16'
+reg 147 val: 502336
+Commit inst: 2519T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2520T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2521T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2522T0 : 00106674 `c_addi a5, a5, 16'
+reg 126 val: 502352
+Commit inst: 2523T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2524T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2525T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2526T0 : 00106674 `c_addi a5, a5, 16'
+reg 45 val: 502368
+Commit inst: 2527T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2528T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2529T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2530T0 : 00106674 `c_addi a5, a5, 16'
+reg 110 val: 502384
+Commit inst: 2531T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2532T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2533T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2534T0 : 00106674 `c_addi a5, a5, 16'
+reg 2 val: 502400
+Commit inst: 2535T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2536T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2537T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2538T0 : 00106674 `c_addi a5, a5, 16'
+reg 236 val: 502416
+Commit inst: 2539T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2540T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2541T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2542T0 : 00106674 `c_addi a5, a5, 16'
+reg 13 val: 502432
+Commit inst: 2543T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2544T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2545T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2546T0 : 00106674 `c_addi a5, a5, 16'
+reg 4 val: 502448
+Commit inst: 2547T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2548T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2549T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2550T0 : 00106674 `c_addi a5, a5, 16'
+reg 25 val: 502464
+Commit inst: 2551T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2552T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2553T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2554T0 : 00106674 `c_addi a5, a5, 16'
+reg 134 val: 502480
+Commit inst: 2555T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2556T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2557T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2558T0 : 00106674 `c_addi a5, a5, 16'
+reg 135 val: 502496
+Commit inst: 2559T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2560T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2561T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2562T0 : 00106674 `c_addi a5, a5, 16'
+reg 28 val: 502512
+Commit inst: 2563T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2564T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2565T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2566T0 : 00106674 `c_addi a5, a5, 16'
+reg 58 val: 502528
+Commit inst: 2567T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2568T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2569T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2570T0 : 00106674 `c_addi a5, a5, 16'
+reg 245 val: 502544
+Commit inst: 2571T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2572T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2573T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2574T0 : 00106674 `c_addi a5, a5, 16'
+reg 131 val: 502560
+Commit inst: 2575T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2576T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2577T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2578T0 : 00106674 `c_addi a5, a5, 16'
+reg 243 val: 502576
+Commit inst: 2579T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2580T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2581T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2582T0 : 00106674 `c_addi a5, a5, 16'
+reg 137 val: 502592
+Commit inst: 2583T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2584T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2585T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2586T0 : 00106674 `c_addi a5, a5, 16'
+reg 138 val: 502608
+Commit inst: 2587T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2588T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2589T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2590T0 : 00106674 `c_addi a5, a5, 16'
+reg 47 val: 502624
+Commit inst: 2591T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2592T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2593T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2594T0 : 00106674 `c_addi a5, a5, 16'
+reg 9 val: 502640
+Commit inst: 2595T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2596T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2597T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2598T0 : 00106674 `c_addi a5, a5, 16'
+reg 221 val: 502656
+Commit inst: 2599T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2600T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2601T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2602T0 : 00106674 `c_addi a5, a5, 16'
+reg 139 val: 502672
+Commit inst: 2603T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2604T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2605T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2606T0 : 00106674 `c_addi a5, a5, 16'
+reg 136 val: 502688
+Commit inst: 2607T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2608T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2609T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2610T0 : 00106674 `c_addi a5, a5, 16'
+reg 61 val: 502704
+Commit inst: 2611T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2612T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2613T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2614T0 : 00106674 `c_addi a5, a5, 16'
+reg 248 val: 502720
+Commit inst: 2615T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2616T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2617T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2618T0 : 00106674 `c_addi a5, a5, 16'
+reg 79 val: 502736
+Commit inst: 2619T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2620T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2621T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2622T0 : 00106674 `c_addi a5, a5, 16'
+reg 142 val: 502752
+Commit inst: 2623T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2624T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2625T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2626T0 : 00106674 `c_addi a5, a5, 16'
+reg 220 val: 502768
+Commit inst: 2627T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2628T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2629T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2630T0 : 00106674 `c_addi a5, a5, 16'
+reg 24 val: 502784
+Commit inst: 2631T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2632T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2633T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2634T0 : 00106674 `c_addi a5, a5, 16'
+reg 74 val: 502800
+Commit inst: 2635T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2636T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2637T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2638T0 : 00106674 `c_addi a5, a5, 16'
+reg 132 val: 502816
+Commit inst: 2639T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2640T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2641T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2642T0 : 00106674 `c_addi a5, a5, 16'
+reg 117 val: 502832
+Commit inst: 2643T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2644T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2645T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2646T0 : 00106674 `c_addi a5, a5, 16'
+reg 148 val: 502848
+Commit inst: 2647T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2648T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2649T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2650T0 : 00106674 `c_addi a5, a5, 16'
+reg 101 val: 502864
+Commit inst: 2651T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2652T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2653T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2654T0 : 00106674 `c_addi a5, a5, 16'
+reg 154 val: 502880
+Commit inst: 2655T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2656T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2657T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2658T0 : 00106674 `c_addi a5, a5, 16'
+reg 78 val: 502896
+Commit inst: 2659T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2660T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2661T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2662T0 : 00106674 `c_addi a5, a5, 16'
+reg 149 val: 502912
+Commit inst: 2663T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2664T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2665T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2666T0 : 00106674 `c_addi a5, a5, 16'
+reg 94 val: 502928
+Commit inst: 2667T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2668T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2669T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2670T0 : 00106674 `c_addi a5, a5, 16'
+reg 192 val: 502944
+Commit inst: 2671T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2672T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2673T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2674T0 : 00106674 `c_addi a5, a5, 16'
+reg 105 val: 502960
+Commit inst: 2675T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2676T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2677T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2678T0 : 00106674 `c_addi a5, a5, 16'
+reg 102 val: 502976
+Commit inst: 2679T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2680T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2681T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2682T0 : 00106674 `c_addi a5, a5, 16'
+reg 89 val: 502992
+Commit inst: 2683T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2684T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2685T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2686T0 : 00106674 `c_addi a5, a5, 16'
+reg 112 val: 503008
+Commit inst: 2687T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2688T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2689T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2690T0 : 00106674 `c_addi a5, a5, 16'
+reg 157 val: 503024
+Commit inst: 2691T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2692T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2693T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2694T0 : 00106674 `c_addi a5, a5, 16'
+reg 65 val: 503040
+Commit inst: 2695T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2696T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2697T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2698T0 : 00106674 `c_addi a5, a5, 16'
+reg 141 val: 503056
+Commit inst: 2699T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2700T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2701T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2702T0 : 00106674 `c_addi a5, a5, 16'
+reg 169 val: 503072
+Commit inst: 2703T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2704T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2705T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2706T0 : 00106674 `c_addi a5, a5, 16'
+reg 162 val: 503088
+Commit inst: 2707T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2708T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2709T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2710T0 : 00106674 `c_addi a5, a5, 16'
+reg 143 val: 503104
+Commit inst: 2711T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2712T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2713T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2714T0 : 00106674 `c_addi a5, a5, 16'
+reg 27 val: 503120
+Commit inst: 2715T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2716T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2717T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2718T0 : 00106674 `c_addi a5, a5, 16'
+reg 224 val: 503136
+Commit inst: 2719T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2720T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2721T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2722T0 : 00106674 `c_addi a5, a5, 16'
+reg 125 val: 503152
+Commit inst: 2723T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2724T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2725T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2726T0 : 00106674 `c_addi a5, a5, 16'
+reg 17 val: 503168
+Commit inst: 2727T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2728T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2729T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2730T0 : 00106674 `c_addi a5, a5, 16'
+reg 218 val: 503184
+Commit inst: 2731T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2732T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2733T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2734T0 : 00106674 `c_addi a5, a5, 16'
+reg 153 val: 503200
+Commit inst: 2735T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2736T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2737T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2738T0 : 00106674 `c_addi a5, a5, 16'
+reg 145 val: 503216
+Commit inst: 2739T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2740T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2741T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2742T0 : 00106674 `c_addi a5, a5, 16'
+reg 15 val: 503232
+Commit inst: 2743T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2744T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2745T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2746T0 : 00106674 `c_addi a5, a5, 16'
+reg 41 val: 503248
+Commit inst: 2747T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2748T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2749T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2750T0 : 00106674 `c_addi a5, a5, 16'
+reg 171 val: 503264
+Commit inst: 2751T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2752T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2753T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2754T0 : 00106674 `c_addi a5, a5, 16'
+reg 146 val: 503280
+Commit inst: 2755T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2756T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2757T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2758T0 : 00106674 `c_addi a5, a5, 16'
+reg 42 val: 503296
+Commit inst: 2759T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2760T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2761T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2762T0 : 00106674 `c_addi a5, a5, 16'
+reg 150 val: 503312
+Commit inst: 2763T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2764T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2765T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2766T0 : 00106674 `c_addi a5, a5, 16'
+reg 140 val: 503328
+Commit inst: 2767T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2768T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2769T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2770T0 : 00106674 `c_addi a5, a5, 16'
+reg 114 val: 503344
+Commit inst: 2771T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2772T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2773T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2774T0 : 00106674 `c_addi a5, a5, 16'
+reg 159 val: 503360
+Commit inst: 2775T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2776T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2777T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2778T0 : 00106674 `c_addi a5, a5, 16'
+reg 23 val: 503376
+Commit inst: 2779T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2780T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2781T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2782T0 : 00106674 `c_addi a5, a5, 16'
+reg 160 val: 503392
+Commit inst: 2783T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2784T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2785T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2786T0 : 00106674 `c_addi a5, a5, 16'
+reg 187 val: 503408
+Commit inst: 2787T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2788T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2789T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2790T0 : 00106674 `c_addi a5, a5, 16'
+reg 188 val: 503424
+Commit inst: 2791T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2792T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2793T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2794T0 : 00106674 `c_addi a5, a5, 16'
+reg 53 val: 503440
+Commit inst: 2795T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2796T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2797T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2798T0 : 00106674 `c_addi a5, a5, 16'
+reg 179 val: 503456
+Commit inst: 2799T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2800T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2801T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2802T0 : 00106674 `c_addi a5, a5, 16'
+reg 196 val: 503472
+Commit inst: 2803T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2804T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2805T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2806T0 : 00106674 `c_addi a5, a5, 16'
+reg 186 val: 503488
+Commit inst: 2807T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2808T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2809T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2810T0 : 00106674 `c_addi a5, a5, 16'
+reg 113 val: 503504
+Commit inst: 2811T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2812T0 : 00106670 `c_sd a5, 24(a5)'
+Commit inst: 2813T0 : 00106672 `c_sd a5, 16(a5)'
+Commit inst: 2814T0 : 00106674 `c_addi a5, a5, 16'
+reg 52 val: 503520
+Commit inst: 2815T0 : 00106676 `bne a4, a5, -6'
+Commit inst: 2848T0 : 00106680 `lui a4, 499712'
+reg 173 val: 499712
+Commit inst: 2849T0 : 00106684 `addi a4, a4, 1688'
+reg 124 val: 501400
+Commit inst: 2850T0 : 00106688 `c_lw a5, 4(a0)'
+reg 72 val: 0
+Commit inst: 2851T0 : 00106690 `beq a0, a4, 18'
+Commit inst: 2864T0 : 00106708 `addi a2, zero, 128'
+reg 225 val: 128
+Commit inst: 2865T0 : 00106712 `ori a5, a5, 1'
+reg 181 val: 1
+Commit inst: 2866T0 : 00106716 `sd a2, -1200(gp)'
+Commit inst: 2867T0 : 00106720 `c_sw a5, 4(a0)'
+Commit inst: 2868T0 : 00106722 `c_sd a3, 88(a0)'
+Commit inst: 2869T0 : 00106724 `c_jr zero, ra, 0'
+Commit inst: 2878T0 : 00117092 `addiw a5, s1, 91'
+reg 30 val: 91
+Commit inst: 2879T0 : 00117096 `c_sdsp a5, 64(sp)'
+Commit inst: 2880T0 : 00117098 `c_mv a5, s0'
+reg 158 val: 1
+Commit inst: 2881T0 : 00117100 `c_j zero, 45056'
+Commit inst: 2887T0 : 00116684 `addiw a5, a5, 48'
+reg 189 val: 49
+Commit inst: 2888T0 : 00116688 `c_sdsp a5, 48(sp)'
+Commit inst: 2889T0 : 00116690 `c_ldsp a5, 0(sp)'
+reg 183 val: 5
+Commit inst: 2890T0 : 00116692 `c_sdsp zero, 88(sp)'
+Commit inst: 2891T0 : 00116694 `c_sdsp zero, 72(sp)'
+Commit inst: 2892T0 : 00116696 `c_sdsp a5, 32(sp)'
+Commit inst: 2893T0 : 00116698 `addi a5, zero, 110'
+reg 198 val: 110
+Commit inst: 2894T0 : 00116702 `c_sdsp a5, 80(sp)'
+Commit inst: 2895T0 : 00116704 `addi a5, zero, 119'
+reg 93 val: 119
+Commit inst: 2896T0 : 00116708 `c_sdsp a5, 104(sp)'
+Commit inst: 2897T0 : 00116710 `addi a5, zero, 124'
+reg 204 val: 124
+Commit inst: 2898T0 : 00116714 `c_sdsp a5, 96(sp)'
+Commit inst: 2899T0 : 00116716 `c_j zero, 45056'
+Commit inst: 2906T0 : 00115564 `c_lui s5, zero, 8192'
+reg 167 val: 8192
+Commit inst: 2907T0 : 00115566 `addi a5, s5, 1808'
+reg 177 val: 10000
+Commit inst: 2908T0 : 00115570 `c_lui s7, zero, 4096'
+reg 197 val: 4096
+Commit inst: 2909T0 : 00115572 `addi s9, s11, 88'
+reg 194 val: 501488
+Commit inst: 2910T0 : 00115576 `c_sdsp a5, 16(sp)'
+Commit inst: 2911T0 : 00115578 `add s5, s11, s7'
+reg 88 val: 505496
+Commit inst: 2912T0 : 00115582 `addi a5, s10, 32'
+reg 109 val: 112
+Commit inst: 2913T0 : 00115586 `c_ldsp s3, 16(sp)'
+reg 20 val: 10000
+Commit inst: 2914T0 : 00115588 `c_li s1, zero, 16'
+reg 96 val: 16
+Commit inst: 2915T0 : 00115590 `addi s8, zero, 1023'
+reg 211 val: 1023
+Commit inst: 2916T0 : 00115594 `c_sdsp a5, 8(sp)'
+Commit inst: 2917T0 : 00115596 `addi s2, zero, 48'
+reg 120 val: 48
+Commit inst: 2918T0 : 00115600 `c_j zero, 40960'
+Commit inst: 2931T0 : 00115670 `ld s0, 112(s11)'
+reg 231 val: 501488
+Commit inst: 2932T0 : 00115674 `beq s0, s9, 610'
+Commit inst: 2942T0 : 00116284 `addi a5, zero, 1023'
+reg 128 val: 1023
+Commit inst: 2943T0 : 00116288 `bgeu a5, s10, 38'
+Commit inst: 2952T0 : 00116326 `c_ldsp a3, 0(sp)'
+reg 184 val: 5
+Commit inst: 2953T0 : 00116328 `addiw a5, a3, 1'
+reg 233 val: 6
+Commit inst: 2954T0 : 00116332 `srliw s0, a5, 5'
+reg 10 val: 0
+Commit inst: 2955T0 : 00116336 `slli a4, s0, 32'
+reg 217 val: 0
+Commit inst: 2956T0 : 00116340 `slliw a1, a3, 1'
+reg 121 val: 10
+Commit inst: 2957T0 : 00116344 `c_srli a4, a4, 32'
+reg 118 val: 0
+Commit inst: 2958T0 : 00116346 `addi a4, a4, 532'
+reg 123 val: 532
+Commit inst: 2959T0 : 00116350 `c_slli a1, a1, 32'
+reg 237 val: 42949672960
+Commit inst: 2960T0 : 00116352 `c_slli a4, a4, 2'
+reg 199 val: 2128
+Commit inst: 2961T0 : 00116354 `c_srli a1, a1, 32'
+reg 207 val: 10
+Commit inst: 2962T0 : 00116356 `c_add a4, a4, s11'
+reg 209 val: 503528
+Commit inst: 2963T0 : 00116358 `c_slli a1, a1, 3'
+reg 108 val: 80
+Commit inst: 2964T0 : 00116360 `c_lw a2, 8(a4)'
+reg 234 val: 0
+Commit inst: 2965T0 : 00116362 `addi a1, a1, 88'
+reg 164 val: 168
+Commit inst: 2966T0 : 00116366 `c_li a4, zero, 1'
+reg 14 val: 1
+Commit inst: 2967T0 : 00116368 `c_add a1, a1, s11'
+reg 193 val: 501568
+Commit inst: 2968T0 : 00116370 `c_addiw s0, s0, 0'
+reg 228 val: 0
+Commit inst: 2969T0 : 00116372 `sllw a5, a4, a5'
+reg 51 val: 64
+Commit inst: 2970T0 : 00116376 `c_li a3, zero, 4'
+reg 49 val: 4
+Commit inst: 2971T0 : 00116378 `bltu a2, a5, 80'
+Commit inst: 2982T0 : 00116458 `addiw a5, s0, 1'
+reg 33 val: 1
+Commit inst: 2983T0 : 00116462 `addiw s0, a5, 0'
+reg 69 val: 1
+Commit inst: 2984T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 2988T0 : 00116442 `c_slli a5, a5, 32'
+reg 214 val: 4294967296
+Commit inst: 2989T0 : 00116444 `c_srli a5, a5, 32'
+reg 16 val: 1
+Commit inst: 2990T0 : 00116446 `addi a5, a5, 532'
+reg 19 val: 533
+Commit inst: 2991T0 : 00116450 `c_slli a5, a5, 2'
+reg 48 val: 2132
+Commit inst: 2992T0 : 00116452 `c_add a5, a5, s11'
+reg 249 val: 503532
+Commit inst: 2993T0 : 00116454 `c_lw a2, 8(a5)'
+reg 60 val: 0
+Commit inst: 2994T0 : 00116456 `c_bnez a2, zero, 130'
+Commit inst: 2995T0 : 00116458 `addiw a5, s0, 1'
+reg 44 val: 2
+Commit inst: 2996T0 : 00116462 `addiw s0, a5, 0'
+reg 239 val: 2
+Commit inst: 2997T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 2998T0 : 00116442 `c_slli a5, a5, 32'
+reg 71 val: 8589934592
+Commit inst: 2999T0 : 00116444 `c_srli a5, a5, 32'
+reg 22 val: 2
+Commit inst: 3000T0 : 00116446 `addi a5, a5, 532'
+reg 26 val: 534
+Commit inst: 3001T0 : 00116450 `c_slli a5, a5, 2'
+reg 84 val: 2136
+Commit inst: 3002T0 : 00116452 `c_add a5, a5, s11'
+reg 11 val: 503536
+Commit inst: 3003T0 : 00116454 `c_lw a2, 8(a5)'
+reg 75 val: 0
+Commit inst: 3004T0 : 00116456 `c_bnez a2, zero, 130'
+Commit inst: 3005T0 : 00116458 `addiw a5, s0, 1'
+reg 50 val: 3
+Commit inst: 3006T0 : 00116462 `addiw s0, a5, 0'
+reg 242 val: 3
+Commit inst: 3007T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 3008T0 : 00116442 `c_slli a5, a5, 32'
+reg 241 val: 12884901888
+Commit inst: 3009T0 : 00116444 `c_srli a5, a5, 32'
+reg 244 val: 3
+Commit inst: 3010T0 : 00116446 `addi a5, a5, 532'
+reg 253 val: 535
+Commit inst: 3011T0 : 00116450 `c_slli a5, a5, 2'
+reg 100 val: 2140
+Commit inst: 3012T0 : 00116452 `c_add a5, a5, s11'
+reg 95 val: 503540
+Commit inst: 3013T0 : 00116454 `c_lw a2, 8(a5)'
+reg 21 val: 0
+Commit inst: 3014T0 : 00116456 `c_bnez a2, zero, 130'
+Commit inst: 3015T0 : 00116458 `addiw a5, s0, 1'
+reg 165 val: 4
+Commit inst: 3016T0 : 00116462 `addiw s0, a5, 0'
+reg 185 val: 4
+Commit inst: 3017T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 3018T0 : 00116470 `ld a3, 88(s11)'
+reg 212 val: 501488
+Commit inst: 3019T0 : 00116474 `addi a4, s10, 32'
+reg 206 val: 112
+Commit inst: 3020T0 : 00116478 `c_ld a5, 8(a3)'
+reg 111 val: 0
+Commit inst: 3021T0 : 00116480 `c_andi a5, a5, 18446744073709551608'
+reg 70 val: 0
+Commit inst: 3022T0 : 00116482 `bgeu a5, a4, 722'
+Commit inst: 3023T0 : 00116486 `lw a5, 4(s11)'
+reg 91 val: 1
+Commit inst: 3024T0 : 00116490 `c_andi a5, a5, 1'
+reg 90 val: 1
+Commit inst: 3025T0 : 00116492 `bne a5, zero, 694'
+Commit inst: 3034T0 : 00117186 `c_mv a1, s11'
+reg 38 val: 501400
+Commit inst: 3035T0 : 00117188 `c_mv a0, s10'
+reg 210 val: 80
+Commit inst: 3036T0 : 00117190 `jal ra, -3392'
+reg 1 val: 117194
+Commit inst: 3040T0 : 00113798 `c_addi16sp sp, sp, -160'
+reg 39 val: 9223372036854770592
+Commit inst: 3041T0 : 00113800 `c_sdsp s2, 128(sp)'
+Commit inst: 3042T0 : 00113802 `c_sdsp s4, 112(sp)'
+Commit inst: 3043T0 : 00113804 `c_sdsp s11, 56(sp)'
+Commit inst: 3044T0 : 00113806 `c_sdsp ra, 152(sp)'
+Commit inst: 3045T0 : 00113808 `c_sdsp s0, 144(sp)'
+Commit inst: 3046T0 : 00113810 `c_sdsp s1, 136(sp)'
+Commit inst: 3047T0 : 00113812 `c_sdsp s3, 120(sp)'
+Commit inst: 3048T0 : 00113814 `c_sdsp s5, 104(sp)'
+Commit inst: 3049T0 : 00113816 `c_sdsp s6, 96(sp)'
+Commit inst: 3050T0 : 00113818 `c_sdsp s7, 88(sp)'
+Commit inst: 3051T0 : 00113820 `c_sdsp s8, 80(sp)'
+Commit inst: 3052T0 : 00113822 `c_sdsp s9, 72(sp)'
+Commit inst: 3053T0 : 00113824 `c_sdsp s10, 64(sp)'
+Commit inst: 3054T0 : 00113826 `c_mv s2, a0'
+reg 34 val: 80
+Commit inst: 3055T0 : 00113828 `ld s4, -1632(gp)'
+reg 73 val: 4096
+Commit inst: 3056T0 : 00113832 `beq a1, zero, 464'
+Commit inst: 3057T0 : 00113836 `lui s10, 499712'
+reg 3 val: 499712
+Commit inst: 3058T0 : 00113840 `addi s10, s10, 1608'
+reg 68 val: 501320
+Commit inst: 3059T0 : 00113844 `ld a5, 16(s10)'
+reg 254 val: 131072
+Commit inst: 3060T0 : 00113848 `c_mv s0, a1'
+reg 54 val: 501400
+Commit inst: 3061T0 : 00113850 `bgeu a0, a5, 284'
+Commit inst: 3062T0 : 00113854 `c_sdsp zero, 8(sp)'
+Commit inst: 3063T0 : 00113856 `addi s6, s4, 7'
+reg 80 val: 4103
+Commit inst: 3064T0 : 00113860 `add a5, s6, s2'
+reg 82 val: 4183
+Commit inst: 3065T0 : 00113864 `lui s8, 499712'
+reg 46 val: 499712
+Commit inst: 3066T0 : 00113868 `sub s6, zero, s4'
+reg 85 val: 18446744073709547520
+Commit inst: 3067T0 : 00113872 `addi t1, s0, 88'
+reg 116 val: 501488
+Commit inst: 3068T0 : 00113876 `addi t3, s4, -1'
+reg 156 val: 4095
+Commit inst: 3069T0 : 00113880 `addi s9, s2, 32'
+reg 43 val: 112
+Commit inst: 3070T0 : 00113884 `addi s1, s8, 1688'
+reg 240 val: 501400
+Commit inst: 3071T0 : 00113888 `and s6, a5, s6'
+reg 202 val: 4096
+Commit inst: 3072T0 : 00113892 `ld s5, 88(s0)'
+reg 250 val: 501488
+Commit inst: 3073T0 : 00113896 `ld a5, 8(s5)'
+reg 67 val: 0
+Commit inst: 3074T0 : 00113900 `andi s3, a5, 18446744073709551608'
+reg 215 val: 0
+Commit inst: 3075T0 : 00113904 `add a6, s5, s3'
+reg 40 val: 501488
+Commit inst: 3076T0 : 00113908 `beq s5, t1, 502'
+Commit inst: 3080T0 : 00114410 `bne s3, zero, -498'
+Commit inst: 3081T0 : 00114414 `bne s0, s1, -474'
+Commit inst: 3082T0 : 00114418 `ld s7, 8(s10)'
+reg 223 val: 131072
+Commit inst: 3083T0 : 00114422 `c_lw a5, 4(s0)'
+reg 151 val: 1
+Commit inst: 3084T0 : 00114424 `addi a7, s4, -1'
+reg 66 val: 4095
+Commit inst: 3085T0 : 00114428 `addi s7, s7, 32'
+reg 147 val: 131104
+Commit inst: 3086T0 : 00114432 `c_andi a5, a5, 2'
+reg 126 val: 0
+Commit inst: 3087T0 : 00114434 `c_add s7, s7, s2'
+reg 45 val: 131184
+Commit inst: 3088T0 : 00114436 `c_beqz a5, zero, 170'
+Commit inst: 3099T0 : 00114606 `sub s7, s7, s3'
+reg 134 val: 131184
+Commit inst: 3100T0 : 00114610 `sub s6, zero, s4'
+reg 135 val: 18446744073709547520
+Commit inst: 3101T0 : 00114614 `c_add s7, s7, a7'
+reg 28 val: 135279
+Commit inst: 3102T0 : 00114616 `and s7, s7, s6'
+reg 58 val: 135168
+Commit inst: 3103T0 : 00114620 `c_mv s11, s7'
+reg 245 val: 135168
+Commit inst: 3104T0 : 00114622 `blt zero, s7, -168'
+Commit inst: 3120T0 : 00114454 `ld a5, -1688(gp)'
+reg 248 val: 124792
+Commit inst: 3121T0 : 00114458 `c_mv a0, s7'
+reg 79 val: 135168
+Commit inst: 3122T0 : 00114460 `c_sdsp a7, 16(sp)'
+Commit inst: 3123T0 : 00114462 `c_sdsp a6, 8(sp)'
+Commit inst: 3124T0 : 00114464 `c_jalr ra, a5, 0'
+reg 142 val: 114466
+Commit inst: 3135T0 : 00124792 `c_addi sp, sp, -16'
+reg 148 val: 9223372036854770576
+Commit inst: 3136T0 : 00124794 `c_sdsp ra, 8(sp)'
+Commit inst: 3137T0 : 00124796 `jal ra, 9300'
+reg 101 val: 124800
+Commit inst: 3138T0 : 00134096 `c_addi sp, sp, -32'
+reg 154 val: 9223372036854770544
+Commit inst: 3139T0 : 00134098 `c_sdsp s2, 0(sp)'
+Commit inst: 3140T0 : 00134100 `c_sdsp s0, 16(sp)'
+Commit inst: 3141T0 : 00134102 `ld s0, -832(gp)'
+reg 78 val: 520032
+Commit inst: 3142T0 : 00134106 `c_sdsp s1, 8(sp)'
+Commit inst: 3143T0 : 00134108 `c_sdsp ra, 24(sp)'
+Commit inst: 3144T0 : 00134110 `c_mv s1, a0'
+reg 149 val: 135168
+Commit inst: 3145T0 : 00134112 `c_beqz s0, zero, 8'
+Commit inst: 3148T0 : 00134114 `lw a5, -1576(gp)'
+reg 105 val: 0
+Commit inst: 3149T0 : 00134118 `c_beqz a5, zero, 16'
+Commit inst: 3150T0 : 00134134 `c_beqz s1, zero, 24'
+Commit inst: 3151T0 : 00134136 `bge zero, s1, 62'
+Commit inst: 3152T0 : 00134140 `add a5, s1, s0'
+reg 102 val: 655200
+Commit inst: 3153T0 : 00134144 `sltu a5, a5, s0'
+reg 89 val: 0
+Commit inst: 3154T0 : 00134148 `c_beqz a5, zero, 24'
+Commit inst: 3155T0 : 00134172 `add a0, s0, s1'
+reg 112 val: 655200
+Commit inst: 3156T0 : 00134176 `jal ra, 114736'
+reg 157 val: 134180
+Commit inst: 3157T0 : 00248912 `c_mv a5, a0'
+reg 65 val: 655200
+Commit inst: 3158T0 : 00248914 `addi a7, zero, 214'
+reg 141 val: 214
+Commit inst: 3172T0 : 00248922 `sd a0, -832(gp)'
+Commit inst: 3173T0 : 00248926 `bltu a0, a5, 8'
+Commit inst: 3174T0 : 00248930 `c_li a0, zero, 0'
+reg 169 val: 0
+Commit inst: 3175T0 : 00248932 `c_jr zero, ra, 0'
+Commit inst: 3182T0 : 00134180 `blt a0, zero, -24'
+Commit inst: 3183T0 : 00134184 `c_mv a0, s0'
+reg 27 val: 520032
+Commit inst: 3184T0 : 00134186 `c_ldsp ra, 24(sp)'
+reg 224 val: 124800
+Commit inst: 3185T0 : 00134188 `c_ldsp s0, 16(sp)'
+reg 125 val: 501400
+Commit inst: 3186T0 : 00134190 `c_ldsp s1, 8(sp)'
+reg 17 val: 501400
+Commit inst: 3187T0 : 00134192 `c_ldsp s2, 0(sp)'
+reg 218 val: 80
+Commit inst: 3188T0 : 00134194 `c_addi16sp sp, sp, 32'
+reg 153 val: 9223372036854770576
+Commit inst: 3189T0 : 00134196 `c_jr zero, ra, 0'
+Commit inst: 3193T0 : 00124800 `c_li a5, zero, -1'
+reg 41 val: 18446744073709551615
+Commit inst: 3194T0 : 00124802 `beq a0, a5, 10'
+Commit inst: 3195T0 : 00124806 `c_ldsp ra, 8(sp)'
+reg 171 val: 114466
+Commit inst: 3196T0 : 00124808 `c_addi sp, sp, 16'
+reg 146 val: 9223372036854770592
+Commit inst: 3197T0 : 00124810 `c_jr zero, ra, 0'
+Commit inst: 3208T0 : 00114466 `c_mv a2, a0'
+reg 114 val: 520032
+Commit inst: 3209T0 : 00114468 `c_ldsp a6, 8(sp)'
+reg 159 val: 501488
+Commit inst: 3210T0 : 00114470 `c_ldsp a7, 16(sp)'
+reg 23 val: 4095
+Commit inst: 3211T0 : 00114472 `beq a0, zero, 446'
+Commit inst: 3212T0 : 00114476 `ld a5, -1216(gp)'
+reg 160 val: 0
+Commit inst: 3213T0 : 00114480 `c_li s11, zero, 0'
+reg 187 val: 0
+Commit inst: 3214T0 : 00114482 `bne a5, zero, 606'
+Commit inst: 3215T0 : 00114486 `ld a5, 72(s10)'
+reg 188 val: 0
+Commit inst: 3216T0 : 00114490 `beq a5, zero, 472'
+Commit inst: 3237T0 : 00114962 `sd a2, 72(s10)'
+Commit inst: 3238T0 : 00114966 `c_j zero, 45056'
+Commit inst: 3246T0 : 00114494 `c_lui s10, zero, 4096'
+reg 8 val: 4096
+Commit inst: 3247T0 : 00114496 `c_add s10, s10, s1'
+reg 72 val: 505496
+Commit inst: 3248T0 : 00114498 `ld a5, -1920(s10)'
+reg 246 val: 0
+Commit inst: 3249T0 : 00114502 `c_add a5, a5, s7'
+reg 133 val: 135168
+Commit inst: 3250T0 : 00114504 `sd a5, -1920(s10)'
+Commit inst: 3251T0 : 00114508 `beq a6, a2, 434'
+Commit inst: 3252T0 : 00114512 `c_lw a3, 4(s1)'
+reg 81 val: 1
+Commit inst: 3253T0 : 00114514 `c_andi a3, a3, 2'
+reg 178 val: 0
+Commit inst: 3254T0 : 00114516 `bne a3, zero, 286'
+Commit inst: 3255T0 : 00114520 `beq s3, zero, 18'
+Commit inst: 3268T0 : 00114538 `andi a4, a2, 15'
+reg 189 val: 0
+Commit inst: 3269T0 : 00114542 `beq a4, zero, 430'
+Commit inst: 3280T0 : 00114972 `c_mv a5, s3'
+reg 93 val: 0
+Commit inst: 3281T0 : 00114974 `c_mv s4, a2'
+reg 170 val: 520032
+Commit inst: 3282T0 : 00114976 `c_j zero, 45056'
+Commit inst: 3291T0 : 00114556 `c_add s7, s7, a5'
+reg 97 val: 135168
+Commit inst: 3292T0 : 00114558 `c_add s7, s7, a2'
+reg 59 val: 655200
+Commit inst: 3293T0 : 00114560 `c_add a7, a7, s7'
+reg 29 val: 659295
+Commit inst: 3294T0 : 00114562 `and s6, a7, s6'
+reg 107 val: 655360
+Commit inst: 3295T0 : 00114566 `sub s7, a5, s7'
+reg 99 val: 18446744073708896416
+Commit inst: 3296T0 : 00114570 `c_add s7, s7, s6'
+reg 106 val: 160
+Commit inst: 3297T0 : 00114572 `c_mv s6, s7'
+reg 64 val: 160
+Commit inst: 3298T0 : 00114574 `blt s7, zero, 626'
+Commit inst: 3299T0 : 00114578 `ld a4, -1688(gp)'
+reg 6 val: 124792
+Commit inst: 3300T0 : 00114582 `c_mv a0, s7'
+reg 122 val: 160
+Commit inst: 3301T0 : 00114584 `c_sdsp a5, 8(sp)'
+Commit inst: 3302T0 : 00114586 `c_jalr ra, a4, 0'
+reg 76 val: 114588
+Commit inst: 3315T0 : 00124792 `c_addi sp, sp, -16'
+reg 182 val: 9223372036854770576
+Commit inst: 3316T0 : 00124794 `c_sdsp ra, 8(sp)'
+Commit inst: 3317T0 : 00124796 `jal ra, 9300'
+reg 12 val: 124800
+Commit inst: 3318T0 : 00134096 `c_addi sp, sp, -32'
+reg 155 val: 9223372036854770544
+Commit inst: 3319T0 : 00134098 `c_sdsp s2, 0(sp)'
+Commit inst: 3320T0 : 00134100 `c_sdsp s0, 16(sp)'
+Commit inst: 3321T0 : 00134102 `ld s0, -832(gp)'
+reg 235 val: 655200
+Commit inst: 3322T0 : 00134106 `c_sdsp s1, 8(sp)'
+Commit inst: 3323T0 : 00134108 `c_sdsp ra, 24(sp)'
+Commit inst: 3324T0 : 00134110 `c_mv s1, a0'
+reg 152 val: 160
+Commit inst: 3325T0 : 00134112 `c_beqz s0, zero, 8'
+Commit inst: 3331T0 : 00134114 `lw a5, -1576(gp)'
+reg 231 val: 0
+Commit inst: 3332T0 : 00134118 `c_beqz a5, zero, 16'
+Commit inst: 3333T0 : 00134134 `c_beqz s1, zero, 24'
+Commit inst: 3334T0 : 00134136 `bge zero, s1, 62'
+Commit inst: 3335T0 : 00134140 `add a5, s1, s0'
+reg 124 val: 655360
+Commit inst: 3336T0 : 00134144 `sltu a5, a5, s0'
+reg 172 val: 0
+Commit inst: 3337T0 : 00134148 `c_beqz a5, zero, 24'
+Commit inst: 3338T0 : 00134172 `add a0, s0, s1'
+reg 217 val: 655360
+Commit inst: 3339T0 : 00134176 `jal ra, 114736'
+reg 118 val: 134180
+Commit inst: 3340T0 : 00248912 `c_mv a5, a0'
+reg 121 val: 655360
+Commit inst: 3341T0 : 00248914 `addi a7, zero, 214'
+reg 123 val: 214
+Commit inst: 3380T0 : 00248922 `sd a0, -832(gp)'
+Commit inst: 3381T0 : 00248926 `bltu a0, a5, 8'
+Commit inst: 3382T0 : 00248930 `c_li a0, zero, 0'
+reg 237 val: 0
+Commit inst: 3383T0 : 00248932 `c_jr zero, ra, 0'
+Commit inst: 3392T0 : 00134180 `blt a0, zero, -24'
+Commit inst: 3393T0 : 00134184 `c_mv a0, s0'
+reg 225 val: 655200
+Commit inst: 3394T0 : 00134186 `c_ldsp ra, 24(sp)'
+reg 108 val: 124800
+Commit inst: 3395T0 : 00134188 `c_ldsp s0, 16(sp)'
+reg 209 val: 501400
+Commit inst: 3396T0 : 00134190 `c_ldsp s1, 8(sp)'
+reg 164 val: 501400
+Commit inst: 3397T0 : 00134192 `c_ldsp s2, 0(sp)'
+reg 10 val: 80
+Commit inst: 3398T0 : 00134194 `c_addi16sp sp, sp, 32'
+reg 255 val: 9223372036854770576
+Commit inst: 3399T0 : 00134196 `c_jr zero, ra, 0'
+Commit inst: 3411T0 : 00124800 `c_li a5, zero, -1'
+reg 233 val: 18446744073709551615
+Commit inst: 3412T0 : 00124802 `beq a0, a5, 10'
+Commit inst: 3413T0 : 00124806 `c_ldsp ra, 8(sp)'
+reg 184 val: 114588
+Commit inst: 3414T0 : 00124808 `c_addi sp, sp, 16'
+reg 51 val: 9223372036854770592
+Commit inst: 3415T0 : 00124810 `c_jr zero, ra, 0'
+Commit inst: 3425T0 : 00114588 `c_mv s11, a0'
+reg 214 val: 655200
+Commit inst: 3426T0 : 00114590 `bne a0, zero, 478'
+Commit inst: 3437T0 : 00115068 `ld a5, -1216(gp)'
+reg 71 val: 0
+Commit inst: 3438T0 : 00115072 `c_bnez a5, zero, 8'
+Commit inst: 3439T0 : 00115074 `ld a5, -1920(s10)'
+reg 22 val: 135168
+Commit inst: 3440T0 : 00115078 `c_j zero, 45056'
+Commit inst: 3448T0 : 00114838 `sub a4, s11, s4'
+reg 60 val: 135168
+Commit inst: 3449T0 : 00114842 `c_add a4, a4, s6'
+reg 11 val: 135328
+Commit inst: 3450T0 : 00114844 `sd s4, 88(s1)'
+Commit inst: 3451T0 : 00114848 `ori a4, a4, 1'
+reg 239 val: 135329
+Commit inst: 3452T0 : 00114852 `sd a4, 8(s4)'
+Commit inst: 3453T0 : 00114856 `c_add a5, a5, s7'
+reg 50 val: 135328
+Commit inst: 3454T0 : 00114858 `sd a5, -1920(s10)'
+Commit inst: 3455T0 : 00114862 `beq s3, zero, -826'
+Commit inst: 3460T0 : 00114036 `c_lui a4, zero, 4096'
+reg 100 val: 4096
+Commit inst: 3461T0 : 00114038 `c_add a4, a4, s0'
+reg 75 val: 505496
+Commit inst: 3462T0 : 00114040 `ld a3, -1912(a4)'
+reg 95 val: 0
+Commit inst: 3463T0 : 00114044 `bgeu a3, a5, 8'
+Commit inst: 3464T0 : 00114048 `sd a5, -1912(a4)'
+Commit inst: 3465T0 : 00114052 `ld a5, 8(s4)'
+reg 242 val: 135329
+Commit inst: 3466T0 : 00114056 `c_andi a5, a5, 18446744073709551608'
+reg 49 val: 135328
+Commit inst: 3467T0 : 00114058 `bltu a5, s9, 734'
+Commit inst: 3468T0 : 00114062 `sub s1, s0, s1'
+reg 14 val: 0
+Commit inst: 3469T0 : 00114066 `sltu s1, zero, s1'
+reg 165 val: 0
+Commit inst: 3470T0 : 00114070 `add a3, s4, s2'
+reg 111 val: 520112
+Commit inst: 3471T0 : 00114074 `ori a4, s2, 1'
+reg 70 val: 81
+Commit inst: 3472T0 : 00114078 `c_slli s1, s1, 2'
+reg 247 val: 0
+Commit inst: 3473T0 : 00114080 `c_sd a3, 88(s0)'
+Commit inst: 3474T0 : 00114082 `sub s2, a5, s2'
+reg 87 val: 135248
+Commit inst: 3475T0 : 00114086 `c_or s1, s1, a4'
+reg 56 val: 81
+Commit inst: 3476T0 : 00114088 `sd s1, 8(s4)'
+Commit inst: 3477T0 : 00114092 `ori s2, s2, 1'
+reg 91 val: 135249
+Commit inst: 3478T0 : 00114096 `sd s2, 8(a3)'
+Commit inst: 3479T0 : 00114100 `addi a0, s4, 16'
+reg 193 val: 520048
+Commit inst: 3480T0 : 00114104 `c_ldsp ra, 152(sp)'
+reg 144 val: 117194
+Commit inst: 3481T0 : 00114106 `c_ldsp s0, 144(sp)'
+reg 163 val: 4
+Commit inst: 3482T0 : 00114108 `c_ldsp s1, 136(sp)'
+reg 175 val: 16
+Commit inst: 3483T0 : 00114110 `c_ldsp s2, 128(sp)'
+reg 120 val: 48
+Commit inst: 3484T0 : 00114112 `c_ldsp s3, 120(sp)'
+reg 168 val: 10000
+Commit inst: 3485T0 : 00114114 `c_ldsp s4, 112(sp)'
+reg 205 val: 0
+Commit inst: 3486T0 : 00114116 `c_ldsp s5, 104(sp)'
+reg 3 val: 505496
+Commit inst: 3487T0 : 00114118 `c_ldsp s6, 96(sp)'
+reg 252 val: 0
+Commit inst: 3488T0 : 00114120 `c_ldsp s7, 88(sp)'
+reg 18 val: 4096
+Commit inst: 3489T0 : 00114122 `c_ldsp s8, 80(sp)'
+reg 90 val: 1023
+Commit inst: 3490T0 : 00114124 `c_ldsp s9, 72(sp)'
+reg 185 val: 501488
+Commit inst: 3491T0 : 00114126 `c_ldsp s10, 64(sp)'
+reg 86 val: 80
+Commit inst: 3492T0 : 00114128 `c_ldsp s11, 56(sp)'
+reg 254 val: 501400
+Commit inst: 3493T0 : 00114130 `c_addi16sp sp, sp, 160'
+reg 211 val: 9223372036854770752
+Commit inst: 3494T0 : 00114132 `c_jr zero, ra, 0'
+Commit inst: 3508T0 : 00117194 `c_mv s0, a0'
+reg 20 val: 520048
+Commit inst: 3509T0 : 00117196 `bne a0, zero, -462'
+Commit inst: 3524T0 : 00116734 `lw a1, -1220(gp)'
+reg 110 val: 0
+Commit inst: 3525T0 : 00116738 `beq a1, zero, -880'
+Commit inst: 3531T0 : 00115858 `c_mv a0, s0'
+reg 134 val: 520048
+Commit inst: 3532T0 : 00115860 `c_ldsp ra, 216(sp)'
+reg 28 val: 120276
+Commit inst: 3533T0 : 00115862 `c_ldsp s0, 208(sp)'
+reg 226 val: 501400
+Commit inst: 3534T0 : 00115864 `c_ldsp s1, 200(sp)'
+reg 61 val: 71
+Commit inst: 3535T0 : 00115866 `c_ldsp s2, 192(sp)'
+reg 136 val: 9223372036854775608
+Commit inst: 3536T0 : 00115868 `c_ldsp s3, 184(sp)'
+reg 139 val: 0
+Commit inst: 3537T0 : 00115870 `c_ldsp s4, 176(sp)'
+reg 221 val: 0
+Commit inst: 3538T0 : 00115872 `c_ldsp s5, 168(sp)'
+reg 9 val: 0
+Commit inst: 3539T0 : 00115874 `c_ldsp s6, 160(sp)'
+reg 47 val: 0
+Commit inst: 3540T0 : 00115876 `c_ldsp s7, 152(sp)'
+reg 138 val: 0
+Commit inst: 3541T0 : 00115878 `c_ldsp s8, 144(sp)'
+reg 137 val: 0
+Commit inst: 3542T0 : 00115880 `c_ldsp s9, 136(sp)'
+reg 243 val: 0
+Commit inst: 3543T0 : 00115882 `c_ldsp s10, 128(sp)'
+reg 131 val: 0
+Commit inst: 3544T0 : 00115884 `c_ldsp s11, 120(sp)'
+reg 117 val: 0
+Commit inst: 3545T0 : 00115886 `c_addi16sp sp, sp, 224'
+reg 132 val: 9223372036854770976
+Commit inst: 3546T0 : 00115888 `c_jr zero, ra, 0'
+Commit inst: 3556T0 : 00120276 `c_mv a5, a0'
+reg 210 val: 520048
+Commit inst: 3557T0 : 00120278 `c_beqz a0, zero, 136'
+Commit inst: 3558T0 : 00120280 `0x0a04272f amoswap_w[l]'
+reg 1 val: 1
+Commit inst: 3559T0 : 00120280 `0x0a04272f amoswap_w[s]'
+reg 39 val: 1
+Commit inst: 3560T0 : 00120284 `c_li a3, zero, 1'
+reg 142 val: 1
+Commit inst: 3561T0 : 00120286 `c_addiw a4, a4, 0'
+reg 148 val: 1
+Commit inst: 3562T0 : 00120288 `blt a3, a4, 106'
+Commit inst: 3563T0 : 00120292 `c_beqz a5, zero, 74'
+Commit inst: 3564T0 : 00120294 `ld a4, -8(a5)'
+reg 192 val: 81
+Commit inst: 3565T0 : 00120298 `andi a3, a4, 2'
+reg 94 val: 0
+Commit inst: 3566T0 : 00120302 `c_bnez a3, zero, 22'
+Commit inst: 3567T0 : 00120304 `c_andi a4, a4, 4'
+reg 54 val: 0
+Commit inst: 3568T0 : 00120306 `c_beqz a4, zero, 74'
+Commit inst: 3579T0 : 00120380 `lui a4, 499712'
+reg 66 val: 499712
+Commit inst: 3580T0 : 00120384 `addi a4, a4, 1688'
+reg 143 val: 501400
+Commit inst: 3581T0 : 00120388 `beq a4, s0, -64'
+Commit inst: 3592T0 : 00120324 `c_ldsp ra, 24(sp)'
+reg 15 val: 271740
+Commit inst: 3593T0 : 00120326 `c_ldsp s0, 16(sp)'
+reg 145 val: 70
+Commit inst: 3594T0 : 00120328 `c_ldsp s1, 8(sp)'
+reg 149 val: 9223372036854775592
+Commit inst: 3595T0 : 00120330 `c_mv a0, a5'
+reg 34 val: 520048
+Commit inst: 3596T0 : 00120332 `c_addi16sp sp, sp, 32'
+reg 154 val: 9223372036854771008
+Commit inst: 3597T0 : 00120334 `c_jr zero, ra, 0'
+Commit inst: 3603T0 : 00271740 `c_mv s1, a0'
+reg 150 val: 520048
+Commit inst: 3604T0 : 00271742 `c_beqz a0, zero, -66'
+Commit inst: 3605T0 : 00271744 `c_lui a5, zero, 4096'
+reg 42 val: 4096
+Commit inst: 3606T0 : 00271746 `c_addiw s0, s0, -1'
+reg 224 val: 69
+Commit inst: 3607T0 : 00271748 `c_add a5, a5, sp'
+reg 153 val: 9223372036854775104
+Commit inst: 3608T0 : 00271750 `c_lui a1, zero, -4096'
+reg 21 val: 18446744073709547520
+Commit inst: 3609T0 : 00271752 `c_mv a2, s0'
+reg 40 val: 69
+Commit inst: 3610T0 : 00271754 `c_add a1, a1, a5'
+reg 141 val: 9223372036854771008
+Commit inst: 3611T0 : 00271756 `jal ra, -142338'
+reg 130 val: 271760
+Commit inst: 3615T0 : 00129418 `xor a5, a1, a0'
+reg 176 val: 9223372036854252080
+Commit inst: 3616T0 : 00129422 `c_andi a5, a5, 7'
+reg 173 val: 0
+Commit inst: 3617T0 : 00129424 `add a7, a0, a2'
+reg 92 val: 520117
+Commit inst: 3618T0 : 00129428 `c_bnez a5, zero, 72'
+Commit inst: 3619T0 : 00129430 `c_li a5, zero, 7'
+reg 113 val: 7
+Commit inst: 3620T0 : 00129432 `bgeu a5, a2, 68'
+Commit inst: 3621T0 : 00129436 `andi a4, a0, 7'
+reg 222 val: 0
+Commit inst: 3622T0 : 00129440 `c_mv a5, a0'
+reg 186 val: 520048
+Commit inst: 3623T0 : 00129442 `c_bnez a4, zero, 82'
+Commit inst: 3624T0 : 00129444 `andi a6, a7, 18446744073709551608'
+reg 196 val: 520112
+Commit inst: 3625T0 : 00129448 `addi a4, a6, -64'
+reg 179 val: 520048
+Commit inst: 3626T0 : 00129452 `bltu a5, a4, 110'
+Commit inst: 3627T0 : 00129456 `c_mv a3, a1'
+reg 53 val: 9223372036854771008
+Commit inst: 3628T0 : 00129458 `c_mv a4, a5'
+reg 41 val: 520048
+Commit inst: 3629T0 : 00129460 `bgeu a5, a6, 34'
+Commit inst: 3630T0 : 00129464 `c_ld a2, 0(a3)'
+reg 245 val: 7596498784141404207
+Commit inst: 3631T0 : 00129466 `c_addi a4, a4, 8'
+reg 160 val: 520056
+Commit inst: 3632T0 : 00129468 `c_addi a3, a3, 8'
+reg 52 val: 9223372036854771016
+Commit inst: 3633T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3634T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3647T0 : 00129464 `c_ld a2, 0(a3)'
+reg 127 val: 7882820176078334318
+Commit inst: 3648T0 : 00129466 `c_addi a4, a4, 8'
+reg 83 val: 520064
+Commit inst: 3649T0 : 00129468 `c_addi a3, a3, 8'
+reg 190 val: 9223372036854771024
+Commit inst: 3650T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3651T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3664T0 : 00129464 `c_ld a2, 0(a3)'
+reg 81 val: 7810193267130117941
+Commit inst: 3665T0 : 00129466 `c_addi a4, a4, 8'
+reg 227 val: 520072
+Commit inst: 3666T0 : 00129468 `c_addi a3, a3, 8'
+reg 195 val: 9223372036854771032
+Commit inst: 3667T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3668T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3681T0 : 00129464 `c_ld a2, 0(a3)'
+reg 232 val: 8371968976274009957
+Commit inst: 3682T0 : 00129466 `c_addi a4, a4, 8'
+reg 216 val: 520080
+Commit inst: 3683T0 : 00129468 `c_addi a3, a3, 8'
+reg 213 val: 9223372036854771040
+Commit inst: 3684T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3685T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3698T0 : 00129464 `c_ld a2, 0(a3)'
+reg 58 val: 8315180034158785381
+Commit inst: 3699T0 : 00129466 `c_addi a4, a4, 8'
+reg 97 val: 520088
+Commit inst: 3700T0 : 00129468 `c_addi a3, a3, 8'
+reg 23 val: 9223372036854771048
+Commit inst: 3701T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3702T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3715T0 : 00129464 `c_ld a2, 0(a3)'
+reg 63 val: 3419190270463323508
+Commit inst: 3716T0 : 00129466 `c_addi a4, a4, 8'
+reg 129 val: 520096
+Commit inst: 3717T0 : 00129468 `c_addi a3, a3, 8'
+reg 119 val: 9223372036854771056
+Commit inst: 3718T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3719T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3732T0 : 00129464 `c_ld a2, 0(a3)'
+reg 128 val: 7593684077306996072
+Commit inst: 3733T0 : 00129466 `c_addi a4, a4, 8'
+reg 191 val: 520104
+Commit inst: 3734T0 : 00129468 `c_addi a3, a3, 8'
+reg 125 val: 9223372036854771064
+Commit inst: 3735T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3736T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3749T0 : 00129464 `c_ld a2, 0(a3)'
+reg 172 val: 3420030314375950190
+Commit inst: 3750T0 : 00129466 `c_addi a4, a4, 8'
+reg 29 val: 520112
+Commit inst: 3751T0 : 00129468 `c_addi a3, a3, 8'
+reg 207 val: 9223372036854771072
+Commit inst: 3752T0 : 00129470 `sd a2, -8(a4)'
+Commit inst: 3753T0 : 00129474 `bltu a4, a6, -10'
+Commit inst: 3754T0 : 00129478 `xori a4, a5, 18446744073709551615'
+reg 199 val: 18446744073709031567
+Commit inst: 3755T0 : 00129482 `c_add a6, a6, a4'
+reg 217 val: 63
+Commit inst: 3756T0 : 00129484 `andi a6, a6, 18446744073709551608'
+reg 237 val: 56
+Commit inst: 3757T0 : 00129488 `c_addi a6, a6, 8'
+reg 118 val: 64
+Commit inst: 3758T0 : 00129490 `c_add a5, a5, a6'
+reg 235 val: 520112
+Commit inst: 3759T0 : 00129492 `c_add a1, a1, a6'
+reg 57 val: 9223372036854771072
+Commit inst: 3760T0 : 00129494 `bltu a5, a7, 12'
+Commit inst: 3773T0 : 00129506 `lbu a4, 0(a1)'
+reg 218 val: 108
+Commit inst: 3774T0 : 00129510 `c_addi a5, a5, 1'
+reg 155 val: 520113
+Commit inst: 3775T0 : 00129512 `c_addi a1, a1, 1'
+reg 121 val: 9223372036854771073
+Commit inst: 3776T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 3777T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 3787T0 : 00129506 `lbu a4, 0(a1)'
+reg 77 val: 105
+Commit inst: 3788T0 : 00129510 `c_addi a5, a5, 1'
+reg 108 val: 520114
+Commit inst: 3789T0 : 00129512 `c_addi a1, a1, 1'
+reg 255 val: 9223372036854771074
+Commit inst: 3790T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 3791T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 3792T0 : 00129506 `lbu a4, 0(a1)'
+reg 44 val: 110
+Commit inst: 3793T0 : 00129510 `c_addi a5, a5, 1'
+reg 69 val: 520115
+Commit inst: 3794T0 : 00129512 `c_addi a1, a1, 1'
+reg 249 val: 9223372036854771075
+Commit inst: 3795T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 3796T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 3797T0 : 00129506 `lbu a4, 0(a1)'
+reg 234 val: 117
+Commit inst: 3798T0 : 00129510 `c_addi a5, a5, 1'
+reg 48 val: 520116
+Commit inst: 3799T0 : 00129512 `c_addi a1, a1, 1'
+reg 19 val: 9223372036854771076
+Commit inst: 3800T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 3801T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 3811T0 : 00129506 `lbu a4, 0(a1)'
+reg 26 val: 120
+Commit inst: 3812T0 : 00129510 `c_addi a5, a5, 1'
+reg 71 val: 520117
+Commit inst: 3813T0 : 00129512 `c_addi a1, a1, 1'
+reg 6 val: 9223372036854771077
+Commit inst: 3814T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 3815T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 3816T0 : 00129522 `c_jr zero, ra, 0'
+Commit inst: 3825T0 : 00271760 `c_add s0, s0, a0'
+reg 11 val: 520117
+Commit inst: 3826T0 : 00271762 `sb zero, 0(s0)'
+Commit inst: 3827T0 : 00271766 `c_j zero, 45056'
+Commit inst: 3837T0 : 00271678 `c_lui t1, zero, 4096'
+reg 95 val: 4096
+Commit inst: 3838T0 : 00271680 `addi t1, t1, -2000'
+reg 75 val: 2096
+Commit inst: 3839T0 : 00271684 `c_add sp, sp, t1'
+reg 165 val: 9223372036854773104
+Commit inst: 3840T0 : 00271686 `ld ra, 2024(sp)'
+reg 10 val: 139150
+Commit inst: 3841T0 : 00271690 `c_mv a0, s1'
+reg 247 val: 520048
+Commit inst: 3842T0 : 00271692 `ld s0, 2016(sp)'
+reg 87 val: 1
+Commit inst: 3843T0 : 00271696 `ld s1, 2008(sp)'
+reg 225 val: 9223372036854775592
+Commit inst: 3844T0 : 00271700 `ld s2, 2000(sp)'
+reg 184 val: 9223372036854775608
+Commit inst: 3845T0 : 00271704 `addi sp, sp, 2032'
+reg 209 val: 9223372036854775136
+Commit inst: 3846T0 : 00271708 `c_jr zero, ra, 0'
+Commit inst: 3857T0 : 00139150 `lui s1, 512000'
+reg 250 val: 512000
+Commit inst: 3858T0 : 00139154 `lui s2, 512000'
+reg 64 val: 512000
+Commit inst: 3859T0 : 00139158 `lui a5, 503808'
+reg 106 val: 503808
+Commit inst: 3860T0 : 00139162 `addi a5, a5, -216'
+reg 46 val: 503592
+Commit inst: 3861T0 : 00139166 `ld a3, 208(s1)'
+reg 43 val: 65600
+Commit inst: 3862T0 : 00139170 `ld a4, 264(s2)'
+reg 82 val: 5
+Commit inst: 3863T0 : 00139174 `sd a0, 824(a5)'
+Commit inst: 3864T0 : 00139178 `lui a0, 376832'
+reg 88 val: 376832
+Commit inst: 3865T0 : 00139182 `addi a0, a0, 1328'
+reg 85 val: 378160
+Commit inst: 3866T0 : 00139186 `sd a3, 672(a5)'
+Commit inst: 3867T0 : 00139190 `sh a4, 688(a5)'
+Commit inst: 3868T0 : 00139194 `jal ra, -54908'
+reg 96 val: 139198
+Commit inst: 3869T0 : 00084286 `c_addi16sp sp, sp, -64'
+reg 194 val: 9223372036854775072
+Commit inst: 3870T0 : 00084288 `c_sdsp s1, 40(sp)'
+Commit inst: 3871T0 : 00084290 `c_sdsp s5, 8(sp)'
+Commit inst: 3872T0 : 00084292 `c_sdsp ra, 56(sp)'
+Commit inst: 3873T0 : 00084294 `c_sdsp s0, 48(sp)'
+Commit inst: 3874T0 : 00084296 `c_sdsp s2, 32(sp)'
+Commit inst: 3875T0 : 00084298 `c_sdsp s3, 24(sp)'
+Commit inst: 3876T0 : 00084300 `c_sdsp s4, 16(sp)'
+Commit inst: 3877T0 : 00084302 `c_sdsp s6, 0(sp)'
+Commit inst: 3878T0 : 00084304 `c_mv s5, a0'
+reg 161 val: 378160
+Commit inst: 3879T0 : 00084306 `jal ra, 41480'
+reg 55 val: 84310
+Commit inst: 3884T0 : 00125786 `andi a5, a0, 7'
+reg 80 val: 0
+Commit inst: 3885T0 : 00125790 `c_mv a1, a0'
+reg 72 val: 378160
+Commit inst: 3886T0 : 00125792 `c_bnez a5, zero, 88'
+Commit inst: 3887T0 : 00125794 `lui a5, 507904'
+reg 214 val: 507904
+Commit inst: 3888T0 : 00125798 `ld a3, -1768(a5)'
+reg 51 val: 9187201950435737471
+Commit inst: 3889T0 : 00125802 `c_li a2, zero, -1'
+reg 2 val: 18446744073709551615
+Commit inst: 3890T0 : 00125804 `c_addi a0, a0, 8'
+reg 236 val: 378168
+Commit inst: 3891T0 : 00125806 `ld a4, -8(a0)'
+reg 13 val: 22045488775644236
+Commit inst: 3892T0 : 00125810 `and a5, a4, a3'
+reg 4 val: 22045488775644236
+Commit inst: 3893T0 : 00125814 `c_add a5, a5, a3'
+reg 25 val: 9209247439211381707
+Commit inst: 3894T0 : 00125816 `c_or a4, a4, a3'
+reg 151 val: 9187201950435737471
+Commit inst: 3895T0 : 00125818 `c_or a5, a5, a4'
+reg 223 val: 9223372036854775807
+Commit inst: 3896T0 : 00125820 `beq a5, a2, -16'
+Commit inst: 3897T0 : 00125824 `lbu a5, -8(a0)'
+reg 174 val: 76
+Commit inst: 3898T0 : 00125828 `sub a1, a0, a1'
+reg 67 val: 8
+Commit inst: 3899T0 : 00125832 `c_beqz a5, zero, 72'
+Commit inst: 3900T0 : 00125834 `lbu a5, -7(a0)'
+reg 197 val: 68
+Commit inst: 3901T0 : 00125838 `c_beqz a5, zero, 60'
+Commit inst: 3902T0 : 00125840 `lbu a5, -6(a0)'
+reg 203 val: 95
+Commit inst: 3903T0 : 00125844 `c_beqz a5, zero, 66'
+Commit inst: 3904T0 : 00125846 `lbu a5, -5(a0)'
+reg 163 val: 87
+Commit inst: 3905T0 : 00125850 `c_beqz a5, zero, 66'
+Commit inst: 3906T0 : 00125852 `lbu a4, -4(a0)'
+reg 202 val: 65
+Commit inst: 3907T0 : 00125856 `lbu a3, -3(a0)'
+reg 45 val: 82
+Commit inst: 3908T0 : 00125860 `lbu a5, -2(a0)'
+reg 147 val: 78
+Commit inst: 3909T0 : 00125864 `c_beqz a4, zero, 58'
+Commit inst: 3910T0 : 00125866 `c_beqz a3, zero, 62'
+Commit inst: 3911T0 : 00125868 `sltu a0, zero, a5'
+reg 38 val: 1
+Commit inst: 3912T0 : 00125872 `c_add a0, a0, a1'
+reg 193 val: 9
+Commit inst: 3913T0 : 00125874 `c_addi a0, a0, -2'
+reg 144 val: 7
+Commit inst: 3914T0 : 00125876 `c_jr zero, ra, 0'
+Commit inst: 3918T0 : 00084310 `ld s1, -1192(gp)'
+reg 120 val: 9223372036854775608
+Commit inst: 3919T0 : 00084314 `c_beqz s1, zero, 228'
+Commit inst: 3920T0 : 00084316 `lbu a5, 0(s5)'
+reg 168 val: 76
+Commit inst: 3921T0 : 00084320 `c_beqz a5, zero, 222'
+Commit inst: 3922T0 : 00084322 `lbu a4, 1(s5)'
+reg 205 val: 68
+Commit inst: 3923T0 : 00084326 `slliw a5, a5, 16'
+reg 3 val: 4980736
+Commit inst: 3924T0 : 00084330 `sraiw a5, a5, 1040'
+reg 252 val: 76
+Commit inst: 3925T0 : 00084334 `c_ld s0, 0(s1)'
+reg 18 val: 0
+Commit inst: 3926T0 : 00084336 `c_bnez a4, zero, 106'
+Commit inst: 3931T0 : 00084442 `c_slli a4, a4, 8'
+reg 24 val: 17408
+Commit inst: 3932T0 : 00084444 `c_or a5, a5, a4'
+reg 74 val: 17484
+Commit inst: 3933T0 : 00084446 `slliw a5, a5, 16'
+reg 86 val: 1145831424
+Commit inst: 3934T0 : 00084450 `c_mv s3, a0'
+reg 254 val: 7
+Commit inst: 3935T0 : 00084452 `sraiw a5, a5, 1040'
+reg 211 val: 17484
+Commit inst: 3936T0 : 00084456 `addi s4, a0, -2'
+reg 49 val: 5
+Commit inst: 3937T0 : 00084460 `c_addi s5, s5, 2'
+reg 32 val: 378162
+Commit inst: 3938T0 : 00084462 `c_beqz s0, zero, -42'
+Commit inst: 3944T0 : 00084420 `c_mv a0, s0'
+reg 102 val: 0
+Commit inst: 3945T0 : 00084422 `c_ldsp ra, 56(sp)'
+reg 105 val: 139198
+Commit inst: 3946T0 : 00084424 `c_ldsp s0, 48(sp)'
+reg 248 val: 1
+Commit inst: 3947T0 : 00084426 `c_ldsp s1, 40(sp)'
+reg 240 val: 512000
+Commit inst: 3948T0 : 00084428 `c_ldsp s2, 32(sp)'
+reg 70 val: 512000
+Commit inst: 3949T0 : 00084430 `c_ldsp s3, 24(sp)'
+reg 111 val: 0
+Commit inst: 3950T0 : 00084432 `c_ldsp s4, 16(sp)'
+reg 39 val: 0
+Commit inst: 3951T0 : 00084434 `c_ldsp s5, 8(sp)'
+reg 148 val: 0
+Commit inst: 3952T0 : 00084436 `c_ldsp s6, 0(sp)'
+reg 142 val: 0
+Commit inst: 3953T0 : 00084438 `c_addi16sp sp, sp, 64'
+reg 192 val: 9223372036854775136
+Commit inst: 3954T0 : 00084440 `c_jr zero, ra, 0'
+Commit inst: 3964T0 : 00139198 `beq a0, zero, 1040'
+Commit inst: 3983T0 : 00140238 `lui a0, 434176'
+reg 110 val: 434176
+Commit inst: 3984T0 : 00140242 `addi a0, a0, 1096'
+reg 114 val: 435272
+Commit inst: 3985T0 : 00140246 `c_j zero, 45056'
+Commit inst: 3997T0 : 00139202 `lbu a5, 0(a0)'
+reg 113 val: 0
+Commit inst: 3998T0 : 00139206 `lui s3, 512000'
+reg 159 val: 512000
+Commit inst: 3999T0 : 00139210 `ld a4, 240(s3)'
+reg 222 val: 0
+Commit inst: 4000T0 : 00139214 `sltu a5, zero, a5'
+reg 94 val: 0
+Commit inst: 4001T0 : 00139218 `lui a3, 512000'
+reg 179 val: 512000
+Commit inst: 4002T0 : 00139222 `sw a5, 256(a3)'
+Commit inst: 4003T0 : 00139226 `beq a4, zero, 452'
+Commit inst: 4015T0 : 00139678 `lui a0, 376832'
+reg 251 val: 376832
+Commit inst: 4016T0 : 00139682 `addi a0, a0, 1576'
+reg 245 val: 378408
+Commit inst: 4017T0 : 00139686 `jal ra, -55400'
+reg 160 val: 139690
+Commit inst: 4023T0 : 00084286 `c_addi16sp sp, sp, -64'
+reg 52 val: 9223372036854775072
+Commit inst: 4024T0 : 00084288 `c_sdsp s1, 40(sp)'
+Commit inst: 4025T0 : 00084290 `c_sdsp s5, 8(sp)'
+Commit inst: 4026T0 : 00084292 `c_sdsp ra, 56(sp)'
+Commit inst: 4027T0 : 00084294 `c_sdsp s0, 48(sp)'
+Commit inst: 4028T0 : 00084296 `c_sdsp s2, 32(sp)'
+Commit inst: 4029T0 : 00084298 `c_sdsp s3, 24(sp)'
+Commit inst: 4030T0 : 00084300 `c_sdsp s4, 16(sp)'
+Commit inst: 4031T0 : 00084302 `c_sdsp s6, 0(sp)'
+Commit inst: 4032T0 : 00084304 `c_mv s5, a0'
+reg 212 val: 378408
+Commit inst: 4033T0 : 00084306 `jal ra, 41480'
+reg 246 val: 84310
+Commit inst: 4034T0 : 00125786 `andi a5, a0, 7'
+reg 188 val: 0
+Commit inst: 4035T0 : 00125790 `c_mv a1, a0'
+reg 230 val: 378408
+Commit inst: 4036T0 : 00125792 `c_bnez a5, zero, 88'
+Commit inst: 4037T0 : 00125794 `lui a5, 507904'
+reg 104 val: 507904
+Commit inst: 4038T0 : 00125798 `ld a3, -1768(a5)'
+reg 181 val: 9187201950435737471
+Commit inst: 4039T0 : 00125802 `c_li a2, zero, -1'
+reg 127 val: 18446744073709551615
+Commit inst: 4040T0 : 00125804 `c_addi a0, a0, 8'
+reg 83 val: 378416
+Commit inst: 4041T0 : 00125806 `ld a4, -8(a0)'
+reg 190 val: 4706897443136947276
+Commit inst: 4042T0 : 00125810 `and a5, a4, a3'
+reg 133 val: 4706897443136947276
+Commit inst: 4043T0 : 00125814 `c_add a5, a5, a3'
+reg 206 val: 13894099393572684747
+Commit inst: 4044T0 : 00125816 `c_or a4, a4, a3'
+reg 183 val: 9187201950435737471
+Commit inst: 4045T0 : 00125818 `c_or a5, a5, a4'
+reg 198 val: 18446744073709551615
+Commit inst: 4046T0 : 00125820 `beq a5, a2, -16'
+Commit inst: 4113T0 : 00125804 `c_addi a0, a0, 8'
+reg 152 val: 378424
+Commit inst: 4114T0 : 00125806 `ld a4, -8(a0)'
+reg 36 val: 20358837821200722
+Commit inst: 4115T0 : 00125810 `and a5, a4, a3'
+reg 219 val: 20358837821200722
+Commit inst: 4116T0 : 00125814 `c_add a5, a5, a3'
+reg 238 val: 9207560788256938193
+Commit inst: 4117T0 : 00125816 `c_or a4, a4, a3'
+reg 237 val: 9187201950435737471
+Commit inst: 4118T0 : 00125818 `c_or a5, a5, a4'
+reg 186 val: 9223372036854775807
+Commit inst: 4119T0 : 00125820 `beq a5, a2, -16'
+Commit inst: 4143T0 : 00125824 `lbu a5, -8(a0)'
+reg 233 val: 82
+Commit inst: 4144T0 : 00125828 `sub a1, a0, a1'
+reg 187 val: 16
+Commit inst: 4145T0 : 00125832 `c_beqz a5, zero, 72'
+Commit inst: 4146T0 : 00125834 `lbu a5, -7(a0)'
+reg 16 val: 89
+Commit inst: 4147T0 : 00125838 `c_beqz a5, zero, 60'
+Commit inst: 4148T0 : 00125840 `lbu a5, -6(a0)'
+reg 44 val: 95
+Commit inst: 4149T0 : 00125844 `c_beqz a5, zero, 66'
+Commit inst: 4150T0 : 00125846 `lbu a5, -5(a0)'
+reg 69 val: 80
+Commit inst: 4151T0 : 00125850 `c_beqz a5, zero, 66'
+Commit inst: 4152T0 : 00125852 `lbu a4, -4(a0)'
+reg 249 val: 65
+Commit inst: 4153T0 : 00125856 `lbu a3, -3(a0)'
+reg 60 val: 84
+Commit inst: 4154T0 : 00125860 `lbu a5, -2(a0)'
+reg 241 val: 72
+Commit inst: 4155T0 : 00125864 `c_beqz a4, zero, 58'
+Commit inst: 4156T0 : 00125866 `c_beqz a3, zero, 62'
+Commit inst: 4157T0 : 00125868 `sltu a0, zero, a5'
+reg 244 val: 1
+Commit inst: 4158T0 : 00125872 `c_add a0, a0, a1'
+reg 253 val: 17
+Commit inst: 4159T0 : 00125874 `c_addi a0, a0, -2'
+reg 234 val: 15
+Commit inst: 4160T0 : 00125876 `c_jr zero, ra, 0'
+Commit inst: 4167T0 : 00084310 `ld s1, -1192(gp)'
+reg 14 val: 9223372036854775608
+Commit inst: 4168T0 : 00084314 `c_beqz s1, zero, 228'
+Commit inst: 4169T0 : 00084316 `lbu a5, 0(s5)'
+reg 164 val: 76
+Commit inst: 4170T0 : 00084320 `c_beqz a5, zero, 222'
+Commit inst: 4171T0 : 00084322 `lbu a4, 1(s5)'
+reg 242 val: 68
+Commit inst: 4172T0 : 00084326 `slliw a5, a5, 16'
+reg 50 val: 4980736
+Commit inst: 4173T0 : 00084330 `sraiw a5, a5, 1040'
+reg 178 val: 76
+Commit inst: 4174T0 : 00084334 `c_ld s0, 0(s1)'
+reg 100 val: 0
+Commit inst: 4175T0 : 00084336 `c_bnez a4, zero, 106'
+Commit inst: 4176T0 : 00084442 `c_slli a4, a4, 8'
+reg 239 val: 17408
+Commit inst: 4177T0 : 00084444 `c_or a5, a5, a4'
+reg 22 val: 17484
+Commit inst: 4178T0 : 00084446 `slliw a5, a5, 16'
+reg 224 val: 1145831424
+Commit inst: 4179T0 : 00084450 `c_mv s3, a0'
+reg 116 val: 15
+Commit inst: 4180T0 : 00084452 `sraiw a5, a5, 1040'
+reg 95 val: 17484
+Commit inst: 4181T0 : 00084456 `addi s4, a0, -2'
+reg 154 val: 13
+Commit inst: 4182T0 : 00084460 `c_addi s5, s5, 2'
+reg 170 val: 378410
+Commit inst: 4183T0 : 00084462 `c_beqz s0, zero, -42'
+Commit inst: 4184T0 : 00084420 `c_mv a0, s0'
+reg 215 val: 0
+Commit inst: 4185T0 : 00084422 `c_ldsp ra, 56(sp)'
+reg 91 val: 139690
+Commit inst: 4186T0 : 00084424 `c_ldsp s0, 48(sp)'
+reg 56 val: 1
+Commit inst: 4187T0 : 00084426 `c_ldsp s1, 40(sp)'
+reg 130 val: 512000
+Commit inst: 4188T0 : 00084428 `c_ldsp s2, 32(sp)'
+reg 34 val: 512000
+Commit inst: 4189T0 : 00084430 `c_ldsp s3, 24(sp)'
+reg 11 val: 512000
+Commit inst: 4190T0 : 00084432 `c_ldsp s4, 16(sp)'
+reg 150 val: 0
+Commit inst: 4191T0 : 00084434 `c_ldsp s5, 8(sp)'
+reg 136 val: 0
+Commit inst: 4192T0 : 00084436 `c_ldsp s6, 0(sp)'
+reg 165 val: 0
+Commit inst: 4193T0 : 00084438 `c_addi16sp sp, sp, 64'
+reg 225 val: 9223372036854775136
+Commit inst: 4194T0 : 00084440 `c_jr zero, ra, 0'
+Commit inst: 4195T0 : 00139690 `jal ra, 117442'
+reg 184 val: 139694
+Commit inst: 4196T0 : 00257132 `c_addi16sp sp, sp, -64'
+reg 71 val: 9223372036854775072
+Commit inst: 4197T0 : 00257134 `c_sdsp ra, 56(sp)'
+Commit inst: 4198T0 : 00257136 `c_sdsp s0, 48(sp)'
+Commit inst: 4199T0 : 00257138 `c_sdsp s3, 24(sp)'
+Commit inst: 4200T0 : 00257140 `c_sdsp s4, 16(sp)'
+Commit inst: 4201T0 : 00257142 `c_addi4spn s0, sp, 64'
+reg 106 val: 9223372036854775136
+Commit inst: 4202T0 : 00257144 `c_sdsp s1, 40(sp)'
+Commit inst: 4203T0 : 00257146 `c_sdsp s2, 32(sp)'
+Commit inst: 4204T0 : 00257148 `c_sdsp s5, 8(sp)'
+Commit inst: 4205T0 : 00257150 `lui a5, 512000'
+reg 207 val: 512000
+Commit inst: 4206T0 : 00257154 `ld a1, 128(a5)'
+reg 26 val: 0
+Commit inst: 4207T0 : 00257158 `lui a5, 512000'
+reg 247 val: 512000
+Commit inst: 4208T0 : 00257162 `c_mv s4, a0'
+reg 88 val: 0
+Commit inst: 4209T0 : 00257164 `lui s3, 499712'
+reg 10 val: 499712
+Commit inst: 4210T0 : 00257168 `ld a0, 176(a5)'
+reg 209 val: 0
+Commit inst: 4211T0 : 00257172 `addi s3, s3, -64'
+reg 9 val: 499648
+Commit inst: 4212T0 : 00257176 `addi a3, s3, 8'
+reg 96 val: 499656
+Commit inst: 4213T0 : 00257180 `addi a2, s3, 16'
+reg 46 val: 499664
+Commit inst: 4214T0 : 00257184 `jal ra, 10214'
+reg 6 val: 257188
+Commit inst: 4223T0 : 00267398 `c_addi16sp sp, sp, -176'
+reg 80 val: 9223372036854774896
+Commit inst: 4224T0 : 00267400 `c_sdsp s0, 160(sp)'
+Commit inst: 4225T0 : 00267402 `c_sdsp s2, 144(sp)'
+Commit inst: 4226T0 : 00267404 `c_addi4spn s0, sp, 176'
+reg 43 val: 9223372036854775072
+Commit inst: 4227T0 : 00267406 `c_sdsp s3, 136(sp)'
+Commit inst: 4228T0 : 00267408 `c_sdsp s4, 128(sp)'
+Commit inst: 4229T0 : 00267410 `c_sdsp s7, 104(sp)'
+Commit inst: 4230T0 : 00267412 `c_sdsp ra, 168(sp)'
+Commit inst: 4231T0 : 00267414 `c_sdsp s1, 152(sp)'
+Commit inst: 4232T0 : 00267416 `c_sdsp s5, 120(sp)'
+Commit inst: 4233T0 : 00267418 `c_sdsp s6, 112(sp)'
+Commit inst: 4234T0 : 00267420 `c_sdsp s8, 96(sp)'
+Commit inst: 4235T0 : 00267422 `c_sdsp s9, 88(sp)'
+Commit inst: 4236T0 : 00267424 `c_sdsp s10, 80(sp)'
+Commit inst: 4237T0 : 00267426 `c_sdsp s11, 72(sp)'
+Commit inst: 4238T0 : 00267428 `ld t0, -1152(gp)'
+reg 172 val: 0
+Commit inst: 4239T0 : 00267432 `ld t6, -1176(gp)'
+reg 85 val: 0
+Commit inst: 4240T0 : 00267436 `sd a3, -160(s0)'
+Commit inst: 4241T0 : 00267440 `sd a1, -120(s0)'
+Commit inst: 4242T0 : 00267444 `and s2, t0, t6'
+reg 175 val: 0
+Commit inst: 4243T0 : 00267448 `c_mv s4, a0'
+reg 20 val: 0
+Commit inst: 4244T0 : 00267450 `c_mv s3, a2'
+reg 82 val: 499664
+Commit inst: 4245T0 : 00267452 `sltu a3, zero, a0'
+reg 214 val: 0
+Commit inst: 4246T0 : 00267456 `beq s2, zero, 1220'
+Commit inst: 4257T0 : 00268676 `addi s1, a3, 1'
+reg 126 val: 1
+Commit inst: 4258T0 : 00268680 `c_j zero, 45056'
+Commit inst: 4273T0 : 00267500 `lui a5, 512000'
+reg 38 val: 512000
+Commit inst: 4274T0 : 00267504 `ld s6, 192(a5)'
+reg 193 val: 0
+Commit inst: 4275T0 : 00267508 `beq s6, zero, 298'
+Commit inst: 4278T0 : 00267806 `slli a5, s1, 4'
+reg 202 val: 16
+Commit inst: 4279T0 : 00267810 `c_addi a5, a5, 16'
+reg 168 val: 32
+Commit inst: 4280T0 : 00267812 `sub sp, sp, a5'
+reg 3 val: 9223372036854774864
+Commit inst: 4281T0 : 00267816 `c_mv s11, sp'
+reg 87 val: 9223372036854774864
+Commit inst: 4282T0 : 00267818 `c_li a1, zero, 1'
+reg 205 val: 1
+Commit inst: 4283T0 : 00267820 `c_li s9, zero, 0'
+reg 252 val: 0
+Commit inst: 4284T0 : 00267822 `c_mv a0, s9'
+reg 74 val: 0
+Commit inst: 4285T0 : 00267824 `beq s2, zero, 90'
+Commit inst: 4289T0 : 00267914 `beq s4, zero, 694'
+Commit inst: 4302T0 : 00268608 `c_mv a4, a1'
+reg 120 val: 1
+Commit inst: 4303T0 : 00268610 `c_mv a1, a0'
+reg 64 val: 0
+Commit inst: 4304T0 : 00268612 `c_j zero, 45056'
+Commit inst: 4319T0 : 00267936 `c_slli a1, a1, 4'
+reg 78 val: 0
+Commit inst: 4320T0 : 00267938 `lui a5, 442368'
+reg 54 val: 442368
+Commit inst: 4321T0 : 00267942 `c_add a1, a1, s11'
+reg 32 val: 9223372036854774864
+Commit inst: 4322T0 : 00267944 `addi a5, a5, 800'
+reg 47 val: 443168
+Commit inst: 4323T0 : 00267948 `c_sd a5, 0(a1)'
+Commit inst: 4324T0 : 00267950 `c_li a5, zero, 3'
+reg 194 val: 3
+Commit inst: 4325T0 : 00267952 `c_sd a5, 8(a1)'
+Commit inst: 4326T0 : 00267954 `bne s1, a4, 728'
+Commit inst: 4327T0 : 00267958 `c_li a5, zero, 1'
+reg 42 val: 1
+Commit inst: 4328T0 : 00267960 `ld s8, 8(s11)'
+reg 145 val: 3
+Commit inst: 4329T0 : 00267964 `beq s1, a5, 570'
+Commit inst: 4330T0 : 00268534 `c_li a5, zero, 2'
+reg 210 val: 2
+Commit inst: 4331T0 : 00268536 `sd a5, 0(s3)'
+Commit inst: 4332T0 : 00268540 `addi a0, s8, 33'
+reg 149 val: 36
+Commit inst: 4333T0 : 00268544 `jal ra, -148326'
+reg 132 val: 268548
+Commit inst: 4336T0 : 00120218 `ld t1, -1696(gp)'
+reg 134 val: 0
+Commit inst: 4337T0 : 00120222 `bne t1, zero, 218'
+Commit inst: 4338T0 : 00120226 `c_addi sp, sp, -32'
+reg 61 val: 9223372036854774832
+Commit inst: 4339T0 : 00120228 `c_sdsp s0, 16(sp)'
+Commit inst: 4340T0 : 00120230 `ld s0, 40(tp)'
+reg 65 val: 501400
+Commit inst: 4341T0 : 00120234 `c_sdsp s1, 8(sp)'
+Commit inst: 4342T0 : 00120236 `c_sdsp ra, 24(sp)'
+Commit inst: 4343T0 : 00120238 `c_mv s1, a0'
+reg 140 val: 36
+Commit inst: 4344T0 : 00120240 `c_beqz s0, zero, 96'
+Commit inst: 4347T0 : 00120242 `c_lw a5, 4(s0)'
+reg 226 val: 1
+Commit inst: 4348T0 : 00120244 `c_andi a5, a5, 4'
+reg 28 val: 0
+Commit inst: 4349T0 : 00120246 `c_bnez a5, zero, 90'
+Commit inst: 4350T0 : 00120248 `c_li a4, zero, 1'
+reg 143 val: 1
+Commit inst: 4351T0 : 00120250 `lr_w a5, (s0)'
+reg 173 val: 3229178116
+Commit inst: 4369T0 : 00120254 `bne a5, zero, 10'
+Commit inst: 4373T0 : 00120258 `sc_w a3, a4, (s0)'
+reg 8 val: 0
+Commit inst: 4374T0 : 00120262 `c_bnez a3, zero, -12'
+Commit inst: 4375T0 : 00120264 `c_addiw a5, a5, 0'
+reg 158 val: 0
+Commit inst: 4376T0 : 00120266 `c_bnez a5, zero, 178'
+Commit inst: 4379T0 : 00120268 `c_mv a1, s1'
+reg 41 val: 36
+Commit inst: 4380T0 : 00120270 `c_mv a0, s0'
+reg 40 val: 501400
+Commit inst: 4381T0 : 00120272 `jal ra, -5004'
+reg 211 val: 120276
+Commit inst: 4382T0 : 00115268 `c_addi16sp sp, sp, -224'
+reg 111 val: 9223372036854774608
+Commit inst: 4383T0 : 00115270 `c_sdsp ra, 216(sp)'
+Commit inst: 4384T0 : 00115272 `c_sdsp s0, 208(sp)'
+Commit inst: 4385T0 : 00115274 `c_sdsp s1, 200(sp)'
+Commit inst: 4386T0 : 00115276 `c_sdsp s2, 192(sp)'
+Commit inst: 4387T0 : 00115278 `c_sdsp s3, 184(sp)'
+Commit inst: 4388T0 : 00115280 `c_sdsp s4, 176(sp)'
+Commit inst: 4389T0 : 00115282 `c_sdsp s5, 168(sp)'
+Commit inst: 4390T0 : 00115284 `c_sdsp s6, 160(sp)'
+Commit inst: 4391T0 : 00115286 `c_sdsp s7, 152(sp)'
+Commit inst: 4392T0 : 00115288 `c_sdsp s8, 144(sp)'
+Commit inst: 4393T0 : 00115290 `c_sdsp s9, 136(sp)'
+Commit inst: 4394T0 : 00115292 `c_sdsp s10, 128(sp)'
+Commit inst: 4395T0 : 00115294 `c_sdsp s11, 120(sp)'
+Commit inst: 4396T0 : 00115296 `addi a5, zero, -65'
+reg 24 val: 18446744073709551551
+Commit inst: 4397T0 : 00115300 `bltu a5, a1, 1454'
+Commit inst: 4398T0 : 00115304 `c_sdsp a1, 24(sp)'
+Commit inst: 4399T0 : 00115306 `addi a7, a1, 23'
+reg 113 val: 59
+Commit inst: 4400T0 : 00115310 `c_li a5, zero, 31'
+reg 45 val: 31
+Commit inst: 4401T0 : 00115312 `c_mv s11, a0'
+reg 114 val: 501400
+Commit inst: 4402T0 : 00115314 `bgeu a5, a7, 476'
+Commit inst: 4403T0 : 00115318 `andi s10, a7, 18446744073709551600'
+reg 251 val: 48
+Commit inst: 4404T0 : 00115322 `beq a0, zero, 1400'
+Commit inst: 4405T0 : 00115326 `ld a4, -1200(gp)'
+reg 105 val: 128
+Commit inst: 4406T0 : 00115330 `srliw a5, s10, 4'
+reg 192 val: 3
+Commit inst: 4407T0 : 00115334 `addiw a3, a5, 0'
+reg 148 val: 3
+Commit inst: 4408T0 : 00115338 `c_sdsp a3, 32(sp)'
+Commit inst: 4409T0 : 00115340 `bltu a4, s10, 90'
+Commit inst: 4417T0 : 00115344 `addiw a0, a5, -2'
+reg 2 val: 1
+Commit inst: 4418T0 : 00115348 `slli a5, a0, 32'
+reg 245 val: 4294967296
+Commit inst: 4419T0 : 00115352 `c_srli a5, a5, 32'
+reg 216 val: 1
+Commit inst: 4420T0 : 00115354 `slli a4, a5, 3'
+reg 232 val: 8
+Commit inst: 4421T0 : 00115358 `c_add a4, a4, s11'
+reg 196 val: 501408
+Commit inst: 4422T0 : 00115360 `c_ld a3, 8(a4)'
+reg 29 val: 0
+Commit inst: 4423T0 : 00115362 `addi a4, a5, 1'
+reg 125 val: 2
+Commit inst: 4424T0 : 00115366 `c_slli a4, a4, 3'
+reg 191 val: 16
+Commit inst: 4425T0 : 00115368 `c_add a4, a4, s11'
+reg 128 val: 501416
+Commit inst: 4426T0 : 00115370 `c_beqz a3, zero, 60'
+Commit inst: 4442T0 : 00115430 `addi a5, zero, 1023'
+reg 104 val: 1023
+Commit inst: 4443T0 : 00115434 `bgeu a5, s10, 1354'
+Commit inst: 4444T0 : 00116788 `c_ldsp a4, 32(sp)'
+reg 133 val: 3
+Commit inst: 4445T0 : 00116790 `slliw a5, a4, 1'
+reg 190 val: 6
+Commit inst: 4446T0 : 00116794 `c_addiw a5, a5, -2'
+reg 217 val: 4
+Commit inst: 4447T0 : 00116796 `c_slli a5, a5, 32'
+reg 231 val: 17179869184
+Commit inst: 4448T0 : 00116798 `c_srli a5, a5, 32'
+reg 124 val: 4
+Commit inst: 4449T0 : 00116800 `c_addi a5, a5, 13'
+reg 122 val: 17
+Commit inst: 4450T0 : 00116802 `c_slli a5, a5, 3'
+reg 12 val: 136
+Commit inst: 4451T0 : 00116804 `c_sdsp a4, 0(sp)'
+Commit inst: 4452T0 : 00116806 `c_j zero, 45056'
+Commit inst: 4463T0 : 00115902 `c_add a5, a5, s11'
+reg 171 val: 501536
+Commit inst: 4464T0 : 00115904 `c_ld a3, 8(a5)'
+reg 146 val: 501520
+Commit inst: 4465T0 : 00115906 `addi a4, a5, -16'
+reg 76 val: 501520
+Commit inst: 4466T0 : 00115910 `beq a4, a3, 756'
+Commit inst: 4513T0 : 00116666 `srli a4, s10, 9'
+reg 227 val: 0
+Commit inst: 4514T0 : 00116670 `srli a5, s10, 6'
+reg 81 val: 0
+Commit inst: 4515T0 : 00116674 `c_sdsp a4, 56(sp)'
+Commit inst: 4516T0 : 00116676 `addiw a4, a4, 91'
+reg 103 val: 91
+Commit inst: 4517T0 : 00116680 `c_sdsp a5, 40(sp)'
+Commit inst: 4518T0 : 00116682 `c_sdsp a4, 64(sp)'
+Commit inst: 4519T0 : 00116684 `addiw a5, a5, 48'
+reg 166 val: 48
+Commit inst: 4520T0 : 00116688 `c_sdsp a5, 48(sp)'
+Commit inst: 4521T0 : 00116690 `c_ldsp a5, 0(sp)'
+reg 206 val: 3
+Commit inst: 4522T0 : 00116692 `c_sdsp zero, 88(sp)'
+Commit inst: 4523T0 : 00116694 `c_sdsp zero, 72(sp)'
+Commit inst: 4524T0 : 00116696 `c_sdsp a5, 32(sp)'
+Commit inst: 4525T0 : 00116698 `addi a5, zero, 110'
+reg 83 val: 110
+Commit inst: 4526T0 : 00116702 `c_sdsp a5, 80(sp)'
+Commit inst: 4527T0 : 00116704 `addi a5, zero, 119'
+reg 183 val: 119
+Commit inst: 4528T0 : 00116708 `c_sdsp a5, 104(sp)'
+Commit inst: 4529T0 : 00116710 `addi a5, zero, 124'
+reg 198 val: 124
+Commit inst: 4530T0 : 00116714 `c_sdsp a5, 96(sp)'
+Commit inst: 4531T0 : 00116716 `c_j zero, 45056'
+Commit inst: 4538T0 : 00115564 `c_lui s5, zero, 8192'
+reg 108 val: 8192
+Commit inst: 4539T0 : 00115566 `addi a5, s5, 1808'
+reg 77 val: 10000
+Commit inst: 4540T0 : 00115570 `c_lui s7, zero, 4096'
+reg 121 val: 4096
+Commit inst: 4541T0 : 00115572 `addi s9, s11, 88'
+reg 155 val: 501488
+Commit inst: 4542T0 : 00115576 `c_sdsp a5, 16(sp)'
+Commit inst: 4543T0 : 00115578 `add s5, s11, s7'
+reg 218 val: 505496
+Commit inst: 4544T0 : 00115582 `addi a5, s10, 32'
+reg 57 val: 80
+Commit inst: 4545T0 : 00115586 `c_ldsp s3, 16(sp)'
+reg 235 val: 10000
+Commit inst: 4546T0 : 00115588 `c_li s1, zero, 16'
+reg 199 val: 16
+Commit inst: 4547T0 : 00115590 `addi s8, zero, 1023'
+reg 33 val: 1023
+Commit inst: 4548T0 : 00115594 `c_sdsp a5, 8(sp)'
+Commit inst: 4549T0 : 00115596 `addi s2, zero, 48'
+reg 228 val: 48
+Commit inst: 4550T0 : 00115600 `c_j zero, 40960'
+Commit inst: 4563T0 : 00115670 `ld s0, 112(s11)'
+reg 16 val: 501488
+Commit inst: 4564T0 : 00115674 `beq s0, s9, 610'
+Commit inst: 4565T0 : 00116284 `addi a5, zero, 1023'
+reg 19 val: 1023
+Commit inst: 4566T0 : 00116288 `bgeu a5, s10, 38'
+Commit inst: 4567T0 : 00116326 `c_ldsp a3, 0(sp)'
+reg 48 val: 3
+Commit inst: 4568T0 : 00116328 `addiw a5, a3, 1'
+reg 44 val: 4
+Commit inst: 4569T0 : 00116332 `srliw s0, a5, 5'
+reg 237 val: 0
+Commit inst: 4570T0 : 00116336 `slli a4, s0, 32'
+reg 181 val: 0
+Commit inst: 4571T0 : 00116340 `slliw a1, a3, 1'
+reg 69 val: 6
+Commit inst: 4572T0 : 00116344 `c_srli a4, a4, 32'
+reg 152 val: 0
+Commit inst: 4573T0 : 00116346 `addi a4, a4, 532'
+reg 244 val: 532
+Commit inst: 4574T0 : 00116350 `c_slli a1, a1, 32'
+reg 253 val: 25769803776
+Commit inst: 4575T0 : 00116352 `c_slli a4, a4, 2'
+reg 240 val: 2128
+Commit inst: 4576T0 : 00116354 `c_srli a1, a1, 32'
+reg 241 val: 6
+Commit inst: 4577T0 : 00116356 `c_add a4, a4, s11'
+reg 249 val: 503528
+Commit inst: 4578T0 : 00116358 `c_slli a1, a1, 3'
+reg 164 val: 48
+Commit inst: 4579T0 : 00116360 `c_lw a2, 8(a4)'
+reg 50 val: 0
+Commit inst: 4580T0 : 00116362 `addi a1, a1, 88'
+reg 248 val: 136
+Commit inst: 4581T0 : 00116366 `c_li a4, zero, 1'
+reg 242 val: 1
+Commit inst: 4582T0 : 00116368 `c_add a1, a1, s11'
+reg 178 val: 501536
+Commit inst: 4583T0 : 00116370 `c_addiw s0, s0, 0'
+reg 22 val: 0
+Commit inst: 4584T0 : 00116372 `sllw a5, a4, a5'
+reg 159 val: 16
+Commit inst: 4585T0 : 00116376 `c_li a3, zero, 4'
+reg 224 val: 4
+Commit inst: 4586T0 : 00116378 `bltu a2, a5, 80'
+Commit inst: 4587T0 : 00116458 `addiw a5, s0, 1'
+reg 39 val: 1
+Commit inst: 4588T0 : 00116462 `addiw s0, a5, 0'
+reg 212 val: 1
+Commit inst: 4589T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 4601T0 : 00116442 `c_slli a5, a5, 32'
+reg 170 val: 4294967296
+Commit inst: 4602T0 : 00116444 `c_srli a5, a5, 32'
+reg 142 val: 1
+Commit inst: 4603T0 : 00116446 `addi a5, a5, 532'
+reg 52 val: 533
+Commit inst: 4604T0 : 00116450 `c_slli a5, a5, 2'
+reg 91 val: 2132
+Commit inst: 4605T0 : 00116452 `c_add a5, a5, s11'
+reg 225 val: 503532
+Commit inst: 4606T0 : 00116454 `c_lw a2, 8(a5)'
+reg 56 val: 0
+Commit inst: 4607T0 : 00116456 `c_bnez a2, zero, 130'
+Commit inst: 4608T0 : 00116458 `addiw a5, s0, 1'
+reg 95 val: 2
+Commit inst: 4609T0 : 00116462 `addiw s0, a5, 0'
+reg 187 val: 2
+Commit inst: 4610T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 4622T0 : 00116442 `c_slli a5, a5, 32'
+reg 184 val: 8589934592
+Commit inst: 4623T0 : 00116444 `c_srli a5, a5, 32'
+reg 71 val: 2
+Commit inst: 4624T0 : 00116446 `addi a5, a5, 532'
+reg 106 val: 534
+Commit inst: 4625T0 : 00116450 `c_slli a5, a5, 2'
+reg 5 val: 2136
+Commit inst: 4626T0 : 00116452 `c_add a5, a5, s11'
+reg 200 val: 503536
+Commit inst: 4627T0 : 00116454 `c_lw a2, 8(a5)'
+reg 34 val: 0
+Commit inst: 4628T0 : 00116456 `c_bnez a2, zero, 130'
+Commit inst: 4629T0 : 00116458 `addiw a5, s0, 1'
+reg 88 val: 3
+Commit inst: 4630T0 : 00116462 `addiw s0, a5, 0'
+reg 9 val: 3
+Commit inst: 4631T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 4643T0 : 00116442 `c_slli a5, a5, 32'
+reg 4 val: 12884901888
+Commit inst: 4644T0 : 00116444 `c_srli a5, a5, 32'
+reg 236 val: 3
+Commit inst: 4645T0 : 00116446 `addi a5, a5, 532'
+reg 163 val: 535
+Commit inst: 4646T0 : 00116450 `c_slli a5, a5, 2'
+reg 51 val: 2140
+Commit inst: 4647T0 : 00116452 `c_add a5, a5, s11'
+reg 151 val: 503540
+Commit inst: 4648T0 : 00116454 `c_lw a2, 8(a5)'
+reg 203 val: 0
+Commit inst: 4649T0 : 00116456 `c_bnez a2, zero, 130'
+Commit inst: 4650T0 : 00116458 `addiw a5, s0, 1'
+reg 197 val: 4
+Commit inst: 4651T0 : 00116462 `addiw s0, a5, 0'
+reg 90 val: 4
+Commit inst: 4652T0 : 00116466 `bne s0, a3, -24'
+Commit inst: 4653T0 : 00116470 `ld a3, 88(s11)'
+reg 185 val: 520112
+Commit inst: 4654T0 : 00116474 `addi a4, s10, 32'
+reg 130 val: 80
+Commit inst: 4655T0 : 00116478 `c_ld a5, 8(a3)'
+reg 247 val: 135249
+Commit inst: 4656T0 : 00116480 `c_andi a5, a5, 18446744073709551608'
+reg 147 val: 135248
+Commit inst: 4657T0 : 00116482 `bgeu a5, a4, 722'
+Commit inst: 4668T0 : 00117204 `lui a4, 499712'
+reg 26 val: 499712
+Commit inst: 4669T0 : 00117208 `addi a4, a4, 1688'
+reg 243 val: 501400
+Commit inst: 4670T0 : 00117212 `sub a4, s11, a4'
+reg 101 val: 0
+Commit inst: 4671T0 : 00117216 `sltu a4, zero, a4'
+reg 79 val: 0
+Commit inst: 4672T0 : 00117220 `ori a2, s10, 1'
+reg 139 val: 49
+Commit inst: 4673T0 : 00117224 `c_slli a4, a4, 2'
+reg 209 val: 0
+Commit inst: 4674T0 : 00117226 `add a0, a3, s10'
+reg 18 val: 520160
+Commit inst: 4675T0 : 00117230 `c_or a4, a4, a2'
+reg 55 val: 49
+Commit inst: 4676T0 : 00117232 `sd a0, 88(s11)'
+Commit inst: 4677T0 : 00117236 `sub a5, a5, s10'
+reg 144 val: 135200
+Commit inst: 4678T0 : 00117240 `lw a1, -1220(gp)'
+reg 161 val: 0
+Commit inst: 4679T0 : 00117244 `c_sd a4, 8(a3)'
+Commit inst: 4680T0 : 00117246 `ori a5, a5, 1'
+reg 221 val: 135201
+Commit inst: 4681T0 : 00117250 `c_sd a5, 8(a0)'
+Commit inst: 4682T0 : 00117252 `addi s0, a3, 16'
+reg 86 val: 520128
+Commit inst: 4683T0 : 00117256 `beq a1, zero, -1398'
+Commit inst: 4696T0 : 00115858 `c_mv a0, s0'
+reg 205 val: 520128
+Commit inst: 4697T0 : 00115860 `c_ldsp ra, 216(sp)'
+reg 64 val: 120276
+Commit inst: 4698T0 : 00115862 `c_ldsp s0, 208(sp)'
+reg 168 val: 501400
+Commit inst: 4699T0 : 00115864 `c_ldsp s1, 200(sp)'
+reg 78 val: 36
+Commit inst: 4700T0 : 00115866 `c_ldsp s2, 192(sp)'
+reg 54 val: 0
+Commit inst: 4701T0 : 00115868 `c_ldsp s3, 184(sp)'
+reg 47 val: 499664
+Commit inst: 4702T0 : 00115870 `c_ldsp s4, 176(sp)'
+reg 194 val: 0
+Commit inst: 4703T0 : 00115872 `c_ldsp s5, 168(sp)'
+reg 137 val: 0
+Commit inst: 4704T0 : 00115874 `c_ldsp s6, 160(sp)'
+reg 42 val: 0
+Commit inst: 4705T0 : 00115876 `c_ldsp s7, 152(sp)'
+reg 74 val: 0
+Commit inst: 4706T0 : 00115878 `c_ldsp s8, 144(sp)'
+reg 6 val: 3
+Commit inst: 4707T0 : 00115880 `c_ldsp s9, 136(sp)'
+reg 75 val: 0
+Commit inst: 4708T0 : 00115882 `c_ldsp s10, 128(sp)'
+reg 3 val: 0
+Commit inst: 4709T0 : 00115884 `c_ldsp s11, 120(sp)'
+reg 43 val: 9223372036854774864
+Commit inst: 4710T0 : 00115886 `c_addi16sp sp, sp, 224'
+reg 126 val: 9223372036854774832
+Commit inst: 4711T0 : 00115888 `c_jr zero, ra, 0'
+Commit inst: 4720T0 : 00120276 `c_mv a5, a0'
+reg 21 val: 520128
+Commit inst: 4721T0 : 00120278 `c_beqz a0, zero, 136'
+Commit inst: 4722T0 : 00120280 `0x0a04272f amoswap_w[l]'
+reg 15 val: 1
+Commit inst: 4723T0 : 00120280 `0x0a04272f amoswap_w[s]'
+reg 153 val: 1
+Commit inst: 4724T0 : 00120284 `c_li a3, zero, 1'
+reg 28 val: 1
+Commit inst: 4725T0 : 00120286 `c_addiw a4, a4, 0'
+reg 110 val: 1
+Commit inst: 4726T0 : 00120288 `blt a3, a4, 106'
+Commit inst: 4727T0 : 00120292 `c_beqz a5, zero, 74'
+Commit inst: 4728T0 : 00120294 `ld a4, -8(a5)'
+reg 102 val: 49
+Commit inst: 4729T0 : 00120298 `andi a3, a4, 2'
+reg 176 val: 0
+Commit inst: 4730T0 : 00120302 `c_bnez a3, zero, 22'
+Commit inst: 4731T0 : 00120304 `c_andi a4, a4, 4'
+reg 68 val: 0
+Commit inst: 4732T0 : 00120306 `c_beqz a4, zero, 74'
+Commit inst: 4733T0 : 00120380 `lui a4, 499712'
+reg 201 val: 499712
+Commit inst: 4734T0 : 00120384 `addi a4, a4, 1688'
+reg 214 val: 501400
+Commit inst: 4735T0 : 00120388 `beq a4, s0, -64'
+Commit inst: 4736T0 : 00120324 `c_ldsp ra, 24(sp)'
+reg 173 val: 268548
+Commit inst: 4737T0 : 00120326 `c_ldsp s0, 16(sp)'
+reg 53 val: 9223372036854775072
+Commit inst: 4738T0 : 00120328 `c_ldsp s1, 8(sp)'
+reg 30 val: 1
+Commit inst: 4739T0 : 00120330 `c_mv a0, a5'
+reg 32 val: 520128
+Commit inst: 4740T0 : 00120332 `c_addi16sp sp, sp, 32'
+reg 149 val: 9223372036854774864
+Commit inst: 4741T0 : 00120334 `c_jr zero, ra, 0'
+Commit inst: 4747T0 : 00268548 `c_mv s6, a0'
+reg 158 val: 520128
+Commit inst: 4748T0 : 00268550 `c_beqz a0, zero, -34'
+Commit inst: 4749T0 : 00268552 `ld a1, 0(s11)'
+reg 92 val: 443168
+Commit inst: 4750T0 : 00268556 `addi a0, a0, 32'
+reg 24 val: 520160
+Commit inst: 4751T0 : 00268560 `addi a5, s8, 1'
+reg 87 val: 4
+Commit inst: 4752T0 : 00268564 `sd a5, 8(s6)'
+Commit inst: 4753T0 : 00268568 `sd a0, 0(s6)'
+Commit inst: 4754T0 : 00268572 `sd a0, 16(s6)'
+Commit inst: 4755T0 : 00268576 `sd zero, 24(s6)'
+Commit inst: 4756T0 : 00268580 `c_mv a2, s8'
+reg 131 val: 3
+Commit inst: 4757T0 : 00268582 `jal ra, -139164'
+reg 179 val: 268586
+Commit inst: 4764T0 : 00129418 `xor a5, a1, a0'
+reg 188 val: 76992
+Commit inst: 4765T0 : 00129422 `c_andi a5, a5, 7'
+reg 67 val: 0
+Commit inst: 4766T0 : 00129424 `add a7, a0, a2'
+reg 94 val: 520163
+Commit inst: 4767T0 : 00129428 `c_bnez a5, zero, 72'
+Commit inst: 4768T0 : 00129430 `c_li a5, zero, 7'
+reg 160 val: 7
+Commit inst: 4769T0 : 00129432 `bgeu a5, a2, 68'
+Commit inst: 4782T0 : 00129500 `c_mv a5, a0'
+reg 232 val: 520160
+Commit inst: 4783T0 : 00129502 `bgeu a0, a7, -4'
+Commit inst: 4784T0 : 00129506 `lbu a4, 0(a1)'
+reg 222 val: 116
+Commit inst: 4785T0 : 00129510 `c_addi a5, a5, 1'
+reg 93 val: 520161
+Commit inst: 4786T0 : 00129512 `c_addi a1, a1, 1'
+reg 17 val: 443169
+Commit inst: 4787T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 4788T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 4798T0 : 00129506 `lbu a4, 0(a1)'
+reg 216 val: 108
+Commit inst: 4799T0 : 00129510 `c_addi a5, a5, 1'
+reg 27 val: 520162
+Commit inst: 4800T0 : 00129512 `c_addi a1, a1, 1'
+reg 189 val: 443170
+Commit inst: 4801T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 4802T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 4812T0 : 00129506 `lbu a4, 0(a1)'
+reg 109 val: 115
+Commit inst: 4813T0 : 00129510 `c_addi a5, a5, 1'
+reg 208 val: 520163
+Commit inst: 4814T0 : 00129512 `c_addi a1, a1, 1'
+reg 107 val: 443171
+Commit inst: 4815T0 : 00129514 `sb a4, -1(a5)'
+Commit inst: 4816T0 : 00129518 `bne a7, a5, -12'
+Commit inst: 4817T0 : 00129522 `c_jr zero, ra, 0'
+Commit inst: 4826T0 : 00268586 `addi a5, zero, 47'
+reg 217 val: 47
+Commit inst: 4827T0 : 00268590 `c_add a0, a0, s8'
+reg 231 val: 520163
+Commit inst: 4828T0 : 00268592 `sb a5, 0(a0)'
+Commit inst: 4829T0 : 00268596 `ld a5, 8(s6)'
+reg 124 val: 4
+Commit inst: 4830T0 : 00268600 `ld a4, -160(s0)'
+reg 122 val: 499656
+Commit inst: 4831T0 : 00268604 `c_sd a5, 0(a4)'
+Commit inst: 4832T0 : 00268606 `c_j zero, 45056'
+Commit inst: 4840T0 : 00268418 `addi sp, s0, -176'
+reg 73 val: 9223372036854774896
+Commit inst: 4841T0 : 00268422 `c_ldsp ra, 168(sp)'
+reg 204 val: 257188
+Commit inst: 4842T0 : 00268424 `c_mv a0, s6'
+reg 98 val: 520128
+Commit inst: 4843T0 : 00268426 `c_ldsp s0, 160(sp)'
+reg 31 val: 9223372036854775136
+Commit inst: 4844T0 : 00268428 `c_ldsp s1, 152(sp)'
+reg 167 val: 512000
+Commit inst: 4845T0 : 00268430 `c_ldsp s2, 144(sp)'
+reg 177 val: 512000
+Commit inst: 4846T0 : 00268432 `c_ldsp s3, 136(sp)'
+reg 59 val: 499648
+Commit inst: 4847T0 : 00268434 `c_ldsp s4, 128(sp)'
+reg 135 val: 0
+Commit inst: 4848T0 : 00268436 `c_ldsp s5, 120(sp)'
+reg 58 val: 0
+Commit inst: 4849T0 : 00268438 `c_ldsp s6, 112(sp)'
+reg 97 val: 0
+Commit inst: 4850T0 : 00268440 `c_ldsp s7, 104(sp)'
+reg 23 val: 0
+Commit inst: 4851T0 : 00268442 `c_ldsp s8, 96(sp)'
+reg 182 val: 0
+Commit inst: 4852T0 : 00268444 `c_ldsp s9, 88(sp)'
+reg 29 val: 0
+Commit inst: 4853T0 : 00268446 `c_ldsp s10, 80(sp)'
+reg 133 val: 0
+Commit inst: 4854T0 : 00268448 `c_ldsp s11, 72(sp)'
+reg 76 val: 0
+Commit inst: 4855T0 : 00268450 `c_addi16sp sp, sp, 176'
+reg 171 val: 9223372036854775072
+Commit inst: 4856T0 : 00268452 `c_jr zero, ra, 0'
+Commit inst: 4865T0 : 00257188 `sd a0, 24(s3)'
+Commit inst: 4866T0 : 00257192 `c_li a0, zero, 24'
+reg 84 val: 24
+Commit inst: 4867T0 : 00257194 `jal ra, -136976'
+reg 36 val: 257198
+Commit inst: 4873T0 : 00120218 `ld t1, -1696(gp)'
+reg 219 val: 0
+Commit inst: 4874T0 : 00120222 `bne t1, zero, 218'
+Commit inst: 4875T0 : 00120226 `c_addi sp, sp, -32'
+reg 183 val: 9223372036854775040
+Commit inst: 4876T0 : 00120228 `c_sdsp s0, 16(sp)'
+Commit inst: 4877T0 : 00120230 `ld s0, 40(tp)'
+reg 136 val: 501400
+Commit inst: 4878T0 : 00120234 `c_sdsp s1, 8(sp)'
+Commit inst: 4879T0 : 00120236 `c_sdsp ra, 24(sp)'
+Commit inst: 4880T0 : 00120238 `c_mv s1, a0'
+reg 198 val: 24
+Commit inst: 4881T0 : 00120240 `c_beqz s0, zero, 96'
+Commit inst: 4884T0 : 00120242 `c_lw a5, 4(s0)'
+reg 138 val: 1
+Commit inst: 4885T0 : 00120244 `c_andi a5, a5, 4'
+reg 252 val: 0
+Commit inst: 4886T0 : 00120246 `c_bnez a5, zero, 90'
+Commit inst: 4887T0 : 00120248 `c_li a4, zero, 1'
+reg 108 val: 1
+Commit inst: 4888T0 : 00120250 `lr_w a5, (s0)'
+reg 77 val: 0
+Commit inst: 4889T0 : 00120254 `bne a5, zero, 10'
+Commit inst: 4894T0 : 00120258 `sc_w a3, a4, (s0)'
+reg 140 val: 0
+Commit inst: 4895T0 : 00120262 `c_bnez a3, zero, -12'
+Commit inst: 4896T0 : 00120264 `c_addiw a5, a5, 0'
+reg 233 val: 0
+Commit inst: 4897T0 : 00120266 `c_bnez a5, zero, 178'
+Commit inst: 4919T0 : 00120268 `c_mv a1, s1'
+reg 57 val: 24
+Commit inst: 4920T0 : 00120270 `c_mv a0, s0'
+reg 146 val: 501400
+Commit inst: 4921T0 : 00120272 `jal ra, -5004'
+reg 19 val: 120276
+Commit inst: 4922T0 : 00115268 `c_addi16sp sp, sp, -224'
+reg 16 val: 9223372036854774816
+Commit inst: 4923T0 : 00115270 `c_sdsp ra, 216(sp)'
+Commit inst: 4924T0 : 00115272 `c_sdsp s0, 208(sp)'
+Commit inst: 4925T0 : 00115274 `c_sdsp s1, 200(sp)'
+Commit inst: 4926T0 : 00115276 `c_sdsp s2, 192(sp)'
+Commit inst: 4927T0 : 00115278 `c_sdsp s3, 184(sp)'
+Commit inst: 4928T0 : 00115280 `c_sdsp s4, 176(sp)'
+Commit inst: 4929T0 : 00115282 `c_sdsp s5, 168(sp)'
+Commit inst: 4930T0 : 00115284 `c_sdsp s6, 160(sp)'
+Commit inst: 4931T0 : 00115286 `c_sdsp s7, 152(sp)'
+Commit inst: 4932T0 : 00115288 `c_sdsp s8, 144(sp)'
+Commit inst: 4933T0 : 00115290 `c_sdsp s9, 136(sp)'
+Commit inst: 4934T0 : 00115292 `c_sdsp s10, 128(sp)'
+Commit inst: 4935T0 : 00115294 `c_sdsp s11, 120(sp)'
+Commit inst: 4936T0 : 00115296 `addi a5, zero, -65'
+reg 103 val: 18446744073709551551
+Commit inst: 4937T0 : 00115300 `bltu a5, a1, 1454'
+Commit inst: 4938T0 : 00115304 `c_sdsp a1, 24(sp)'
+Commit inst: 4939T0 : 00115306 `addi a7, a1, 23'
+reg 41 val: 47
+Commit inst: 4940T0 : 00115310 `c_li a5, zero, 31'
+reg 181 val: 31
+Commit inst: 4941T0 : 00115312 `c_mv s11, a0'
+reg 152 val: 501400
+Commit inst: 4942T0 : 00115314 `bgeu a5, a7, 476'
+Commit inst: 4943T0 : 00115318 `andi s10, a7, 18446744073709551600'
+reg 69 val: 32
+Commit inst: 4944T0 : 00115322 `beq a0, zero, 1400'
+Commit inst: 4945T0 : 00115326 `ld a4, -1200(gp)'
+reg 244 val: 128
+Commit inst: 4946T0 : 00115330 `srliw a5, s10, 4'
+reg 253 val: 2
+Commit inst: 4947T0 : 00115334 `addiw a3, a5, 0'
+reg 240 val: 2
+Commit inst: 4948T0 : 00115338 `c_sdsp a3, 32(sp)'
+Commit inst: 4949T0 : 00115340 `bltu a4, s10, 90'
+Commit inst: 4950T0 : 00115344 `addiw a0, a5, -2'
+reg 241 val: 0
+Commit inst: 4951T0 : 00115348 `slli a5, a0, 32'
+reg 46 val: 0
+Commit inst: 4952T0 : 00115352 `c_srli a5, a5, 32'
+reg 164 val: 0
+Commit inst: 4953T0 : 00115354 `slli a4, a5, 3'
+reg 249 val: 0
+Commit inst: 4954T0 : 00115358 `c_add a4, a4, s11'
+reg 248 val: 501400
+Commit inst: 4955T0 : 00115360 `c_ld a3, 8(a4)'
+reg 237 val: 0
+Commit inst: 4956T0 : 00115362 `addi a4, a5, 1'
+reg 44 val: 1
+Commit inst: 4957T0 : 00115366 `c_slli a4, a4, 3'
+reg 48 val: 8
+Commit inst: 4958T0 : 00115368 `c_add a4, a4, s11'
+reg 159 val: 501408
+Commit inst: 4959T0 : 00115370 `c_beqz a3, zero, 60'
+Commit inst: 4960T0 : 00115430 `addi a5, zero, 1023'
+reg 154 val: 1023
+Commit inst: 4961T0 : 00115434 `bgeu a5, s10, 1354'
+Commit inst: 4962T0 : 00116788 `c_ldsp a4, 32(sp)'
+reg 116 val: 2
+Commit inst: 4963T0 : 00116790 `slliw a5, a4, 1'
+reg 70 val: 4
+Commit inst: 4964T0 : 00116794 `c_addiw a5, a5, -2'
+reg 14 val: 2
+Commit inst: 4965T0 : 00116796 `c_slli a5, a5, 32'
+reg 100 val: 8589934592
+Commit inst: 4966T0 : 00116798 `c_srli a5, a5, 32'
+reg 246 val: 2
+Commit inst: 4967T0 : 00116800 `c_addi a5, a5, 13'
+reg 234 val: 15
+Commit inst: 4968T0 : 00116802 `c_slli a5, a5, 3'
+reg 22 val: 120
+Commit inst: 4969T0 : 00116804 `c_sdsp a4, 0(sp)'
+Commit inst: 4970T0 : 00116806 `c_j zero, 45056'
+Commit inst: 4981T0 : 00115902 `c_add a5, a5, s11'
+reg 127 val: 501520
+Commit inst: 4982T0 : 00115904 `c_ld a3, 8(a5)'
+reg 60 val: 501504
+Commit inst: 4983T0 : 00115906 `addi a4, a5, -16'
+reg 10 val: 501504
+Commit inst: 4984T0 : 00115910 `beq a4, a3, 756'
+Commit inst: 4985T0 : 00116666 `srli a4, s10, 9'
+reg 215 val: 0
+Commit inst: 4986T0 : 00116670 `srli a5, s10, 6'
+reg 11 val: 0
+Commit inst: 4987T0 : 00116674 `c_sdsp a4, 56(sp)'
+Commit inst: 4988T0 : 00116676 `addiw a4, a4, 91'
+reg 150 val: 91
+Commit inst: 4989T0 : 00116680 `c_sdsp a5, 40(sp)'
+Commit inst: 4990T0 : 00116682 `c_sdsp a4, 64(sp)'
+Commit inst: 4991T0 : 00116684 `addiw a5, a5, 48'
+reg 207 val: 48
+Commit inst: 4992T0 : 00116688 `c_sdsp a5, 48(sp)'
+Commit inst: 4993T0 : 00116690 `c_ldsp a5, 0(sp)'
+reg 50 val: 2
+Commit inst: 4994T0 : 00116692 `c_sdsp zero, 88(sp)'
+Commit inst: 4995T0 : 00116694 `c_sdsp zero, 72(sp)'
+Commit inst: 4996T0 : 00116696 `c_sdsp a5, 32(sp)'
+Commit inst: 4997T0 : 00116698 `addi a5, zero, 110'
+reg 225 val: 110
+Commit inst: 4998T0 : 00116702 `c_sdsp a5, 80(sp)'
+Commit inst: 4999T0 : 00116704 `addi a5, zero, 119'
+reg 212 val: 119
+Commit inst: 5000T0 : 00116708 `c_sdsp a5, 104(sp)'
+Commit inst: 5001T0 : 00116710 `addi a5, zero, 124'
+reg 95 val: 124
+Commit inst: 5002T0 : 00116714 `c_sdsp a5, 96(sp)'
+Commit inst: 5003T0 : 00116716 `c_j zero, 45056'
+Commit inst: 5010T0 : 00115564 `c_lui s5, zero, 8192'
+reg 13 val: 8192
+Commit inst: 5011T0 : 00115566 `addi a5, s5, 1808'
+reg 25 val: 10000
+Commit inst: 5012T0 : 00115570 `c_lui s7, zero, 4096'
+reg 223 val: 4096
+Commit inst: 5013T0 : 00115572 `addi s9, s11, 88'
+reg 72 val: 501488
+Commit inst: 5014T0 : 00115576 `c_sdsp a5, 16(sp)'
+Commit inst: 5015T0 : 00115578 `add s5, s11, s7'
+reg 174 val: 505496
+Commit inst: 5016T0 : 00115582 `addi a5, s10, 32'
+reg 220 val: 64
+Commit inst: 5017T0 : 00115586 `c_ldsp s3, 16(sp)'
+reg 96 val: 10000
+Commit inst: 5018T0 : 00115588 `c_li s1, zero, 16'
+reg 56 val: 16
+Commit inst: 5019T0 : 00115590 `addi s8, zero, 1023'
+reg 200 val: 1023
+Commit inst: 5020T0 : 00115594 `c_sdsp a5, 8(sp)'
+Commit inst: 5021T0 : 00115596 `addi s2, zero, 48'
+reg 187 val: 48
+Commit inst: 5022T0 : 00115600 `c_j zero, 40960'
+Commit inst: 5035T0 : 00115670 `ld s0, 112(s11)'
+//reg 9 val: 17329386289882988544
+Commit inst: 5036T0 : 00115674 `beq s0, s9, 610'

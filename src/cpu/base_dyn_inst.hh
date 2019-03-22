@@ -155,6 +155,8 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** The store sequence number of the forward store instruction. */
     StoreSeqNum forwardSSN;
 
+    bool isForward = false;
+
     /** The StaticInst used by this BaseDynInst. */
     const StaticInstPtr staticInst;
 
@@ -172,11 +174,13 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** InstRecord that tracks this instructions. */
     Trace::InstRecord *traceData;
 
-  protected:
+//  protected:
     /** The result of the instruction; assumes an instruction can have many
      *  destination registers.
      */
     std::queue<InstResult> instResult;
+
+    protected:
 
     /** PC state for this instruction. */
     TheISA::PCState pc;
@@ -235,7 +239,7 @@ class BaseDynInst : public ExecContext, public RefCounted
     short asid;
 
     /** The size of the request */
-    uint8_t effSize;
+    uint64_t effSize;
 
     /** Pointer to the data for the memory access. */
     uint8_t *memData;
@@ -1022,6 +1026,8 @@ BaseDynInst<Impl>::initiateMemRead(Addr addr, unsigned size,
     if (traceData)
         traceData->setMem(addr, size, flags);
     DPRINTF(Reexecute,"Reexecute-initiateMemRead-5\n");
+    //if (fault!=NoFault)
+    //std::cout << "mem read fault is: " << fault->name() << std::endl;
     return fault;
 }
 
@@ -1030,6 +1036,7 @@ Fault
 BaseDynInst<Impl>::writeMem(uint8_t *data, unsigned size, Addr addr,
                             Request::Flags flags, uint64_t *res)
 {
+    effSize = size;
     if (traceData)
         traceData->setMem(addr, size, flags);
 
@@ -1064,6 +1071,7 @@ BaseDynInst<Impl>::writeMem(uint8_t *data, unsigned size, Addr addr,
         if (cpu->checker) {
             reqToVerify = std::make_shared<Request>(*req);
         }
+        //std::cout << "debug: call write function" << std::endl;
         fault = cpu->write(req, sreqLow, sreqHigh, data, sqIdx);
     }
 

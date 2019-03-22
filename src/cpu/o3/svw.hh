@@ -15,7 +15,7 @@ class SVW{
   public:
     typedef typename Impl::DynInstPtr DynInstPtr;
   public:
-    int depCheckShift = 2;
+    int depCheckShift = 3;
     class svwItem{
         public:
             bool VAILD;
@@ -66,32 +66,50 @@ public:
     }
 
     SVWStoreSeqNum_t search(SVWKey_t key,SVWTag_t tag){
-        for (auto i:svwItems[key]){
+       auto temp = svwItems[key].front();
+       SVWStoreSeqNum_t res = temp.VAILD?temp.SSN:0;
+       for (auto i:svwItems[key]){
             if (i.VAILD && i.TAG == tag)
                 return i.SSN;
+            res = std::min(res, i.SSN);
         }
-        return svwItems[key].front().SSN;
+        return res;
     }
 
     SVWStoreSeqNum_t getSSN(DynInstPtr& inst) {
         auto addr = inst->physEffAddrLow >> depCheckShift;
+        //std::cout << "getSSN: physical addr: " << inst->physEffAddrLow; inst->dump();
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
-        return search(key, tag);
+       for (auto i:svwItems[key]){
+            if (i.VAILD && i.TAG == tag)
+                return i.SSN;
+        }
+        if (svwItems[key].front().VAILD)
+            return svwItems[key].front().SSN;
+        else
+            return 0;
+        //return search(key, tag);
     }
 
     bool violation(DynInstPtr &inst/*, uint8_t** memData*/) {
+      //std::cout << "debug: Enter svw filter!!\n";
       if (inst->physEffAddrLow == 0)
         return false;
       auto inst_eff_addr1 = inst->physEffAddrLow >> depCheckShift;
+      //std::cout << "violation: physical addr: " << inst->physEffAddrLow; inst->dump();
       auto inst_eff_addr2 =
         (inst->physEffAddrLow + inst->effSize - 1) >> depCheckShift;
+      //std::cout << "debug: addr1 is: " << inst_eff_addr1
+        //        << " addr2 is: " << inst_eff_addr2 << std::endl;
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
         SVWStoreSeqNum_t ssn = search(key, tag);
+       // std::cout << "debug: addr is: " << addr << " ssn is: " << ssn
+       //           << " forward ssn is: " << inst->forwardSSN << std::endl;
         /** judge if ssn equals. */
-        if (ssn != inst->SSN){
+        if (ssn > inst->forwardSSN){
           /** judge if the same address and data size, which used
            * to determind if still need reexecution from memory.
           */

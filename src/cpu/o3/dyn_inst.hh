@@ -379,11 +379,11 @@ class BaseO3DynInst : public BaseDynInst<Impl>
      */
     void setIntRegOperand(const StaticInst *si, int idx, IntReg val)
     {
-      //  if (this->isReexecuting()){
-      //    std::cout<<"setIntRegOperand: re-val:"<<val<<" ";this->dump();
-      //  }else{
-      //    std::cout<<"setIntRegOperand: val:"<<val<<" ";this->dump();
-      //  }
+        if (this->isReexecuting()){
+          std::cout<<"setIntRegOperand: re-val:"<<val<<" ";this->dump();
+        }else{
+          std::cout<<"setIntRegOperand: val:"<<val<<" ";this->dump();
+        }
         this->cpu->setIntReg(this->_destRegIdx[idx], val);
         BaseDynInst<Impl>::setIntRegOperand(si, idx, val);
         uint8_t* temp = reinterpret_cast<uint8_t*>(&val);

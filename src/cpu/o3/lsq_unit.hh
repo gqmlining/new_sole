@@ -830,7 +830,7 @@ LSQUnit<Impl>::read(const RequestPtr &req,
         state->mainPkt = data_pkt;
     }
 
-    // For now, load throughput is constrained by the number of
+   // For now, load throughput is constrained by the number of
     // load FUs only, and loads do not consume a cache port (only
     // stores do).
     // @todo We should account for cache port contention
@@ -891,7 +891,6 @@ LSQUnit<Impl>::read(const RequestPtr &req,
         // No fault occurred, even though the interface is blocked.
         return NoFault;
     }
-
     return NoFault;
 }
 
