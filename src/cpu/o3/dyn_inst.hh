@@ -214,6 +214,7 @@ class BaseO3DynInst : public BaseDynInst<Impl>
 
     void forwardOldRegs()
     {
+        std::cout <<"enter forward old regs";this->dump();
 
         for (int idx = 0; idx < this->numDestRegs(); idx++) {
             PhysRegIdPtr prev_phys_reg = this->prevDestRegIdx(idx);

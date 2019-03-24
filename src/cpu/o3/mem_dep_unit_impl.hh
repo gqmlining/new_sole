@@ -410,8 +410,8 @@ template <class MemDepPred, class Impl>
 void
 MemDepUnit<MemDepPred, Impl>::completed(DynInstPtr &inst)
 {
-    DPRINTF(MemDepUnit, "Completed mem instruction PC %s [sn:%lli].\n",
-            inst->pcState(), inst->seqNum);
+    DPRINTF(MemDepUnit, "Completed mem instruction PC %s [sn:%lli].",
+            inst->pcState(), inst->seqNum);inst->dump();
 
     ThreadID tid = inst->threadNumber;
 

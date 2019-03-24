@@ -569,7 +569,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
          return;
        }
        if (inst->isLoad() && !inst->isReexecuted()){
-         if (!cpu->SVWFilter.violation(inst)&&false){
+         if (!cpu->SVWFilter.violation(inst)){
           //std::cout << "debug: " << inst->seqNum << " not find in SVW: ea: "
           //            << inst->effAddr;
           //inst->dump();

@@ -244,6 +244,9 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** Pointer to the data for the memory access. */
     uint8_t *memData;
 
+    /** use to indentify is load inst enter exe at the 1st time. */
+    bool firstEnterExe = true;
+
     /** only tlb translation flag. */
     bool onlyTLBTranslate;
 

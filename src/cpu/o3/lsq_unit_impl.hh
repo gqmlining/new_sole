@@ -639,6 +639,7 @@ template <class Impl>
 Fault
 LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 {
+    std::cout << "debug: load inst exe.";inst->dump();
     using namespace TheISA;
     // Execute a specific load.
     Fault load_fault = NoFault;
@@ -651,15 +652,16 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
     // add data forward mechisim
     // todo@ may need to change
 
-    if (!inst->isForward && dataForward(inst))
+    if (inst->firstEnterExe && dataForward(inst))
     {
+        inst->isForward = true;
         // todo@ write value to proper reg
-        //std::cout << "debug: forward success!!";inst->dump();
+        std::cout << "debug: forward success!!";inst->dump();
 
         // Need to get physical address and effSize for svw filter
         inst->onlyTLBTranslate = true;
         load_fault = inst->initiateAcc();
-        inst->onlyTLBTranslate = false;
+        //inst->onlyTLBTranslate = false;
         uint64_t val = 0;
         for (int i=0; i<inst->effSize; ++i)
         {
@@ -681,14 +683,15 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         }
     }
     else {
-        inst->isForward = true;
-        //std::cout << "debug: forward failed!!\n";
+        //inst->isForward = true;
+        std::cout << "debug: forward failed!!\n";
         load_fault = inst->initiateAcc();
 
         inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
-        //std::cout << "debug: forward ssn is: " << inst->forwardSSN << std::endl;
+        std::cout << "debug: forward ssn is: " << inst->forwardSSN << std::endl;
     }
 
+    inst->firstEnterExe = true;
     if (inst->isTranslationDelayed() &&
         load_fault == NoFault)
         return load_fault;
@@ -717,8 +720,9 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         int load_idx = inst->lqIdx;
         incrLdIdx(load_idx);
 
-        if (inst->forwardData != NULL)
+        if (inst->isForward)
         {
+            inst->onlyTLBTranslate = false;
 
             inst->setExecuted();
             // Need to insert instruction into queue to commit
@@ -734,8 +738,10 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
        // if (checkLoads)
         //    return checkViolations(load_idx, inst);
     }
-
-    //std::cout << "debug: exe load fault: " << inst->getFault()->name() << std::endl;
+    if (load_fault!=NoFault)
+      std::cout << "debug: exe load fault: " << load_fault->name() << std::endl;
+    else
+      std::cout << "debug: exe load no fault" << std::endl;
 
     return load_fault;
 }
