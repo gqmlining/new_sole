@@ -723,6 +723,7 @@ DefaultCommit<Impl>::tick()
     }
 
     updateStatus();
+    std::cout <<"debug: commit tick end." << std::endl;
 }
 
 template <class Impl>

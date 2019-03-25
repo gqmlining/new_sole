@@ -895,8 +895,10 @@ template <class Impl>
 void
 DefaultFetch<Impl>::tick()
 {
+    std::cout <<"enter fetch 1-1"<<std::endl;
     list<ThreadID>::iterator threads = activeThreads->begin();
     list<ThreadID>::iterator end = activeThreads->end();
+    std::cout <<"enter fetch 1-2"<<std::endl;
     bool status_change = false;
 
     wroteToTimeBuffer = false;
@@ -904,13 +906,14 @@ DefaultFetch<Impl>::tick()
     for (ThreadID i = 0; i < numThreads; ++i) {
         issuePipelinedIfetch[i] = false;
     }
-
+    std::cout <<"enter fetch 1-3"<<std::endl;
     while (threads != end) {
         ThreadID tid = *threads++;
 
         // Check the signals for each thread to determine the proper status
         // for each thread.
         bool updated_status = checkSignalsAndUpdate(tid);
+        std::cout <<"enter fetch 1-4"<<std::endl;
         status_change =  status_change || updated_status;
     }
 

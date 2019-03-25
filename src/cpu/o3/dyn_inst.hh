@@ -398,13 +398,14 @@ class BaseO3DynInst : public BaseDynInst<Impl>
             return ;
         }else{
           this->reexecute_memData = memDataBuf.front();
+          uint8_t* reex_temp = this->reexecute_memData;
           memDataBuf.pop_front();
           for (int i=0; i<sizeof(IntReg); i++){
-            if (*temp != *(this->reexecute_memData)){
+            if (*temp != *(reex_temp)){
               this->setSquashDueToReexecute();
               return;
             }
-            temp++;this->reexecute_memData++;
+            temp++;reex_temp++;
           }
         }
     }
@@ -423,13 +424,14 @@ class BaseO3DynInst : public BaseDynInst<Impl>
             memDataBuf.push_back(this->reexecute_memData);
         }else{
           this->reexecute_memData = memDataBuf.front();
+          uint8_t* reex_temp = this->reexecute_memData;
           memDataBuf.pop_front();
           for (int i=0; i<sizeof(FloatReg); i++){
-            if (*temp != *(this->reexecute_memData)){
+            if (*temp != *(reex_temp)){
               this->setSquashDueToReexecute();
               return;
             }
-            temp++;this->reexecute_memData++;
+            temp++;reex_temp++;
           }
         }
 
@@ -450,16 +452,16 @@ class BaseO3DynInst : public BaseDynInst<Impl>
             memDataBuf.push_back(this->reexecute_memData);
         }else{
             this->reexecute_memData = memDataBuf.front();
+            uint8_t* reex_temp = this->reexecute_memData;
             memDataBuf.pop_front();
             for (int i=0; i<sizeof(FloatRegBits); i++){
-              if (*temp != *(this->reexecute_memData)){
+              if (*temp != *(reex_temp)){
                 this->setSquashDueToReexecute();
                 return;
             }
-            temp++;this->reexecute_memData++;
+            temp++;reex_temp++;
           }
         }
-
     }
 
     void

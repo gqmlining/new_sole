@@ -588,17 +588,25 @@ FullO3CPU<Impl>::tick()
 
     // Now advance the time buffers
     timeBuffer.advance();
-
+    std::cout << "cpu tick 1-1" << std::endl;
     fetchQueue.advance();
+    std::cout << "cpu tick 1-2" << std::endl;
     decodeQueue.advance();
+    std::cout << "cpu tick 1-3" << std::endl;
+
     renameQueue.advance();
+    std::cout << "cpu tick 1-4" << std::endl;
+
     iewQueue.advance();
+    std::cout << "cpu tick 1-5" << std::endl;
 
     activityRec.advance();
+    std::cout << "cpu tick 1-6" << std::endl;
 
     if (removeInstsThisCycle) {
         cleanUpRemovedInsts();
     }
+    std::cout << "cpu tick 1-7" << std::endl;
 
     if (!tickEvent.scheduled()) {
         if (_status == SwitchedOut) {
@@ -614,9 +622,11 @@ FullO3CPU<Impl>::tick()
             DPRINTF(O3CPU, "Scheduling next tick!\n");
         }
     }
+    std::cout << "cpu tick 1-8" << std::endl;
 
     if (!FullSystem)
         updateThreadPriority();
+    std::cout << "cpu tick 1-9" << std::endl;
 
     tryDrain();
 }

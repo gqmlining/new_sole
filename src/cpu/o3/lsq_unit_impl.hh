@@ -1207,8 +1207,6 @@ LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
            mask = mask << 1;
         }
         uint64_t size = load_inst->effSize;
-        if (size > entry.bitEnable)
-             return false;
         load_inst->forwardData = new uint8_t[size];
         memcpy(load_inst->forwardData, &entry.data[blockOffset], size);
         std::cout << "size: " <<size;
@@ -1385,6 +1383,8 @@ LSQUnit<Impl>::writeback(DynInstPtr &inst, PacketPtr pkt)
         //printf("reex finshed-----------\n");
         //inst->dump();
         inst->completeAcc(pkt);
+        //if (inst->reexecute_memData!=nullptr)
+        //    delete [] inst->reexecute_memData;
         if (inst->isSquashDueToReexecute()){
           iewStage->squashDueToMemOrder(inst,inst->threadNumber);
           return;
@@ -1392,6 +1392,9 @@ LSQUnit<Impl>::writeback(DynInstPtr &inst, PacketPtr pkt)
         inst->setReexecuted();
         inst->setCanCommit();
         iewStage->activityThisCycle();
+
+        if (inst->reexecute_memData!=nullptr)
+            delete [] inst->reexecute_memData;
         return ;
     }
 

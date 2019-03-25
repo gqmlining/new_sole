@@ -503,7 +503,7 @@ void
 ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
   // TODO REEXCUTE LOAD INST
     //std::cout << "debug: Enter reexecute inst Function!!\n";
-    if (inst->reexecute_memData == nullptr){
+   if (!inst->reexecute_memData){
       inst->setReexecuted();
       return ;
     }
@@ -511,9 +511,6 @@ ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
     if (inst->isReexecuting()){
       return ;
     }
-   // std::cout << "debug: inst is reexecuting" << std::endl;
-    delete [] inst->memData;
-    inst->memData = nullptr;
     Fault load_fault = NoFault;
 
   //  inst->dump();
