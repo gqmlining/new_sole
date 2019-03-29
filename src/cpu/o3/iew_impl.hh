@@ -1134,6 +1134,7 @@ DefaultIEW<Impl>::dispatchInsts(ThreadID tid)
 
         ++iewDispatchedInsts;
 
+        std::cout << "Current Tick: " << curTick() << std::endl;
 #if TRACING_ON
         inst->dispatchTick = curTick() - inst->fetchTick;
 #endif

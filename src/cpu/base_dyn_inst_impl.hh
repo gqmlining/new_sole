@@ -90,7 +90,7 @@ BaseDynInst<Impl>::initVars()
     onlyTLBTranslate = false;
     memData = NULL;
     storeData = NULL;
-    forwardData = NULL;
+    //forwardData = NULL;
     //reexecute_memData = NULL;
     effAddr = 0;
     physEffAddrLow = 0;
@@ -153,9 +153,9 @@ BaseDynInst<Impl>::~BaseDynInst()
         delete [] storeData;
     }
 
-    if (forwardData) {
+    /*if (forwardData) {
         delete [] forwardData;
-    }
+    }*/
 
     /*if (reexecute_memData){
         delete [] reexecute_memData;

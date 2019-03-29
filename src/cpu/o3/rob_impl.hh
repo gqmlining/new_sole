@@ -521,7 +521,7 @@ ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
     load_fault = cpu->iew.ldstQueue.thread[tid].ReexecuteLoad(inst);
   //  std::cout<<"load_fault == NoFault:"<<(load_fault == NoFault)<<std::endl;
     reexecuteNum++;
-    std::cout << "reexecuteNum: " << reexecuteNum << std::endl;
+    std::cout << "reexecuteNum: " << reexecuteNum;inst->dump();
     return;
 }
 
@@ -536,10 +536,24 @@ ROB<Impl>::doReexcute(ThreadID tid)
       return;
     while (head_it != instList[tid].end()) {
        DynInstPtr inst = *head_it;
+       //std::cout<<"do reex: ";inst->dump();
        head_it++;
        //std::cout<<"doReex:isReexcuted:"<<inst->isExecuted();inst->dump();
        if (!inst->readyToCommit() || inst->isSquashDueToReexecute()){
         //std::cout<<"noReady"<<std::endl;
+         return;
+       }
+       std::cout << "do reex 1: "; inst->dump();
+       if (inst->isStore()){
+         std::cout << "do reex 2: "; inst->dump();
+         if (inst->isReexecuted()){
+         }else{
+           //std::cout << inst->seqNum << " INSERT SVW: ea"<<inst->effAddr;
+           //inst->dump();
+           std::cout << "do reex 3: "; inst->dump();
+           cpu->SVWFilter.insert(inst);
+           inst->setReexecuted();
+         }
          return;
        }
 
@@ -554,7 +568,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
          inst->setReexecuted();
          continue;
        }
-
+       /*
        if (inst->isStore()){
          if (inst->isReexecuted()){
          }else{
@@ -564,8 +578,10 @@ ROB<Impl>::doReexcute(ThreadID tid)
            inst->setReexecuted();
          }
          return;
-       }
+       }*/
        if (inst->isLoad() && !inst->isReexecuted()){
+         //if (inst->isReexecuting())
+         //    return;
          if (!cpu->SVWFilter.violation(inst)){
           //std::cout << "debug: " << inst->seqNum << " not find in SVW: ea: "
           //            << inst->effAddr;

@@ -153,7 +153,7 @@ class BaseDynInst : public ExecContext, public RefCounted
     StoreSeqNum SSN;
 
     /** The store sequence number of the forward store instruction. */
-    StoreSeqNum forwardSSN;
+    StoreSeqNum forwardSSN = 0;
 
     bool isForward = false;
 
@@ -241,6 +241,10 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** The size of the request */
     uint64_t effSize;
 
+    bool isUnsigned = false;
+
+    bool canUpdateASW = true;
+
     /** Pointer to the data for the memory access. */
     uint8_t *memData;
 
@@ -254,7 +258,7 @@ class BaseDynInst : public ExecContext, public RefCounted
     uint8_t *storeData;
 
     /** Pointer to the data forwarding from predicate struct */
-    uint8_t *forwardData;
+    //uint8_t *forwardData;
 
     /** Pointer to the data for the Reexecute memory access.**/
 
@@ -1040,6 +1044,11 @@ BaseDynInst<Impl>::writeMem(uint8_t *data, unsigned size, Addr addr,
                             Request::Flags flags, uint64_t *res)
 {
     effSize = size;
+    if (!storeData)
+    {
+        storeData = new uint8_t[size];
+        memcpy(storeData, data, size);
+    }
     if (traceData)
         traceData->setMem(addr, size, flags);
 

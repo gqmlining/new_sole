@@ -396,7 +396,7 @@ class LSQUnit {
         //typedef uint64_t storeSeqNum;
         StoreSeqNum ssn;
         /** The addr tag to judge if it gets a match. */
-        unsigned tag;
+        uint64_t tag;
         /** The data to forward. */
         uint8_t *data;
 
@@ -794,14 +794,18 @@ LSQUnit<Impl>::read(const RequestPtr &req,
 
     // Allocate memory if this is the first time a load is issued.
     if (!load_inst->memData) {
+        std::cout <<"lsq test req size: " << req->getSize() << std::endl;
         load_inst->memData = new uint8_t[req->getSize()];
     }
 
+    std::cout << "lsq test 1-1" << std::endl;
     // if we the cache is not blocked, do cache access
     bool completedFirst = false;
     PacketPtr data_pkt = Packet::createRead(req);
     PacketPtr fst_data_pkt = NULL;
     PacketPtr snd_data_pkt = NULL;
+
+    std::cout << "lsq test 1-2" << std::endl;
 
     data_pkt->dataStatic(load_inst->memData);
 
@@ -810,6 +814,8 @@ LSQUnit<Impl>::read(const RequestPtr &req,
     state->idx = load_idx;
     state->inst = load_inst;
     data_pkt->senderState = state;
+
+    std::cout << "lsq test 1-3" << std::endl;
 
     if (!TheISA::HasUnalignedMemAcc || !sreqLow) {
         // Point the first packet at the main data packet.
@@ -829,6 +835,8 @@ LSQUnit<Impl>::read(const RequestPtr &req,
         state->outstanding = 2;
         state->mainPkt = data_pkt;
     }
+
+    std::cout << "lsq test 1-4" << std::endl;
 
    // For now, load throughput is constrained by the number of
     // load FUs only, and loads do not consume a cache port (only
@@ -856,6 +864,8 @@ LSQUnit<Impl>::read(const RequestPtr &req,
             successful_load = false;
         }
     }
+
+    std::cout << "lsq test 1-5" << std::endl;
 
     // If the cache was blocked, or has become blocked due to the access,
     // handle it.
@@ -926,8 +936,8 @@ LSQUnit<Impl>::write(const RequestPtr &req,
         !req->isCacheMaintenance())
     {
         memcpy(storeQueue[store_idx].data, data, size);
-        storeQueue[store_idx].inst->storeData = new uint8_t[size];
-        memcpy(storeQueue[store_idx].inst->storeData, data, size);
+        //storeQueue[store_idx].inst->storeData = new uint8_t[size];
+        //memcpy(storeQueue[store_idx].inst->storeData, data, size);
     }
     // This function only writes the data to the store queue, so no fault
     // can happen here.

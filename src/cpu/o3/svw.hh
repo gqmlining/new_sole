@@ -52,16 +52,24 @@ public:
     }
 
     void insert(DynInstPtr &inst){
-      if (inst->physEffAddrLow == 0)
-        return;
-      auto inst_eff_addr1 = inst->physEffAddrLow >> depCheckShift;
+      //uint64_t base = inst->readIntRegOperand(inst->staticInst.get(),0);
+      //uint64_t offset = inst->staticInst->getOffset();
+      //inst->effAddr = base + offset;
+      if (inst->effAddr == 0)
+      {    inst->canUpdateASW = false;
+           std::cout << "svw update: effAddr is 0";inst->dump();
+           return;
+      }
+      auto inst_eff_addr1 = inst->effAddr >> depCheckShift;
       auto inst_eff_addr2 =
-        (inst->physEffAddrLow + inst->effSize - 1) >> depCheckShift;
+        (inst->effAddr + inst->effSize - 1) >> depCheckShift;
       /** from the front to end, the store is youngest to oldest. */
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
         insert(key,tag,inst->SSN/*,inst->effSize,inst->memData*/);
+        std::cout << "svw update: addr is " << addr << " index: " << key
+                  << " tag: " << tag << " ssn: " << inst->SSN;inst->dump();
       }
     }
 
@@ -71,13 +79,13 @@ public:
        for (auto i:svwItems[key]){
             if (i.VAILD && i.TAG == tag)
                 return i.SSN;
-            res = std::min(res, i.SSN);
+            res = std::max(res, i.SSN);
         }
         return res;
     }
 
     SVWStoreSeqNum_t getSSN(DynInstPtr& inst) {
-        auto addr = inst->physEffAddrLow >> depCheckShift;
+        auto addr = inst->effAddr >> depCheckShift;
         //std::cout << "getSSN: physical addr: " << inst->physEffAddrLow; inst->dump();
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
@@ -94,35 +102,41 @@ public:
 
     bool violation(DynInstPtr &inst/*, uint8_t** memData*/) {
       //std::cout << "debug: Enter svw filter!!\n";
-      if (inst->physEffAddrLow == 0)
+      if (inst->effAddr == 0)
         return false;
-      auto inst_eff_addr1 = inst->physEffAddrLow >> depCheckShift;
+      auto inst_eff_addr1 = inst->effAddr >> depCheckShift;
       //std::cout << "violation: physical addr: " << inst->physEffAddrLow; inst->dump();
       auto inst_eff_addr2 =
-        (inst->physEffAddrLow + inst->effSize - 1) >> depCheckShift;
+        (inst->effAddr + inst->effSize - 1) >> depCheckShift;
       //std::cout << "debug: addr1 is: " << inst_eff_addr1
         //        << " addr2 is: " << inst_eff_addr2 << std::endl;
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
         SVWStoreSeqNum_t ssn = search(key, tag);
-       // std::cout << "debug: addr is: " << addr << " ssn is: " << ssn
-       //           << " forward ssn is: " << inst->forwardSSN << std::endl;
+        std::cout << "svw violation: addr is: " << addr << " index: " << key
+                  << " tag: " << tag << " ssn is: " << ssn
+                  << " forward ssn is: " << inst->forwardSSN;inst->dump();
         /** judge if ssn equals. */
-        if (ssn > inst->forwardSSN){
-          /** judge if the same address and data size, which used
-           * to determind if still need reexecution from memory.
-          */
-          /*if (item.bitEnable != inst->effSize || item.TAG != inst->TAG) {
-            return true;
-          }
-          else {
-             *memData = new uint8_t[item.bitEnable];
-             memcpy(*memData,item.data,item.bitEnable);
-             return true;
-          }*/
-          return true;
+        if (inst->isForward)
+        {
+            if (ssn != inst->forwardSSN){
+            /** judge if the same address and data size, which used
+            * to determind if still need reexecution from memory.
+            */
+            /*if (item.bitEnable != inst->effSize || item.TAG != inst->TAG) {
+                return true;
+              }
+             else {
+               *memData = new uint8_t[item.bitEnable];
+               memcpy(*memData,item.data,item.bitEnable);
+               return true;
+              }*/
+                 return true;
+            }
         }
+        else if (ssn > inst->forwardSSN)
+             return true;
       }
       return false;
     }

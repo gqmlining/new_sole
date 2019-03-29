@@ -272,6 +272,11 @@ class BaseO3DynInst : public BaseDynInst<Impl>
     // storage (which is pretty hard to imagine they would have reason
     // to do).
 
+    IntReg readIntDestReg(int idx)
+    {
+        return this->cpu->readIntReg(this->_destRegIdx[idx]);
+    }
+
     IntReg readIntRegOperand(const StaticInst *si, int idx)
     {
         return this->cpu->readIntReg(this->_srcRegIdx[idx]);

@@ -1218,7 +1218,7 @@ DefaultCommit<Impl>::commitHead(DynInstPtr &head_inst, unsigned inst_num)
         DPRINTF(Commit, "Inst [sn:%lli] PC %s has a fault\n",
                 head_inst->seqNum, head_inst->pcState());
 
-        //std::cout << "fault is: " << inst_fault->name() << std::endl;
+        std::cout << "fault is: " << inst_fault->name() <<"SN:"<<head_inst->seqNum;head_inst->dump();
 
         if (iewStage->hasStoresToWB(tid) || inst_num > 0) {
             DPRINTF(Commit, "Stores outstanding, fault must wait.\n");
@@ -1292,17 +1292,13 @@ DefaultCommit<Impl>::commitHead(DynInstPtr &head_inst, unsigned inst_num)
         }
     }
     // this used to debug by cout result of each instruciton
-   // std::cout << "Commit inst: " << head_inst->seqNum;head_inst->dump();
-    //for (int i = 0;i < head_inst->numDestRegs();i++)
-    //{
-   // if (head_inst->numDestRegs()>0) {
-    //    RegIndex id = head_inst->renamedDestRegIdx(0)->index();
-    //    auto result = head_inst->instResult.front();
-     //   std::cout << "reg " << id << " val: "
-      //            << result.asIntegerNoAssert()
-       //           << std::endl;
-   // }
-    //}
+    std::cout << "Commit inst: ";
+    if (head_inst->numDestRegs()>0 && !head_inst->isFloating()) {
+        //PhysRegIdPtr id = head_inst->renamedDestRegIdx(0);
+        uint64_t result = head_inst->readIntDestReg(0);
+        std::cout << " val: " << result;
+    }
+    head_inst->dump();
     if (head_inst->isLoad() || head_inst->isStore())
          std::cout<<"check:Addr"<<head_inst->effAddr<<" size:"<<head_inst->effSize<<" ssn:"<<head_inst->SSN<<" forwardSSN"<<head_inst->forwardSSN;head_inst->dump();
     DPRINTF(Commit, "Committing instruction with [sn:%lli] PC %s\n",
@@ -1364,6 +1360,7 @@ DefaultCommit<Impl>::getInsts()
 
             DPRINTF(Commit, "Inserting PC %s [sn:%i] [tid:%i] into ROB.\n",
                     inst->pcState(), inst->seqNum, tid);
+            std::cout << "commit insert: ";inst->dump();
 
             rob->insertInst(inst);
 
@@ -1374,6 +1371,7 @@ DefaultCommit<Impl>::getInsts()
             DPRINTF(Commit, "Instruction PC %s [sn:%i] [tid:%i] was "
                     "squashed, skipping.\n",
                     inst->pcState(), inst->seqNum, tid);
+            std::cout << "commit not insert: ";inst->dump();
         }
     }
 }
