@@ -1,12 +1,18 @@
 #include <iostream>
 
 using namespace std;
+
+int array[10000];
+
 int main()
 {
-  long long a = -24;
-  unsigned long long b = a;
-  unsigned long long d = 9223372036854775152;
-  unsigned long long c = b ^ d;
-  cout << a << " "  << b << endl;
-  cout << c << endl;
+   for (int i=0;i<10000;i++)
+   {
+      array[i] = i;
+   }
+   for (int i=0;i<10000;i++)
+   {
+      array[i]+=i;
+   }
+   return 0;
 }

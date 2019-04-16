@@ -68,7 +68,7 @@ class Decoder
 
     //Use this to give data to the decoder. This should be used
     //when there is control flow.
-    void moreBytes(const PCState &pc, Addr fetchPC, MachInst inst);
+    void moreBytes(PCState &pc, Addr fetchPC, MachInst inst);
 
     bool needMoreBytes() { return more; }
     bool instReady() { return instDone; }

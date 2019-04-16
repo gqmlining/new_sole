@@ -409,6 +409,10 @@ class LSQUnit {
 
     void updateForwardEntry(const DynInstPtr& store_inst);
 
+    void squashForwardEntry(const DynInstPtr& store_inst);
+
+    void squashAllForwardEntry ();
+
     bool dataForward(DynInstPtr& load_inst);//need to change loadInst;
 
   public:
@@ -671,7 +675,7 @@ LSQUnit<Impl>::read(const RequestPtr &req,
         return NoFault;
     }
 
-    while (store_idx != -1) {
+    while (store_idx != -1 && false) {
         // End once we've reached the top of the LSQ
         if (store_idx == storeWBIdx) {
             break;
@@ -896,6 +900,10 @@ LSQUnit<Impl>::read(const RequestPtr &req,
 
         ++lsqCacheBlocked;
 
+        if (load_inst->isReexecuting()){
+            load_inst->clearReexecuting();
+            return NoFault;
+        }
         iewStage->blockMemInst(load_inst);
 
         // No fault occurred, even though the interface is blocked.

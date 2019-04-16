@@ -1047,6 +1047,7 @@ DefaultIEW<Impl>::dispatchInsts(ThreadID tid)
             break;
         }
 
+        std::cout << "iew: ";inst->dump();
         // Otherwise issue the instruction just fine.
         if (inst->isLoad()) {
             DPRINTF(IEW, "[tid:%i]: Issue: Memory instruction "

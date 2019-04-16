@@ -1006,6 +1006,11 @@ FullO3CPU<Impl>::trap(const Fault &fault, ThreadID tid,
 {
     // Pass the thread's TC into the invoke method.
     fault->invoke(this->threadContexts[tid], inst);
+    if (inst->isSyscall())
+    {
+       std::cout << "squash Forward Strcut " << inst->getName() << std::endl;
+       this->iew.ldstQueue.thread[tid].squashAllForwardEntry();
+    }
 }
 
 template <class Impl>

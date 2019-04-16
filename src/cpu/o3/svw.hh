@@ -21,11 +21,11 @@ class SVW{
             bool VAILD;
             SVWTag_t TAG;
             SVWStoreSeqNum_t SSN;
-            //uint8_t bitEnable;
+            uint8_t bitEnable;
             //uint8_t* data;
-        svwItem(bool valid,SVWTag_t tag,SVWStoreSeqNum_t ssn)
-              //  uint8_t bit_enable, uint8_t* data)
-        :VAILD(valid),TAG(tag),SSN(ssn)/*,bitEnable(bit_enable)*/{
+        svwItem(bool valid,SVWTag_t tag,SVWStoreSeqNum_t ssn,
+                uint8_t bit_enable)//, uint8_t* data)
+        :VAILD(valid),TAG(tag),SSN(ssn),bitEnable(bit_enable) {
            /* if (data == NULL)
                 return;
             this->data = new uint8_t[bit_enable];
@@ -41,14 +41,14 @@ class SVW{
 public:
     SVW(size_t sz,size_t assoc):size(sz),assoc(assoc){
         svwItems = vector<list<svwItem>>
-          (sz,list<svwItem> (assoc,svwItem(0,0,0/*,0,NULL*/)));
+          (sz,list<svwItem> (assoc,svwItem(0,0,0,0/*,NULL*/)));
     }
 
 
-    void insert(SVWKey_t key, SVWTag_t tag, SVWStoreSeqNum_t ssn
-               /* uint8_t bit_enable, uint8_t* data*/){
+    void insert(SVWKey_t key, SVWTag_t tag, SVWStoreSeqNum_t ssn,
+                uint8_t bit_enable/*, uint8_t* data*/){
         svwItems[key].pop_back();
-        svwItems[key].push_front(svwItem(true,tag,ssn/*,bit_enable,data*/));
+        svwItems[key].push_front(svwItem(true,tag,ssn,bit_enable/*,data*/));
     }
 
     void insert(DynInstPtr &inst){
@@ -56,9 +56,12 @@ public:
       //uint64_t offset = inst->staticInst->getOffset();
       //inst->effAddr = base + offset;
       if (inst->effAddr == 0)
-      {    inst->canUpdateASW = false;
-           std::cout << "svw update: effAddr is 0";inst->dump();
-           return;
+      {
+           uint64_t base = inst->readIntRegOperand(
+                           inst->staticInst.get(),0);
+           uint64_t offset = inst->staticInst->getOffset();
+           inst->effAddr = base + offset;
+           inst->bitEnable = 255;
       }
       auto inst_eff_addr1 = inst->effAddr >> depCheckShift;
       auto inst_eff_addr2 =
@@ -67,19 +70,30 @@ public:
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
-        insert(key,tag,inst->SSN/*,inst->effSize,inst->memData*/);
-        std::cout << "svw update: addr is " << addr << " index: " << key
+        insert(key,tag,inst->SSN,inst->bitEnable/*,inst->memData*/);
+        std::cout << "svw update: addr is " << inst->effAddr << " index: " << key
                   << " tag: " << tag << " ssn: " << inst->SSN;inst->dump();
       }
     }
 
-    SVWStoreSeqNum_t search(SVWKey_t key,SVWTag_t tag){
+    SVWStoreSeqNum_t search(SVWKey_t key,SVWTag_t tag,uint8_t bitEnable){
        auto temp = svwItems[key].front();
        SVWStoreSeqNum_t res = temp.VAILD?temp.SSN:0;
        for (auto i:svwItems[key]){
+            res = std::min(res, i.SSN);
             if (i.VAILD && i.TAG == tag)
-                return i.SSN;
-            res = std::max(res, i.SSN);
+            {
+                uint8_t mask = 1;
+                for (uint64_t t=0;t<8;t++)
+                {
+                    if (((mask & bitEnable) != 0) &&
+                        ((mask & i.bitEnable) != 0))
+                    {
+                        return i.SSN;
+                    }
+                    mask = mask << 1;
+                }
+            }
         }
         return res;
     }
@@ -89,9 +103,25 @@ public:
         //std::cout << "getSSN: physical addr: " << inst->physEffAddrLow; inst->dump();
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
-       for (auto i:svwItems[key]){
+        for (auto i:svwItems[key]){
             if (i.VAILD && i.TAG == tag)
+            {
+                bool bitFit = true;
+                uint8_t mask = 1;
+                for (uint64_t t=0;t<8;t++)
+                {
+                    if (((mask & inst->bitEnable) == 1) &&
+                        ((mask & i.bitEnable) == 0))
+                    {
+                        bitFit = false;
+                        break;
+                    }
+                    mask = mask << 1;
+                }
+                if (!bitFit)
+                    continue;
                 return i.SSN;
+            }
         }
         if (svwItems[key].front().VAILD)
             return svwItems[key].front().SSN;
@@ -113,8 +143,8 @@ public:
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
-        SVWStoreSeqNum_t ssn = search(key, tag);
-        std::cout << "svw violation: addr is: " << addr << " index: " << key
+        SVWStoreSeqNum_t ssn = search(key, tag, inst->bitEnable);
+        std::cout << "svw violation: addr is: " << inst->effAddr << " index: " << key
                   << " tag: " << tag << " ssn is: " << ssn
                   << " forward ssn is: " << inst->forwardSSN;inst->dump();
         /** judge if ssn equals. */

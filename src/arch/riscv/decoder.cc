@@ -50,7 +50,7 @@ void Decoder::reset()
 }
 
 void
-Decoder::moreBytes(const PCState &pc, Addr fetchPC, MachInst inst)
+Decoder::moreBytes(PCState &pc, Addr fetchPC, MachInst inst)
 {
     DPRINTF(Decode, "Requesting bytes 0x%08x from address %#x\n", inst,
             fetchPC);
@@ -75,6 +75,11 @@ Decoder::moreBytes(const PCState &pc, Addr fetchPC, MachInst inst)
             more = true;
             instDone = compressed(emi);
         }
+    }
+    if (compressed(emi)) {
+        pc.compressed(true);
+    } else {
+        pc.compressed(false);
     }
 }
 

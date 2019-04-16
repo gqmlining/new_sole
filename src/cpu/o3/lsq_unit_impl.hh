@@ -653,12 +653,18 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
     // add data forward mechisim
     // todo@ may need to change
 
-    if (inst->firstEnterExe && dataForward(inst))
+    if (inst->firstEnterExe //&& (!inst->isSpecialInst)
+        && dataForward(inst))
     {
         inst->isForward = true;
         // todo@ write value to proper reg
         std::cout << "asw: forward success ssn is: " << inst->forwardSSN;inst->dump();
         // Need to get physical address and effSize for svw filter
+        if (inst->isConditionalInst) {
+             inst->firstEnterExe = false;
+             cpu->iew.instQueue.deferMemInst(inst);
+             return NoFault;
+        }
         inst->onlyTLBTranslate = true;
         load_fault = inst->initiateAcc();
         //inst->onlyTLBTranslate = false;
@@ -681,7 +687,7 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
                 temp = temp << 8;
              }
         }
-        std::cout << "debug: forward val is: " << val << std::endl;
+        std::cout << "asw: forward val is: " << val << std::endl;
         if (inst->isFloating())
         {
             inst->setFloatRegOperandBits(
@@ -696,7 +702,9 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         //inst->isForward = true;
         load_fault = inst->initiateAcc();
         //if (inst->firstEnterExe)
-        inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
+        //inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
+        inst->isForward = false;
+        inst->forwardSSN = cpu->retireSSN;
         std::cout << "asw: forward failed ssn is: " << inst->forwardSSN;inst->dump();
     }
 
@@ -744,8 +752,8 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 
         }
 
-       // if (checkLoads)
-        //    return checkViolations(load_idx, inst);
+        if (checkLoads)
+            return checkViolations(load_idx, inst);
     }
     if (load_fault!=NoFault)
       std::cout << "debug: exe load fault: " << load_fault->name() << std::endl;
@@ -780,8 +788,8 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
     Fault store_fault = store_inst->initiateAcc();
     if (store_inst->firstEnterExe)
     {
-         if (store_inst->canUpdateASW)
-             updateForwardEntry(store_inst);
+         //if (store_inst->canUpdateASW)
+         updateForwardEntry(store_inst);
          store_inst->firstEnterExe = false;
     }
 
@@ -1112,7 +1120,7 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
     uint64_t base = store_inst->readIntRegOperand(
                     store_inst->staticInst.get(),0);
     uint64_t offset = store_inst->staticInst->getOffset();
-    uint64_t hash = (base ^ offset) >> depCheckShift;
+    uint64_t hash = (base + offset) >> depCheckShift;
     // used for bitEnable, this is start place where bit enable
     uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
     uint64_t index = hash % setsNum;
@@ -1142,13 +1150,13 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
     // vector (data);
     uint8_t mask = 1 << blockOffset;
     entry.bitEnable = 0;
-    std::cout << "asw: size: " << store_inst->effSize << std::endl;
     for (uint64_t i = 0;i < store_inst->effSize; i++)
     {
          entry.bitEnable = entry.bitEnable | mask;
          mask = mask << 1;
          // std::cout << "asw: mask: " << (uint64_t)mask << " bitEnable: " << (uint64_t)entry.bitEnable << std::endl;
     }
+    store_inst->bitEnable = entry.bitEnable;
     entry.ssn = ssn;
     entry.tag = hash / setsNum;
     std::cout << "asw update: index: "<< index << " tag: " << entry.tag
@@ -1157,12 +1165,49 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
               << " bitEnable: " << (uint64_t)entry.bitEnable << " ssn: " << ssn;store_inst->dump();
     // only set the proper byte in data;
     if (entry.data == NULL)
-        entry.data = new uint8_t[8];
+        entry.data = new uint8_t[16];
     //std::cout << "debug: store inst effSize is: " << store_inst->effSize << std::endl;
     memcpy(&entry.data[blockOffset], store_inst->storeData,
            store_inst->effSize);
    for (int i=0;i<store_inst->effSize;i++)
      std::cout << (uint64_t)entry.data[blockOffset+i] << " ";
+}
+
+template<class Impl>
+void
+LSQUnit<Impl>::squashForwardEntry(const DynInstPtr& store_inst)
+{
+    uint64_t base = store_inst->readIntRegOperand(
+                    store_inst->staticInst.get(),0);
+    uint64_t offset = store_inst->staticInst->getOffset();
+    uint64_t hash = (base + offset) >> depCheckShift;
+    uint64_t index = hash % setsNum;
+    for (unsigned i = 0; i < waysNum; ++i)
+    {
+        DataForwardEntry& entry = dataForwardStruct[index][i];
+        if (!entry.valid)
+        {
+            continue;
+        }
+        if (store_inst->SSN == entry.ssn)
+        {
+            entry.valid = false;
+            return;
+        }
+    }
+}
+
+template<class Impl>
+void
+LSQUnit<Impl>::squashAllForwardEntry ()
+{
+   for (auto &entrys:dataForwardStruct)
+   {
+      for (auto &i:entrys)
+      {
+         i.valid = false;
+      }
+   }
 }
 
 template<class Impl>
@@ -1181,20 +1226,40 @@ LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
                     load_inst->staticInst.get(),0);
     uint64_t offset = load_inst->staticInst->getOffset();
     //std::cout << "debug: base: " << base << " offset: " << offset << std::endl;
-    uint64_t hash = (base ^ offset) >> depCheckShift;
+    uint64_t hash = (base + offset) >> depCheckShift;
     uint64_t index = hash % setsNum;
     uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
     uint64_t youngestSsnWay = 0;
     uint64_t youngestHitSsn = 0;
     bool canForward = false;
     uint64_t tag = hash / setsNum;
-
+    uint8_t mask = 1 << blockOffset;
+    load_inst->bitEnable = 0;
+    for (uint64_t i = 0;i < load_inst->effSize; i++)
+    {
+         load_inst->bitEnable = load_inst->bitEnable | mask;
+         mask = mask << 1;
+         // std::cout << "asw: mask: " << (uint64_t)mask << " bitEnable: " << (uint64_t)entry.bitEnable << std::endl;
+    }
     for (unsigned i = 0; i < waysNum; ++i)
     {
         DataForwardEntry& entry = dataForwardStruct[index][i];
         if (!entry.valid)
             continue;
         if (entry.tag != tag)
+            continue;
+        bool bitFit = true;
+        uint8_t mask = 1 << blockOffset;
+        for (uint64_t i=0;i<load_inst->effSize;i++)
+        {
+           if ((mask & entry.bitEnable) == 0)
+           {
+               bitFit = false;
+               break;
+           }
+           mask = mask << 1;
+        }
+        if (!bitFit)
             continue;
         canForward = true;
         if (youngestHitSsn <= entry.ssn)
@@ -1207,21 +1272,14 @@ LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
     {
         DataForwardEntry& entry = dataForwardStruct[index][youngestSsnWay];
         std::cout << "asw forward: index: "<< index << " tag: " << tag
+                  << " base: " << base << " offset: " << offset
                   << " blockOffset: " << blockOffset << " size: " << load_inst->effSize
                   << " bitEnable: " << (uint64_t)entry.bitEnable << " ssn: " << entry.ssn;load_inst->dump();
         load_inst->forwardSSN = youngestHitSsn;
-        uint8_t mask = 1 << blockOffset;
-        for (uint64_t i=0;i<load_inst->effSize;i++)
-        {
-           if ((mask & entry.bitEnable) == 0)
-                return false;
-           mask = mask << 1;
-        }
         uint64_t size = load_inst->effSize;
-        std::cout << "asw size: " <<size << std::endl;
-        load_inst->forwardData = new uint8_t[size];
-        std::cout << "asw test 2" << std::endl;
-        memcpy(load_inst->forwardData, &entry.data[blockOffset], size);
+        if (!load_inst->memData)
+            load_inst->memData = new uint8_t[size];
+        memcpy(load_inst->memData, &entry.data[blockOffset], size);
         std::cout << "asw size: " <<size << std::endl;
         std::cout << " entry data: ";
         for (int i=0;i<size;i++)
@@ -1233,6 +1291,7 @@ LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
         return true;
     }
     std::cout << "asw forward failed: index: "<< index << " tag: " << tag
+              << " base: " << base << " offset: " << offset
               << " blockOffset: " << blockOffset << " size: " << load_inst->effSize;load_inst->dump();
     return false;
 }
@@ -1300,6 +1359,9 @@ LSQUnit<Impl>::squash(const InstSeqNum &squashed_num)
         }
 
         // Clear the smart pointer to make sure it is decremented.
+
+        // clear the entry in asw where squashed store inst updated
+        squashForwardEntry(storeQueue[store_idx].inst);
         storeQueue[store_idx].inst->setSquashed();
         storeQueue[store_idx].inst = NULL;
         storeQueue[store_idx].canWB = 0;
@@ -1375,11 +1437,11 @@ LSQUnit<Impl>::writeback(DynInstPtr &inst, PacketPtr pkt)
             inst->completeAcc(pkt);
             // place the forward data to proper place when the data forward
             // failed.
-            if (!inst->forwardData)
+            /*if (!inst->forwardData)
             {
                  inst->forwardData = new uint8_t[inst->effSize];
                  memcpy(inst->forwardData, inst->memData, inst->effSize);
-            }
+            }*/
         } else {
             // If the instruction has an outstanding fault, we cannot complete
             // the access as this discards the current fault.

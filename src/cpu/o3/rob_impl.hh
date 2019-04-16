@@ -543,7 +543,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
         //std::cout<<"noReady"<<std::endl;
          return;
        }
-       std::cout << "do reex 1: "; inst->dump();
+       /*std::cout << "do reex 1: "; inst->dump();
        if (inst->isStore()){
          std::cout << "do reex 2: "; inst->dump();
          if (inst->isReexecuted()){
@@ -555,7 +555,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
            inst->setReexecuted();
          }
          return;
-       }
+       }*/
 
        if (inst->isSquashed()||inst->isNonSpeculative()||inst->isMemBarrier()
           ||inst->isWriteBarrier()){
@@ -568,7 +568,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
          inst->setReexecuted();
          continue;
        }
-       /*
+
        if (inst->isStore()){
          if (inst->isReexecuted()){
          }else{
@@ -578,10 +578,10 @@ ROB<Impl>::doReexcute(ThreadID tid)
            inst->setReexecuted();
          }
          return;
-       }*/
+       }
        if (inst->isLoad() && !inst->isReexecuted()){
-         //if (inst->isReexecuting())
-         //    return;
+         if (inst->isReexecuting())
+             return;
          if (!cpu->SVWFilter.violation(inst)){
           //std::cout << "debug: " << inst->seqNum << " not find in SVW: ea: "
           //            << inst->effAddr;
@@ -597,8 +597,10 @@ ROB<Impl>::doReexcute(ThreadID tid)
            if (cpu->iew.ldstQueue.thread[tid].stores != 0){
              int storeHead = cpu->iew.ldstQueue.thread[tid].storeHead;
              if (cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].
-               inst->seqNum< inst->seqNum)
-               return ;
+               inst->seqNum< inst->seqNum) {
+               std::cout << "svw : lsq head seqNum is: " <<
+               cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].inst->seqNum << std::endl;
+               return ; }
            }
            doReexcuteInst(tid,inst);
            cntReexcuteNum++;

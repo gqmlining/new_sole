@@ -155,7 +155,11 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** The store sequence number of the forward store instruction. */
     StoreSeqNum forwardSSN = 0;
 
+    uint64_t result = 0;
+
     bool isForward = false;
+
+    uint8_t bitEnable;
 
     /** The StaticInst used by this BaseDynInst. */
     const StaticInstPtr staticInst;
@@ -242,6 +246,10 @@ class BaseDynInst : public ExecContext, public RefCounted
     uint64_t effSize;
 
     bool isUnsigned = false;
+
+    bool isConditionalInst = false;
+
+    bool isSpecialInst = false;
 
     bool canUpdateASW = true;
 
@@ -693,6 +701,7 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** Records an integer register being set to a value. */
     void setIntRegOperand(const StaticInst *si, int idx, IntReg val)
     {
+        result = val;
         setScalarResult(val);
     }
 
@@ -704,7 +713,7 @@ class BaseDynInst : public ExecContext, public RefCounted
 
     /** Records an fp register being set to a value. */
     void setFloatRegOperand(const StaticInst *si, int idx, FloatReg val)
-    {
+    {   result = val;
         setScalarResult(val);
     }
 
@@ -718,7 +727,7 @@ class BaseDynInst : public ExecContext, public RefCounted
     /** Records an fp register being set to an integer value. */
     void
     setFloatRegOperandBits(const StaticInst *si, int idx, FloatRegBits val)
-    {
+    {   result = val;
         setScalarResult(val);
     }
 
@@ -780,14 +789,15 @@ class BaseDynInst : public ExecContext, public RefCounted
     void setReexecuted() { status.set(Reexecuted);}
 
     /** Clears this instruction as executed. */
-    void clearReexecuted() { status.reset(Reexecuted);}
 
+    void clearReexecuted() { status.reset(Reexecuted);}
     /** Returns whether or not this instruction has Reexecuted. */
     bool isReexecuted() const { return status[Reexecuted]; }
 
     /** Sets this instruction as Reexecuting. */
     void setReexecuting() { status.set(Reexecuting);}
 
+    void clearReexecuting() { status.reset(Reexecuting);}
     /** Returns whether or not this instruction is Reexecuting. */
     bool isReexecuting() const { return status[Reexecuting]; }
 
@@ -1083,7 +1093,14 @@ BaseDynInst<Impl>::writeMem(uint8_t *data, unsigned size, Addr addr,
         if (cpu->checker) {
             reqToVerify = std::make_shared<Request>(*req);
         }
-        //std::cout << "debug: call write function" << std::endl;
+
+        std::cout << "store write Vaddr: " << effAddr << " Size: " << effSize
+                  << " data: ";
+        for (int i=0;i<effSize;i++)
+        {
+            std::cout << (uint64_t)data[i] <<" ";
+        }
+        this->dump();
         fault = cpu->write(req, sreqLow, sreqHigh, data, sqIdx);
     }
 

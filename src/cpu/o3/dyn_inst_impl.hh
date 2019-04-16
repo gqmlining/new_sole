@@ -129,6 +129,16 @@ if (this->isLoad() || this->isStore()){
   if (name.find("u") != std::string::npos) {
     this->isUnsigned = true;
   }
+  if (name.find("lr_") != std::string::npos) {
+    this->isConditionalInst = true;
+  }
+  if (name.find("c_lwsp") != std::string::npos) {
+    this->isSpecialInst = true;
+  }
+  if (name.find("c_ldsp") != std::string::npos) {
+    this->isSpecialInst = true;
+  }
+
   if (name.find("ld") != std::string::npos){
     this->effSize = sizeof(uint64_t);
     return ;
@@ -138,7 +148,7 @@ if (this->isLoad() || this->isStore()){
     return ;
   }
 
-  if (name.find("ub") != std::string::npos){
+  if (name.find("bu") != std::string::npos){
     this->effSize = sizeof(uint8_t);
     return ;
   }
@@ -146,7 +156,7 @@ if (this->isLoad() || this->isStore()){
     this->effSize = sizeof(int16_t);
     return ;
   }
-  if (name.find("uh") != std::string::npos){
+  if (name.find("hu") != std::string::npos){
     this->effSize = sizeof(uint16_t);
     return ;
   }
@@ -154,7 +164,7 @@ if (this->isLoad() || this->isStore()){
     this->effSize = sizeof(int32_t);
     return ;
   }
-  if (name.find("uw") != std::string::npos){
+  if (name.find("wu") != std::string::npos){
     this->effSize = sizeof(uint32_t);
     return ;
   }
@@ -163,7 +173,7 @@ if (this->isLoad() || this->isStore()){
     return ;
   }
 
-  if (name.find("ud") != std::string::npos){
+  if (name.find("du") != std::string::npos){
     this->effSize = sizeof(int64_t);
     return ;
   }

@@ -1293,14 +1293,14 @@ DefaultCommit<Impl>::commitHead(DynInstPtr &head_inst, unsigned inst_num)
     }
     // this used to debug by cout result of each instruciton
     std::cout << "Commit inst: ";
-    if (head_inst->numDestRegs()>0 && !head_inst->isFloating()) {
+    if (head_inst->numDestRegs()>0){
         //PhysRegIdPtr id = head_inst->renamedDestRegIdx(0);
-        uint64_t result = head_inst->readIntDestReg(0);
+        uint64_t result = head_inst->result;
         std::cout << " val: " << result;
     }
     head_inst->dump();
     if (head_inst->isLoad() || head_inst->isStore())
-         std::cout<<"check:Addr"<<head_inst->effAddr<<" size:"<<head_inst->effSize<<" ssn:"<<head_inst->SSN<<" forwardSSN"<<head_inst->forwardSSN;head_inst->dump();
+         std::cout<<"check:Addr"<<head_inst->effAddr<<" size:"<<head_inst->effSize;head_inst->dump();
     DPRINTF(Commit, "Committing instruction with [sn:%lli] PC %s\n",
             head_inst->seqNum, head_inst->pcState());
     if (head_inst->traceData) {

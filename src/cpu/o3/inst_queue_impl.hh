@@ -921,6 +921,7 @@ InstructionQueue<Impl>::scheduleReadyInsts()
                 count[tid]--;
                 issuing_inst->clearInIQ();
             } else {
+                // todo@ need to identify
                 memDepUnit[tid].issue(issuing_inst);
             }
 
@@ -1167,6 +1168,11 @@ InstructionQueue<Impl>::getDeferredMemInstToExecute()
     for (ListIt it = deferredMemInsts.begin(); it != deferredMemInsts.end();
          ++it) {
         if ((*it)->translationCompleted() || (*it)->isSquashed()) {
+            DynInstPtr mem_inst = *it;
+            deferredMemInsts.erase(it);
+            return mem_inst;
+        }
+        if ((*it)->isConditionalInst && cpu->retireSSN >= (*it)->forwardSSN) {
             DynInstPtr mem_inst = *it;
             deferredMemInsts.erase(it);
             return mem_inst;
