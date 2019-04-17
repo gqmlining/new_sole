@@ -543,9 +543,9 @@ ROB<Impl>::doReexcute(ThreadID tid)
         //std::cout<<"noReady"<<std::endl;
          return;
        }
-       /*std::cout << "do reex 1: "; inst->dump();
+       //std::cout << "do reex 1: "; inst->dump();
        if (inst->isStore()){
-         std::cout << "do reex 2: "; inst->dump();
+         //std::cout << "do reex 2: "; inst->dump();
          if (inst->isReexecuted()){
          }else{
            //std::cout << inst->seqNum << " INSERT SVW: ea"<<inst->effAddr;
@@ -555,21 +555,23 @@ ROB<Impl>::doReexcute(ThreadID tid)
            inst->setReexecuted();
          }
          return;
-       }*/
+       }
 
        if (inst->isSquashed()||inst->isNonSpeculative()||inst->isMemBarrier()
           ||inst->isWriteBarrier()){
          inst->setReexecuted();
+         std::cout << "svw test1 ";inst->dump();
          return;
        }
       // if (!inst->readPredicate()||inst->isControl()||
        //inst->isMacroop()||inst->isMicroop()||inst->isAtomic()){
        if (!inst->readPredicate()){
          inst->setReexecuted();
+         std::cout << "svw test2 ";inst->dump();
          continue;
        }
 
-       if (inst->isStore()){
+       /*if (inst->isStore()){
          if (inst->isReexecuted()){
          }else{
            //std::cout << inst->seqNum << " INSERT SVW: ea"<<inst->effAddr;
@@ -578,7 +580,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
            inst->setReexecuted();
          }
          return;
-       }
+       }*/
        if (inst->isLoad() && !inst->isReexecuted()){
          if (inst->isReexecuting())
              return;

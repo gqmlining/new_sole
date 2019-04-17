@@ -811,7 +811,7 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
         return store_fault;
     }
 
-    std::cout << "svw update: effAddr is: " << store_inst->effAddr;store_inst->dump();
+    std::cout << "asw update: effAddr is: " << store_inst->effAddr;store_inst->dump();
     // todo@ may need to identify where to place this op
     //if (store_inst->canUpdateASW)
     //    updateForwardEntry(store_inst);

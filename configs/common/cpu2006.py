@@ -62,7 +62,7 @@ hmmer.executable =  binary_dir+'456.hmmer/exe/hmmer_base.riscv'
 data=data_dir+'456.hmmer/data/test/input/bombesin.hmm'
 hmmer.cwd = output_dir+'456.hmmer'+prefix
 print(hmmer.cwd)
-hmmer.cmd = [hmmer.executable]+['--fixed', '0', '--mean', '325', '--num', '45000', '--sd', '200', '--seed', '0', data]
+hmmer.cmd = [hmmer.executable]+['--fixed', '0', '--mean', '325', '--num', '5000', '--sd', '200', '--seed', '0', data]
 #hmmer.output = output_dir+'456.hmmer/bombesin.out'
 #hmmer.errout = output_dir+'456.hmmer/bombesin.err'
 

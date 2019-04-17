@@ -200,6 +200,11 @@ if (this->isLoad() || this->isStore()){
     this->effSize = sizeof(uint64_t);
     return ;
   }
+
+  if (name.find("h") != std::string::npos){
+    this->effSize = sizeof(uint16_t);
+    return ;
+  }
 }
 
 }
