@@ -126,7 +126,8 @@ BaseO3DynInst<Impl>::initVars()
 
 if (this->isLoad() || this->isStore()){
   string name = this->staticInst->getName();
-  if (name.find("u") != std::string::npos) {
+  if (name.find("u") != std::string::npos ||
+      name.find("f") != std::string::npos) {
     this->isUnsigned = true;
   }
   if (name.find("lr_") != std::string::npos) {
