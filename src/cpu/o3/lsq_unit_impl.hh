@@ -652,7 +652,6 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 
     // add data forward mechisim
     // todo@ may need to change
-
     if (inst->firstEnterExe //&& (!inst->isSpecialInst)
         && dataForward(inst))
     {
@@ -810,7 +809,6 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
 
         return store_fault;
     }
-
     std::cout << "asw update: effAddr is: " << store_inst->effAddr;store_inst->dump();
     // todo@ may need to identify where to place this op
     //if (store_inst->canUpdateASW)

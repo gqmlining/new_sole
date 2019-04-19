@@ -540,7 +540,13 @@ ROB<Impl>::doReexcute(ThreadID tid)
        head_it++;
        //std::cout<<"doReex:isReexcuted:"<<inst->isExecuted();inst->dump();
        if (!inst->readyToCommit() || inst->isSquashDueToReexecute()){
-        //std::cout<<"noReady"<<std::endl;
+         std::cout<<"svw: noReady ";inst->dump();
+         return;
+       }
+       if (inst->isSquashed()) {
+         if (inst->isStore())
+             cpu->SVWFilter.squashSVW(inst);
+         std::cout<<"svw: squashed ";inst->dump();
          return;
        }
        //std::cout << "do reex 1: "; inst->dump();
@@ -557,7 +563,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
          return;
        }
 
-       if (inst->isSquashed()||inst->isNonSpeculative()||inst->isMemBarrier()
+       if (inst->isNonSpeculative()||inst->isMemBarrier()
           ||inst->isWriteBarrier()){
          inst->setReexecuted();
          std::cout << "svw test1 ";inst->dump();
@@ -606,7 +612,7 @@ ROB<Impl>::doReexcute(ThreadID tid)
            }
            doReexcuteInst(tid,inst);
            cntReexcuteNum++;
-           continue;
+           return;
          }
        }
        inst->setReexecuted();

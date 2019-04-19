@@ -76,6 +76,19 @@ public:
       }
     }
 
+    void squashSVW(DynInstPtr &inst){
+        auto addr = inst->effAddr >> depCheckShift;
+        //std::cout << "getSSN: physical addr: " << inst->physEffAddrLow; inst->dump();
+        SVWKey_t key = addr % size;
+        for (auto &i:svwItems[key])
+        {
+            if (i.VAILD && i.SSN == inst->SSN)
+            {
+                i.VAILD = false;
+            }
+        }
+    }
+
     SVWStoreSeqNum_t search(SVWKey_t key,SVWTag_t tag,uint8_t bitEnable){
        auto temp = svwItems[key].front();
        SVWStoreSeqNum_t res = temp.VAILD?temp.SSN:0;
