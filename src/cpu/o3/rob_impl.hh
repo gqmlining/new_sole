@@ -497,6 +497,10 @@ ROB<Impl>::updateTail()
 }
 
 int reexecuteNum;
+int doreexecuteNumForward;
+int doreexecuteNumNotForward;
+int notreexecuteNumForward;
+int notreexecuteNumNotForward;
 
 template <class Impl>
 void
@@ -522,6 +526,15 @@ ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
   //  std::cout<<"load_fault == NoFault:"<<(load_fault == NoFault)<<std::endl;
     reexecuteNum++;
     std::cout << "reexecuteNum: " << reexecuteNum;inst->dump();
+    if (inst->isForward)
+    {
+        doreexecuteNumForward++;
+        std::cout << "doreexecuteNumForward: " << doreexecuteNumForward;inst->dump();
+    }else
+    {
+        doreexecuteNumNotForward++;
+        std::cout << "doreexecuteNumNotForward: " << doreexecuteNumNotForward;inst->dump();
+    }
     return;
 }
 
@@ -594,6 +607,15 @@ ROB<Impl>::doReexcute(ThreadID tid)
           //std::cout << "debug: " << inst->seqNum << " not find in SVW: ea: "
           //            << inst->effAddr;
           //inst->dump();
+           if (inst->isForward)
+           {
+             notreexecuteNumForward++;
+             std::cout << "notreexecuteNumForward: " << notreexecuteNumForward;inst->dump();
+           }else
+           {
+             notreexecuteNumNotForward++;
+             std::cout << "notreexecuteNumNotForward: " << notreexecuteNumNotForward;inst->dump();
+           }
            inst->setExecuted();
            inst->setCanCommit();
            inst->setReexecuted();

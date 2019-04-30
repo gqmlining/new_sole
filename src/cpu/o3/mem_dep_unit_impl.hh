@@ -200,7 +200,9 @@ MemDepUnit<MemDepPred, Impl>::insert(DynInstPtr &inst)
                 storeBarrierSN);
         producing_store = storeBarrierSN;
     } else {
-        producing_store = depPred.checkInst(inst->instAddr());
+        //close the store set
+        producing_store = 0;
+        //producing_store = depPred.checkInst(inst->instAddr());
     }
 
     MemDepEntryPtr store_entry = NULL;

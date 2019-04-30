@@ -664,6 +664,7 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
              cpu->iew.instQueue.deferMemInst(inst);
              return NoFault;
         }
+        std::cout <<"forward test time: " << curTick() << " inst SN: " << inst->seqNum;inst->dump();
         inst->onlyTLBTranslate = true;
         load_fault = inst->initiateAcc();
         //inst->onlyTLBTranslate = false;

@@ -1439,6 +1439,7 @@ DefaultIEW<Impl>::writebackInsts()
         // when it's ready to execute the strictly ordered load.
         if (!inst->isSquashed() && inst->isExecuted() && inst->getFault() == NoFault) {
             int dependents = instQueue.wakeDependents(inst);
+            std::cout <<"writeback test time: " << curTick() << " inst SN: " << inst->seqNum;inst->dump();
 
             for (int i = 0; i < inst->numDestRegs(); i++) {
                 //mark as Ready
