@@ -798,18 +798,18 @@ LSQUnit<Impl>::read(const RequestPtr &req,
 
     // Allocate memory if this is the first time a load is issued.
     if (!load_inst->memData) {
-        std::cout <<"lsq test req size: " << req->getSize() << std::endl;
+        //std::cout <<"lsq test req size: " << req->getSize() << std::endl;
         load_inst->memData = new uint8_t[req->getSize()];
     }
 
-    std::cout << "lsq test 1-1" << std::endl;
+    //std::cout << "lsq test 1-1" << std::endl;
     // if we the cache is not blocked, do cache access
     bool completedFirst = false;
     PacketPtr data_pkt = Packet::createRead(req);
     PacketPtr fst_data_pkt = NULL;
     PacketPtr snd_data_pkt = NULL;
 
-    std::cout << "lsq test 1-2" << std::endl;
+    //std::cout << "lsq test 1-2" << std::endl;
 
     data_pkt->dataStatic(load_inst->memData);
 
@@ -819,7 +819,7 @@ LSQUnit<Impl>::read(const RequestPtr &req,
     state->inst = load_inst;
     data_pkt->senderState = state;
 
-    std::cout << "lsq test 1-3" << std::endl;
+    //std::cout << "lsq test 1-3" << std::endl;
 
     if (!TheISA::HasUnalignedMemAcc || !sreqLow) {
         // Point the first packet at the main data packet.
@@ -840,7 +840,7 @@ LSQUnit<Impl>::read(const RequestPtr &req,
         state->mainPkt = data_pkt;
     }
 
-    std::cout << "lsq test 1-4" << std::endl;
+    //std::cout << "lsq test 1-4" << std::endl;
 
    // For now, load throughput is constrained by the number of
     // load FUs only, and loads do not consume a cache port (only
@@ -869,7 +869,7 @@ LSQUnit<Impl>::read(const RequestPtr &req,
         }
     }
 
-    std::cout << "lsq test 1-5" << std::endl;
+    //std::cout << "lsq test 1-5" << std::endl;
 
     // If the cache was blocked, or has become blocked due to the access,
     // handle it.

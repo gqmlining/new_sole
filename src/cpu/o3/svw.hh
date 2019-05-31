@@ -57,11 +57,20 @@ public:
       //inst->effAddr = base + offset;
       if (inst->effAddr == 0)
       {
-           uint64_t base = inst->readIntRegOperand(
+           //return;
+           int64_t base = inst->readIntRegOperand(
                            inst->staticInst.get(),0);
-           uint64_t offset = inst->staticInst->getOffset();
+           int64_t offset = inst->staticInst->getOffset();
            inst->effAddr = base + offset;
-           inst->bitEnable = 255;
+           uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
+           uint8_t mask = 1 << blockOffset;
+           inst->bitEnable = 0;
+           for (uint64_t i = 0;i < inst->effSize; i++)
+           {
+              inst->bitEnable = inst->bitEnable | mask;
+              mask = mask << 1;
+           }
+           std::cout << "inst bit enable: " << (uint64_t)inst->bitEnable << "seqNum is: " << inst->seqNum;inst->dump();
       }
       auto inst_eff_addr1 = inst->effAddr >> depCheckShift;
       auto inst_eff_addr2 =
@@ -72,7 +81,7 @@ public:
         SVWTag_t tag = addr / size;
         insert(key,tag,inst->SSN,inst->bitEnable/*,inst->memData*/);
         std::cout << "svw update: addr is " << inst->effAddr << " index: " << key
-                  << " tag: " << tag << " ssn: " << inst->SSN;inst->dump();
+                  << " tag: " << tag << " ssn: " << inst->SSN << " seqNum: " << inst->seqNum;inst->dump();
       }
     }
 
@@ -89,25 +98,32 @@ public:
         }
     }
 
-    SVWStoreSeqNum_t search(SVWKey_t key,SVWTag_t tag,uint8_t bitEnable){
-       auto temp = svwItems[key].front();
+    SVWStoreSeqNum_t search(DynInstPtr &inst, bool &not_hit,SVWKey_t key,SVWTag_t tag,uint8_t bitEnable){
+       auto temp = svwItems[key].back();
        SVWStoreSeqNum_t res = temp.VAILD?temp.SSN:0;
        for (auto i:svwItems[key]){
             res = std::min(res, i.SSN);
+            // svw in sole
+            //res = std::max(res, i.SSN);
             if (i.VAILD && i.TAG == tag)
             {
+                // svw in sole
+                //return i.SSN;
                 uint8_t mask = 1;
                 for (uint64_t t=0;t<8;t++)
                 {
                     if (((mask & bitEnable) != 0) &&
                         ((mask & i.bitEnable) != 0))
                     {
+                        std::cout << "inst bit enable is: " << (uint64_t)bitEnable << " entry bit enable is: " << (uint64_t)i.bitEnable
+                                  << " seqNum is: " <<inst->seqNum;inst->dump();
                         return i.SSN;
                     }
                     mask = mask << 1;
                 }
             }
         }
+        not_hit=true;
         return res;
     }
 
@@ -119,14 +135,16 @@ public:
         for (auto i:svwItems[key]){
             if (i.VAILD && i.TAG == tag)
             {
-                bool bitFit = true;
+                //svw in sole
+                //return i.SSN;
+                bool bitFit =false;
                 uint8_t mask = 1;
                 for (uint64_t t=0;t<8;t++)
                 {
-                    if (((mask & inst->bitEnable) == 1) &&
-                        ((mask & i.bitEnable) == 0))
+                    if (((mask & inst->bitEnable) > 0) &&
+                        ((mask & i.bitEnable) > 0))
                     {
-                        bitFit = false;
+                        bitFit = true;
                         break;
                     }
                     mask = mask << 1;
@@ -156,10 +174,15 @@ public:
       for (auto addr = inst_eff_addr1; addr <= inst_eff_addr2; addr++){
         SVWKey_t key = addr % size;
         SVWTag_t tag = addr / size;
-        SVWStoreSeqNum_t ssn = search(key, tag, inst->bitEnable);
+        bool not_hit = false;
+        SVWStoreSeqNum_t ssn = search(inst, not_hit, key, tag, inst->bitEnable);
+        if (inst->firstEnterSVW && not_hit)
+            inst->not_hit = true;
+        if (inst->filterSSN==0)
+          inst->filterSSN = ssn;
         std::cout << "svw violation: addr is: " << inst->effAddr << " index: " << key
                   << " tag: " << tag << " ssn is: " << ssn
-                  << " forward ssn is: " << inst->forwardSSN;inst->dump();
+                  << " forward ssn is: " << inst->forwardSSN << " seqNum is: " << inst->seqNum;inst->dump();
         /** judge if ssn equals. */
         if (inst->isForward)
         {
@@ -177,6 +200,10 @@ public:
               }*/
                  return true;
             }
+           else if (not_hit)
+            {
+                return true;
+            }
         }
         else if (ssn > inst->forwardSSN)
              return true;
@@ -192,4 +219,4 @@ public:
         std::cout<<"---------------------------"<<std::endl;
     }
 };
-#endif //__CPU_O3_SVW_HH__
+#endif //__CPU_O3_SVW___

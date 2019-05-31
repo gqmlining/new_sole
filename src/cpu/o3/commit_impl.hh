@@ -723,7 +723,7 @@ DefaultCommit<Impl>::tick()
     }
 
     updateStatus();
-    std::cout <<"debug: commit tick end." << std::endl;
+    //std::cout <<"debug: commit tick end." << std::endl;
 }
 
 template <class Impl>
@@ -1014,6 +1014,18 @@ DefaultCommit<Impl>::commitInsts()
 
         DPRINTF(Commit, "Trying to commit head instruction, [sn:%i] [tid:%i]\n",
                 head_inst->seqNum, tid);
+        //adding waiting store write back;
+        /*if (head_inst->isStore()) {
+          if (this->cpu->iew.ldstQueue.thread[tid].stores != 0){
+             int storeHead = this->cpu->iew.ldstQueue.thread[tid].storeHead;
+             if (this->cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].
+               inst->seqNum< head_inst->seqNum) {
+               std::cout << "svw : lsq head seqNum is: " <<
+               this->cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].inst->seqNum << std::endl;
+               break ;
+            }
+          }
+        }*/
 
         // If the head instruction is squashed, it is ready to retire
         // (be removed from the ROB) at any time.
@@ -1218,7 +1230,7 @@ DefaultCommit<Impl>::commitHead(DynInstPtr &head_inst, unsigned inst_num)
         DPRINTF(Commit, "Inst [sn:%lli] PC %s has a fault\n",
                 head_inst->seqNum, head_inst->pcState());
 
-        std::cout << "fault is: " << inst_fault->name() <<"SN:"<<head_inst->seqNum;head_inst->dump();
+        //std::cout << "fault is: " << inst_fault->name() <<"SN:"<<head_inst->seqNum;head_inst->dump();
 
         if (iewStage->hasStoresToWB(tid) || inst_num > 0) {
             DPRINTF(Commit, "Stores outstanding, fault must wait.\n");
@@ -1300,7 +1312,10 @@ DefaultCommit<Impl>::commitHead(DynInstPtr &head_inst, unsigned inst_num)
     }
     head_inst->dump();
     if (head_inst->isLoad() || head_inst->isStore())
-         std::cout<<"check:Addr"<<head_inst->effAddr<<" size:"<<head_inst->effSize;head_inst->dump();
+         //std::cout<<"check:Addr"<<head_inst->effAddr<<" size:"<<head_inst->effSize<<" SN: " << head_inst->seqNum;head_inst->dump();
+           std::cout << "hash stats: base: " << head_inst->base << " offset: " << head_inst->offset << " SN: " <<head_inst->SSN <<std::endl;
+    if (head_inst->reexecuteTime > 0)
+        std::cout << "reexecuteTime is: " << curTick()-head_inst->reexecuteTime << " ";head_inst->dump();
     DPRINTF(Commit, "Committing instruction with [sn:%lli] PC %s\n",
             head_inst->seqNum, head_inst->pcState());
     if (head_inst->traceData) {
@@ -1360,7 +1375,7 @@ DefaultCommit<Impl>::getInsts()
 
             DPRINTF(Commit, "Inserting PC %s [sn:%i] [tid:%i] into ROB.\n",
                     inst->pcState(), inst->seqNum, tid);
-            std::cout << "commit insert: ";inst->dump();
+            //std::cout << "commit insert: ";inst->dump();
 
             rob->insertInst(inst);
 
@@ -1371,7 +1386,7 @@ DefaultCommit<Impl>::getInsts()
             DPRINTF(Commit, "Instruction PC %s [sn:%i] [tid:%i] was "
                     "squashed, skipping.\n",
                     inst->pcState(), inst->seqNum, tid);
-            std::cout << "commit not insert: ";inst->dump();
+            //std::cout << "commit not insert: ";inst->dump();
         }
     }
 }

@@ -496,11 +496,13 @@ ROB<Impl>::updateTail()
     }
 }
 
+/*
 int reexecuteNum;
 int doreexecuteNumForward;
 int doreexecuteNumNotForward;
 int notreexecuteNumForward;
 int notreexecuteNumNotForward;
+*/
 
 template <class Impl>
 void
@@ -525,15 +527,15 @@ ROB<Impl>::doReexcuteInst(ThreadID tid, DynInstPtr inst){
     load_fault = cpu->iew.ldstQueue.thread[tid].ReexecuteLoad(inst);
   //  std::cout<<"load_fault == NoFault:"<<(load_fault == NoFault)<<std::endl;
     reexecuteNum++;
-    std::cout << "reexecuteNum: " << reexecuteNum;inst->dump();
+   // std::cout << "reexecuteNum: " << reexecuteNum;inst->dump();
     if (inst->isForward)
     {
         doreexecuteNumForward++;
-        std::cout << "doreexecuteNumForward: " << doreexecuteNumForward;inst->dump();
+        std::cout << "doreexecuteNumForward seqNum is: " << inst->seqNum ;inst->dump();
     }else
     {
         doreexecuteNumNotForward++;
-        std::cout << "doreexecuteNumNotForward: " << doreexecuteNumNotForward;inst->dump();
+        std::cout << "doreexecuteNumNotForward seqNum is: " << inst->seqNum;inst->dump();
     }
     return;
 }
@@ -547,59 +549,85 @@ ROB<Impl>::doReexcute(ThreadID tid)
     int cntReexcuteNum = 0;
     if (instList[tid].empty())
       return;
-    while (head_it != instList[tid].end()) {
+    int cnt = 0;
+    while (head_it != instList[tid].end() && cnt < 4) {
+       //cnt++;
        DynInstPtr inst = *head_it;
        //std::cout<<"do reex: ";inst->dump();
        head_it++;
        //std::cout<<"doReex:isReexcuted:"<<inst->isExecuted();inst->dump();
        if (!inst->readyToCommit() || inst->isSquashDueToReexecute()){
-         std::cout<<"svw: noReady ";inst->dump();
+         //std::cout<<"svw: noReady ";inst->dump();
          return;
        }
        if (inst->isSquashed()) {
          if (inst->isStore())
              cpu->SVWFilter.squashSVW(inst);
-         std::cout<<"svw: squashed ";inst->dump();
+         //std::cout<<"svw: squashed ";inst->dump();
          return;
        }
+       //bool flag = false;
        //std::cout << "do reex 1: "; inst->dump();
        if (inst->isStore()){
+         /*if (inst->isExecuted()&&this->cpu->iew.ldstQueue.thread[tid].stores != 0){
+             int storeHead = this->cpu->iew.ldstQueue.thread[tid].storeHead;
+             if (this->cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].
+               inst->seqNum< inst->seqNum) {
+               return;
+            }
+          }*/
+
          //std::cout << "do reex 2: "; inst->dump();
          if (inst->isReexecuted()){
          }else{
            //std::cout << inst->seqNum << " INSERT SVW: ea"<<inst->effAddr;
            //inst->dump();
-           std::cout << "do reex 3: "; inst->dump();
+           //std::cout << "do reex 3: "; inst->dump();
            cpu->SVWFilter.insert(inst);
            inst->setReexecuted();
          }
-         return;
+         //return;
+         //flag = true;
+         continue;
        }
 
        if (inst->isNonSpeculative()||inst->isMemBarrier()
           ||inst->isWriteBarrier()){
          inst->setReexecuted();
-         std::cout << "svw test1 ";inst->dump();
+         //std::cout << "svw test1 ";inst->dump();
          return;
        }
       // if (!inst->readPredicate()||inst->isControl()||
        //inst->isMacroop()||inst->isMicroop()||inst->isAtomic()){
        if (!inst->readPredicate()){
          inst->setReexecuted();
-         std::cout << "svw test2 ";inst->dump();
+         //std::cout << "svw test2 ";inst->dump();
          continue;
        }
 
        /*if (inst->isStore()){
+         if (inst->isExecuted()&&this->cpu->iew.ldstQueue.thread[tid].stores != 0){
+             int storeHead = this->cpu->iew.ldstQueue.thread[tid].storeHead;
+             if (this->cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].
+               inst->seqNum< inst->seqNum) {
+               return;
+            }
+          }
+
+         //std::cout << "do reex 2: "; inst->dump();
          if (inst->isReexecuted()){
          }else{
            //std::cout << inst->seqNum << " INSERT SVW: ea"<<inst->effAddr;
            //inst->dump();
+           //std::cout << "do reex 3: "; inst->dump();
            cpu->SVWFilter.insert(inst);
            inst->setReexecuted();
          }
-         return;
+         //return;
+         //flag = true;
+         continue;
        }*/
+
        if (inst->isLoad() && !inst->isReexecuted()){
          if (inst->isReexecuting())
              return;
@@ -610,11 +638,11 @@ ROB<Impl>::doReexcute(ThreadID tid)
            if (inst->isForward)
            {
              notreexecuteNumForward++;
-             std::cout << "notreexecuteNumForward: " << notreexecuteNumForward;inst->dump();
+             //std::cout << "notreexecuteNumForward: " << notreexecuteNumForward;inst->dump();
            }else
            {
              notreexecuteNumNotForward++;
-             std::cout << "notreexecuteNumNotForward: " << notreexecuteNumNotForward;inst->dump();
+             //std::cout << "notreexecuteNumNotForward: " << notreexecuteNumNotForward;inst->dump();
            }
            inst->setExecuted();
            inst->setCanCommit();
@@ -624,12 +652,56 @@ ROB<Impl>::doReexcute(ThreadID tid)
          else{
            //std::cout << inst->seqNum << " find in SVW: ea"<<inst->effAddr;
            //inst->dump();
+           inst->wait_time++;
+           std::cout << "wait " << inst->wait_time << " " << curTick();inst->dump();
+           if (inst->firstEnterSVW)
+           {
+             /* if (cpu->iew.ldstQueue.thread[tid].stores != 0){
+                 //int storeHead = cpu->iew.ldstQueue.thread[tid].storeHead;
+                 for (int i=0;i<cpu->iew.ldstQueue.thread[tid].storeQueue.size();i++)
+                 {
+                    auto store_inst = cpu->iew.ldstQueue.thread[tid].storeQueue[i].inst;
+                    if (!store_inst)
+                        continue;
+                    if (store_inst->SSN == inst->filterSSN)
+                    {
+                       if (store_inst->effAddr <= inst->effAddr &&
+                         ((store_inst->effAddr + store_inst->effSize) >=
+                          (inst->effAddr + inst->effSize)))
+                       {
+                           int offset = inst->effAddr - store_inst->effAddr;
+                           memcpy(inst->memData,cpu->iew.ldstQueue.thread[tid].storeQueue[i].data+offset,inst->effSize);
+                           inst->getData = true;
+                           break;
+                       }
+                    }
+                    //std::cout << "SSN is: " << store_inst->SSN << std::endl;
+                 }
+                 //if (flag)
+                 //   inst->not_hit = true;
+              }*/
+              //std::cout << "load start reexecute tick: " << curTick() << " SN: " << inst->seqNum;inst->dump();
+              inst->firstEnterSVW = false;
+              inst->reexecuteTime = curTick();
+           }
+           //std::cout << "reduce time tick is : " << curTick()-inst->reexecuteTime;inst->dump();
+           /*if (inst->getData && (curTick()-inst->reexecuteTime >=3000))
+           {
+             doReexcuteInst(tid,inst);
+             cntReexcuteNum++;
+             return;
+
+           }*/
+           /*if (inst->not_hit)
+                inst->filterSSN = 0;*/
            if (cpu->iew.ldstQueue.thread[tid].stores != 0){
              int storeHead = cpu->iew.ldstQueue.thread[tid].storeHead;
              if (cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].
-               inst->seqNum< inst->seqNum) {
-               std::cout << "svw : lsq head seqNum is: " <<
-               cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].inst->seqNum << std::endl;
+               //inst->seqNum < inst->seqNum) {
+               inst->SSN <= inst->filterSSN) {
+               std::cout << "svw : lsq head SSN is: " <<
+               cpu->iew.ldstQueue.thread[tid].storeQueue[storeHead].inst->SSN
+               << "SVW SSN is:" << inst->filterSSN;inst->dump();
                return ; }
            }
            doReexcuteInst(tid,inst);
@@ -714,6 +786,27 @@ ROB<Impl>::regStats()
     robWrites
         .name(name() + ".rob_writes")
         .desc("The number of ROB writes");
+
+    notreexecuteNumForward
+        .name(name() + ".not_reexecute_num_forward")
+        .desc("The number of not reexecute load while is forward");
+
+    notreexecuteNumNotForward
+        .name(name() + ".not_reexecute_num_not_forward")
+        .desc("The number of not reexecute load while is not forward");
+
+    doreexecuteNumForward
+        .name(name() + ".do_reexecute_num_forward")
+        .desc("The number of reexecute load while is forward");
+
+    doreexecuteNumNotForward
+        .name(name() + ".do_reexecute_num_not_forward")
+        .desc("The number of reexecute load while is not forward");
+
+    reexecuteNum
+        .name(name() + ".reexecutei_num")
+        .desc("The total number of reexecute load");
+
 }
 
 template <class Impl>

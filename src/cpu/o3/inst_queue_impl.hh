@@ -1167,6 +1167,12 @@ InstructionQueue<Impl>::getDeferredMemInstToExecute()
 {
     for (ListIt it = deferredMemInsts.begin(); it != deferredMemInsts.end();
          ++it) {
+        if ((*it)->cnt == 1)
+        {
+            DynInstPtr mem_inst = *it;
+            deferredMemInsts.erase(it);
+            return mem_inst;
+        }
         if ((*it)->translationCompleted() || (*it)->isSquashed()) {
             DynInstPtr mem_inst = *it;
             deferredMemInsts.erase(it);

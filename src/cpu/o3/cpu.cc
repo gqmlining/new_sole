@@ -139,7 +139,7 @@ FullO3CPU<Impl>::DcachePort::recvReqRetry()
 template <class Impl>
 FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
     : BaseO3CPU(params),
-      SVWFilter(1024,4),
+      SVWFilter(128,2),
       itb(params->itb),
       dtb(params->dtb),
       tickEvent([this]{ tick(); }, "FullO3CPU tick",
@@ -588,25 +588,25 @@ FullO3CPU<Impl>::tick()
 
     // Now advance the time buffers
     timeBuffer.advance();
-    std::cout << "cpu tick 1-1" << std::endl;
+    //std::cout << "cpu tick 1-1" << std::endl;
     fetchQueue.advance();
-    std::cout << "cpu tick 1-2" << std::endl;
+    //std::cout << "cpu tick 1-2" << std::endl;
     decodeQueue.advance();
-    std::cout << "cpu tick 1-3" << std::endl;
+    //std::cout << "cpu tick 1-3" << std::endl;
 
     renameQueue.advance();
-    std::cout << "cpu tick 1-4" << std::endl;
+    //std::cout << "cpu tick 1-4" << std::endl;
 
     iewQueue.advance();
-    std::cout << "cpu tick 1-5" << std::endl;
+    //std::cout << "cpu tick 1-5" << std::endl;
 
     activityRec.advance();
-    std::cout << "cpu tick 1-6" << std::endl;
+    //std::cout << "cpu tick 1-6" << std::endl;
 
     if (removeInstsThisCycle) {
         cleanUpRemovedInsts();
     }
-    std::cout << "cpu tick 1-7" << std::endl;
+    //std::cout << "cpu tick 1-7" << std::endl;
 
     if (!tickEvent.scheduled()) {
         if (_status == SwitchedOut) {
@@ -622,11 +622,11 @@ FullO3CPU<Impl>::tick()
             DPRINTF(O3CPU, "Scheduling next tick!\n");
         }
     }
-    std::cout << "cpu tick 1-8" << std::endl;
+    //std::cout << "cpu tick 1-8" << std::endl;
 
     if (!FullSystem)
         updateThreadPriority();
-    std::cout << "cpu tick 1-9" << std::endl;
+    //std::cout << "cpu tick 1-9" << std::endl;
 
     tryDrain();
 }
@@ -1008,7 +1008,7 @@ FullO3CPU<Impl>::trap(const Fault &fault, ThreadID tid,
     fault->invoke(this->threadContexts[tid], inst);
     if (inst->isSyscall())
     {
-       std::cout << "squash Forward Strcut " << inst->getName() << std::endl;
+       //std::cout << "squash Forward Strcut " << inst->getName() << std::endl;
        this->iew.ldstQueue.thread[tid].squashAllForwardEntry();
     }
 }

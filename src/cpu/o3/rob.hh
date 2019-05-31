@@ -341,6 +341,16 @@ class ROB
     Stats::Scalar robReads;
     // The number of rob_writes
     Stats::Scalar robWrites;
+
+    Stats::Scalar notreexecuteNumForward;
+
+    Stats::Scalar notreexecuteNumNotForward;
+
+    Stats::Scalar doreexecuteNumForward;
+
+    Stats::Scalar doreexecuteNumNotForward;
+
+    Stats::Scalar reexecuteNum;
 };
 
 #endif //__CPU_O3_ROB_HH__

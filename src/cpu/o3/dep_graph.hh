@@ -189,17 +189,17 @@ DependencyGraph<DynInstPtr>::insert(PhysRegIndex idx, DynInstPtr &new_inst)
 
     // First create the entry that will be added to the head of the
     // dependency chain.
-    std::cout << "iew test1"<<std::endl;
+    //std::cout << "iew test1"<<std::endl;
     DepEntry *new_entry = new DepEntry;
-    std::cout << "iew test2"<<std::endl;
+    //std::cout << "iew test2"<<std::endl;
 
     new_entry->next = dependGraph[idx].next;
     new_entry->inst = new_inst;
-    std::cout << "iew test3"<<std::endl;
+    //std::cout << "iew test3"<<std::endl;
 
     // Then actually add it to the chain.
     dependGraph[idx].next = new_entry;
-    std::cout << "iew test4"<<std::endl;
+    //std::cout << "iew test4"<<std::endl;
 
     ++memAllocCounter;
 }

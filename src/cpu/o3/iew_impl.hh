@@ -148,6 +148,10 @@ DefaultIEW<Impl>::regStats()
     instQueue.regStats();
     ldstQueue.regStats();
 
+    squashDueToMemOrderNum
+        .name(name() + ".squashDueToMemOrderNum")
+        .desc("the times of squash due to memory order violation");
+
     iewIdleCycles
         .name(name() + ".iewIdleCycles")
         .desc("Number of cycles IEW is idle");
@@ -513,7 +517,8 @@ DefaultIEW<Impl>::squashDueToMemOrder(DynInstPtr &inst, ThreadID tid)
     // case the memory violator should take precedence over the branch
     // misprediction because it requires the violator itself to be included in
     // the squash.
-    std::cout<<"squashDueToMemOrder:";inst->dump();
+    squashDueToMemOrderNum++;
+    std::cout<<"squashDueToMemOrder seqNum is: " << inst->seqNum;inst->dump();
     if (!toCommit->squash[tid] ||
             inst->seqNum <= toCommit->squashedSeqNum[tid]) {
         toCommit->squash[tid] = true;
@@ -1047,7 +1052,7 @@ DefaultIEW<Impl>::dispatchInsts(ThreadID tid)
             break;
         }
 
-        std::cout << "iew: ";inst->dump();
+        //std::cout << "iew: ";inst->dump();
         // Otherwise issue the instruction just fine.
         if (inst->isLoad()) {
             DPRINTF(IEW, "[tid:%i]: Issue: Memory instruction "
@@ -1135,7 +1140,7 @@ DefaultIEW<Impl>::dispatchInsts(ThreadID tid)
 
         ++iewDispatchedInsts;
 
-        std::cout << "Current Tick: " << curTick() << std::endl;
+        //std::cout << "Current Tick: " << curTick() << std::endl;
 #if TRACING_ON
         inst->dispatchTick = curTick() - inst->fetchTick;
 #endif
@@ -1245,13 +1250,26 @@ DefaultIEW<Impl>::executeInsts()
                     "reference.\n");
 
             // Tell the LDSTQ to execute this instruction (if it is a load).
-            if (inst->isLoad()) {
+            if (inst->isLoad() ) {
+                /*if (inst->cnt==0)
+                {
+                   instQueue.deferMemInst(inst);
+                   inst->cnt++;
+                   continue;
+                }
+                inst->cnt++;*/
                 // Loads will mark themselves as executed, and their writeback
                 // event adds the instruction to the queue to commit
                 fault = ldstQueue.executeLoad(inst);
 
-                if (inst->isTranslationDelayed() &&
-                    fault == NoFault) {
+                /*if (inst->cnt==1)
+                {
+                   instQueue.deferMemInst(inst);
+                   continue;
+                }*/
+
+                if ((inst->isTranslationDelayed() &&
+                    fault == NoFault)) {
                     // A hw page table walk is currently going on; the
                     // instruction must be deferred.
                     DPRINTF(IEW, "Execute: Delayed translation, deferring "
@@ -1439,6 +1457,7 @@ DefaultIEW<Impl>::writebackInsts()
         // when it's ready to execute the strictly ordered load.
         if (!inst->isSquashed() && inst->isExecuted() && inst->getFault() == NoFault) {
             int dependents = instQueue.wakeDependents(inst);
+            if (inst->isLoad()||inst->isStore())
             std::cout <<"writeback test time: " << curTick() << " inst SN: " << inst->seqNum;inst->dump();
 
             for (int i = 0; i < inst->numDestRegs(); i++) {

@@ -159,6 +159,14 @@ class BaseDynInst : public ExecContext, public RefCounted
 
     bool isForward = false;
 
+    bool firstEnterSVW = true;
+
+    bool not_hit = false;
+
+    uint64_t filterSSN = 0;
+
+    uint64_t reexecuteTime = 0;
+
     uint8_t bitEnable;
 
     /** The StaticInst used by this BaseDynInst. */
@@ -223,10 +231,10 @@ class BaseDynInst : public ExecContext, public RefCounted
     Addr effAddr;
 
     /** The base address of effctive virtual address. */
-    Addr effBase;
+    uint64_t base;
 
     /** The offset of effctive virtual address. */
-    Addr effOffset;
+    uint64_t offset;
 
     /** The effective physical address. */
     Addr physEffAddrLow;
@@ -244,6 +252,11 @@ class BaseDynInst : public ExecContext, public RefCounted
 
     /** The size of the request */
     uint64_t effSize;
+
+    int cnt =0;
+
+    int wait_time = 0;
+    bool getData = false;
 
     bool isUnsigned = false;
 
@@ -1094,13 +1107,13 @@ BaseDynInst<Impl>::writeMem(uint8_t *data, unsigned size, Addr addr,
             reqToVerify = std::make_shared<Request>(*req);
         }
 
-        std::cout << "store write Vaddr: " << effAddr << " Size: " << effSize
+        /*std::cout << "store write Vaddr: " << effAddr << " Size: " << effSize
                   << " data: ";
         for (int i=0;i<effSize;i++)
         {
             std::cout << (uint64_t)data[i] <<" ";
         }
-        this->dump();
+        this->dump();*/
         fault = cpu->write(req, sreqLow, sreqHigh, data, sqIdx);
     }
 

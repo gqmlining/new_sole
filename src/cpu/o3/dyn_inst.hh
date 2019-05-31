@@ -214,7 +214,7 @@ class BaseO3DynInst : public BaseDynInst<Impl>
 
     void forwardOldRegs()
     {
-        std::cout <<"enter forward old regs";this->dump();
+        //std::cout <<"enter forward old regs";this->dump();
 
         for (int idx = 0; idx < this->numDestRegs(); idx++) {
             PhysRegIdPtr prev_phys_reg = this->prevDestRegIdx(idx);
@@ -386,9 +386,9 @@ class BaseO3DynInst : public BaseDynInst<Impl>
     void setIntRegOperand(const StaticInst *si, int idx, IntReg val)
     {
         if (this->isReexecuting()){
-          std::cout<<"setIntRegOperand: re-val:"<<val<<" ";this->dump();
+          std::cout<<"setIntRegOperand: re-val:"<<val<<" SN: " <<this->seqNum;this->dump();
         }else{
-          std::cout<<"setIntRegOperand: val:"<<val<<" ";this->dump();
+          std::cout<<"setIntRegOperand: val:"<<val<<" SN: "<<this->seqNum;this->dump();
         }
         this->cpu->setIntReg(this->_destRegIdx[idx], val);
         BaseDynInst<Impl>::setIntRegOperand(si, idx, val);

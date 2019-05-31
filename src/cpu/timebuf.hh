@@ -184,11 +184,11 @@ class TimeBuffer
         int ptr = base + future;
         if (ptr >= (int)size)
             ptr -= size;
-        std::cout << "advance 1-0" << std::endl;
+        //std::cout << "advance 1-0" << std::endl;
         (reinterpret_cast<T *>(index[ptr]))->~T();
-        std::cout << "advance 1-1" << std::endl;
+        //std::cout << "advance 1-1" << std::endl;
         std::memset(index[ptr], 0, sizeof(T));
-        std::cout << "advance 1-2" << std::endl;
+        //std::cout << "advance 1-2" << std::endl;
         new (index[ptr]) T;
     }
 

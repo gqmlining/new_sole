@@ -625,6 +625,50 @@ LSQUnit<Impl>::ReexecuteLoad(DynInstPtr &inst)
 
     // todo:copy olddata
 
+    //if over 10 cycles
+    if (inst->getData && (curTick()-inst->reexecuteTime>=3000)){
+        uint64_t val = 0;
+        for (int i=0; i<inst->effSize; ++i)
+        {
+             //uint64_t temp = inst->forwardData[i];
+             uint64_t temp = inst->memData[i];
+             //std::cout << "forward data: " << temp << " ";
+             temp = temp << (8 * i);
+             val = val | temp;
+        }
+        if (!inst->isUnsigned && inst->memData[inst->effSize - 1] >= 128 )
+        {
+             uint64_t temp = 255;
+             temp = temp << (8 * inst->effSize);
+             for (int i=inst->effSize; i<8; i++)
+             {
+                val = val | temp;
+                temp = temp << 8;
+             }
+        }
+        std::cout << "reduce time val is: " << val;inst->dump();
+        //std::cout << "asw: forward val is: " << val << std::endl;
+        if (inst->isFloating())
+        {
+            inst->setFloatRegOperandBits(
+                  inst->staticInst.get(),0,val);
+        }
+        else
+        {
+            inst->setIntRegOperand(inst->staticInst.get(),0,val);
+        }
+                if (inst->isSquashDueToReexecute()){
+          iewStage->squashDueToMemOrder(inst,inst->threadNumber);
+          return NoFault;
+        }
+        inst->setReexecuted();
+        inst->setCanCommit();
+        iewStage->activityThisCycle();
+
+        if (inst->reexecute_memData!=nullptr)
+            delete [] inst->reexecute_memData;
+        return NoFault;
+    }
     load_fault = inst->initiateAcc();
 
     if (inst->isTranslationDelayed() &&
@@ -639,17 +683,19 @@ template <class Impl>
 Fault
 LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 {
-    std::cout << std::endl;
-    std::cout << "lsq exe ";inst->dump();
     using namespace TheISA;
     // Execute a specific load.
     Fault load_fault = NoFault;
-
+    //if (!inst->cnt)
+    //    return load_fault;
     DPRINTF(LSQUnit, "Executing load PC %s, [sn:%lli]\n",
             inst->pcState(), inst->seqNum);
 
     assert(!inst->isSquashed());
 
+    /*inst->onlyTLBTranslate = true;
+    load_fault = inst->initiateAcc();
+    inst->onlyTLBTranslate = false;*/
     // add data forward mechisim
     // todo@ may need to change
     if (inst->firstEnterExe //&& (!inst->isSpecialInst)
@@ -657,14 +703,14 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
     {
         inst->isForward = true;
         // todo@ write value to proper reg
-        std::cout << "asw: forward success ssn is: " << inst->forwardSSN;inst->dump();
+        //std::cout << "asw: forward success ssn is: " << inst->forwardSSN;inst->dump();
         // Need to get physical address and effSize for svw filter
         if (inst->isConditionalInst) {
              inst->firstEnterExe = false;
              cpu->iew.instQueue.deferMemInst(inst);
              return NoFault;
         }
-        std::cout <<"forward test time: " << curTick() << " inst SN: " << inst->seqNum;inst->dump();
+        //std::cout <<"forward test time: " << curTick() << " inst SN: " << inst->seqNum;inst->dump();
         inst->onlyTLBTranslate = true;
         load_fault = inst->initiateAcc();
         //inst->onlyTLBTranslate = false;
@@ -673,7 +719,7 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         {
              //uint64_t temp = inst->forwardData[i];
              uint64_t temp = inst->memData[i];
-             std::cout << "forward data: " << temp << " ";
+             //std::cout << "forward data: " << temp << " ";
              temp = temp << (8 * i);
              val = val | temp;
         }
@@ -687,7 +733,7 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
                 temp = temp << 8;
              }
         }
-        std::cout << "asw: forward val is: " << val << std::endl;
+        //std::cout << "asw: forward val is: " << val << std::endl;
         if (inst->isFloating())
         {
             inst->setFloatRegOperandBits(
@@ -705,9 +751,8 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
         //inst->forwardSSN = cpu->SVWFilter.getSSN(inst);
         inst->isForward = false;
         inst->forwardSSN = cpu->retireSSN;
-        std::cout << "asw: forward failed ssn is: " << inst->forwardSSN;inst->dump();
+        //std::cout << "asw: forward failed ssn is: " << inst->forwardSSN;inst->dump();
     }
-
     inst->firstEnterExe = false;
     if (inst->isTranslationDelayed() &&
         load_fault == NoFault)
@@ -749,16 +794,17 @@ LSQUnit<Impl>::executeLoad(DynInstPtr &inst)
 
             // see if this load changed the PC
             iewStage->checkMisprediction(inst);
+          //  return load_fault;
 
         }
-
-        if (checkLoads)
-            return checkViolations(load_idx, inst);
+        return load_fault;
+        //if (checkLoads)
+        //   return checkViolations(load_idx, inst);
     }
-    if (load_fault!=NoFault)
+    /*if (load_fault!=NoFault)
       std::cout << "debug: exe load fault: " << load_fault->name() << std::endl;
     else
-      std::cout << "debug: exe load no fault" << std::endl;
+      std::cout << "debug: exe load no fault" << std::endl;*/
 
     return load_fault;
 }
@@ -767,8 +813,6 @@ template <class Impl>
 Fault
 LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
 {
-    std::cout << std::endl;
-    std::cout << "lsq exe ";store_inst->dump();
     using namespace TheISA;
     // Make sure that a store exists.
     assert(stores != 0);
@@ -783,7 +827,7 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
 
     // Check the recently completed loads to see if any match this store's
     // address.  If so, then we have a memory ordering violation.
-    int load_idx = store_inst->lqIdx;
+    //int load_idx = store_inst->lqIdx;
 
     Fault store_fault = store_inst->initiateAcc();
     if (store_inst->firstEnterExe)
@@ -825,7 +869,8 @@ LSQUnit<Impl>::executeStore(DynInstPtr &store_inst)
         ++storesToWB;
     }
 
-    return checkViolations(load_idx, store_inst);
+    //return checkViolations(load_idx, store_inst);
+    return NoFault;
 
 }
 
@@ -1109,6 +1154,41 @@ LSQUnit<Impl>::removeMSHR(InstSeqNum seqNum)
     }
 }*/
 
+uint64_t hashCal(uint64_t base, uint64_t offset)
+{
+  uint64_t temp = 15; //1111
+  uint64_t h[4];
+  for (int i=1;i<=4;i++)
+  {
+    uint64_t base_t = temp & base;
+    uint64_t offset_t = temp & offset;
+    h[i-1] = (base_t + offset_t) & temp;
+    temp = temp << 4;
+  }
+  uint64_t hash = 0;
+  for (int i = 0;i<4;i++)
+  {
+     hash = hash | h[i];
+  }
+  /*uint64_t temp =1;
+  uint64_t t = 0;
+  for (int i=0;i<15;i++)
+  {
+    t = t | temp;
+    temp = temp << 1;
+  }
+  //std::cout << "hash cal test: " << hash << std::endl;
+  uint64_t hash = base + offset;
+  hash = hash & t;
+  t = ~t;
+  base = base & t;*/
+  base = base >> 16 << 16;
+  hash = hash | base;
+  hash = hash >> 3;
+  //std::cout << "hash cal test: " << hash << std::endl;
+  return hash;
+}
+
 // todo@ implement the two funtions below.
 template<class Impl>
 void
@@ -1118,8 +1198,18 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
     // depCheckShift is the offset in block
     uint64_t base = store_inst->readIntRegOperand(
                     store_inst->staticInst.get(),0);
-    uint64_t offset = store_inst->staticInst->getOffset();
+    uint64_t  offset = store_inst->staticInst->getOffset();
+
+    store_inst->base = base;
+    store_inst->offset = offset;
+    /*
+    uint64_t offset_t = (offset >> depCheckShift) << 12;
+    uint64_t offset_p = offset | offset_t;
+    uint64_t hash = (base ^ offset_p) >> depCheckShift;
+    */
     uint64_t hash = (base + offset) >> depCheckShift;
+    //uint64_t hash = store_inst->effAddr >> depCheckShift;
+    //uint64_t hash = hashCal(base,offset);
     // used for bitEnable, this is start place where bit enable
     uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
     uint64_t index = hash % setsNum;
@@ -1158,18 +1248,21 @@ LSQUnit<Impl>::updateForwardEntry(const DynInstPtr& store_inst)
     store_inst->bitEnable = entry.bitEnable;
     entry.ssn = ssn;
     entry.tag = hash / setsNum;
+    /*uint64_t cnt = (base & offset) >> (depCheckShift-1);
+    entry.tag = (hash ^ cnt)  / setsNum;*/
     std::cout << "asw update: index: "<< index << " tag: " << entry.tag
               << " base: " << base << " offset: " << offset
               << " blockOffset: " << blockOffset << " size: " << store_inst->effSize
-              << " bitEnable: " << (uint64_t)entry.bitEnable << " ssn: " << ssn;store_inst->dump();
+              << " bitEnable: " << (uint64_t)entry.bitEnable << " ssn: " << ssn
+              << " seqNum is: " << store_inst->seqNum; store_inst->dump();
     // only set the proper byte in data;
     if (entry.data == NULL)
         entry.data = new uint8_t[16];
     //std::cout << "debug: store inst effSize is: " << store_inst->effSize << std::endl;
     memcpy(&entry.data[blockOffset], store_inst->storeData,
            store_inst->effSize);
-   for (int i=0;i<store_inst->effSize;i++)
-     std::cout << (uint64_t)entry.data[blockOffset+i] << " ";
+   /*for (int i=0;i<store_inst->effSize;i++)
+     std::cout << (uint64_t)entry.data[blockOffset+i] << " ";*/
 }
 
 template<class Impl>
@@ -1179,7 +1272,14 @@ LSQUnit<Impl>::squashForwardEntry(const DynInstPtr& store_inst)
     uint64_t base = store_inst->readIntRegOperand(
                     store_inst->staticInst.get(),0);
     uint64_t offset = store_inst->staticInst->getOffset();
+    /*
+    uint64_t offset_t = (offset >> depCheckShift) << 12;
+    uint64_t offset_p = offset | offset_t;
+    uint64_t hash = (base ^ offset_p) >> depCheckShift;
+    */
+    //uint64_t hash = hashCal(base,offset);
     uint64_t hash = (base + offset) >> depCheckShift;
+    //uint64_t hash = store_inst->effAddr >> depCheckShift;
     uint64_t index = hash % setsNum;
     for (unsigned i = 0; i < waysNum; ++i)
     {
@@ -1225,13 +1325,24 @@ LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
                     load_inst->staticInst.get(),0);
     uint64_t offset = load_inst->staticInst->getOffset();
     //std::cout << "debug: base: " << base << " offset: " << offset << std::endl;
+    load_inst->base = base;
+    load_inst->offset = offset;
+    /*
+    uint64_t offset_t = (offset >> depCheckShift) << 12;
+    uint64_t offset_p = offset | offset_t;
+    uint64_t hash = (base ^ offset_p) >> depCheckShift;
+    */
+    //uint64_t hash = hashCal(base,offset);
     uint64_t hash = (base + offset) >> depCheckShift;
+    //uint64_t hash = load_inst->effAddr >> depCheckShift;
     uint64_t index = hash % setsNum;
     uint64_t blockOffset = (base + offset) % (1 << depCheckShift);
     uint64_t youngestSsnWay = 0;
     uint64_t youngestHitSsn = 0;
     bool canForward = false;
     uint64_t tag = hash / setsNum;
+    /*uint64_t cnt = (base & offset) >> (depCheckShift-1);
+    uint64_t tag = (hash ^ cnt)  / setsNum;*/
     uint8_t mask = 1 << blockOffset;
     load_inst->bitEnable = 0;
     for (uint64_t i = 0;i < load_inst->effSize; i++)
@@ -1273,25 +1384,26 @@ LSQUnit<Impl>::dataForward(DynInstPtr& load_inst)
         std::cout << "asw forward: index: "<< index << " tag: " << tag
                   << " base: " << base << " offset: " << offset
                   << " blockOffset: " << blockOffset << " size: " << load_inst->effSize
-                  << " bitEnable: " << (uint64_t)entry.bitEnable << " ssn: " << entry.ssn;load_inst->dump();
+                  << " bitEnable: " << (uint64_t)entry.bitEnable << " ssn: " << entry.ssn
+                  << " seqNum is: " << load_inst->seqNum;load_inst->dump();
         load_inst->forwardSSN = youngestHitSsn;
         uint64_t size = load_inst->effSize;
         if (!load_inst->memData)
             load_inst->memData = new uint8_t[size];
         memcpy(load_inst->memData, &entry.data[blockOffset], size);
-        std::cout << "asw size: " <<size << std::endl;
-        std::cout << " entry data: ";
+        //std::cout << "asw size: " <<size << std::endl;
+        //std::cout << " entry data: ";
         for (int i=0;i<size;i++)
         {
             std::cout << (uint64_t)entry.data[blockOffset+i] << " ";
         }
-        std::cout << "ssn : " << entry.ssn;
-        load_inst->dump();
+        //std::cout << "ssn : " << entry.ssn;
+        //load_inst->dump();
         return true;
     }
-    std::cout << "asw forward failed: index: "<< index << " tag: " << tag
+    /*std::cout << "asw forward failed: index: "<< index << " tag: " << tag
               << " base: " << base << " offset: " << offset
-              << " blockOffset: " << blockOffset << " size: " << load_inst->effSize;load_inst->dump();
+              << " blockOffset: " << blockOffset << " size: " << load_inst->effSize;load_inst->dump();*/
     return false;
 }
 
